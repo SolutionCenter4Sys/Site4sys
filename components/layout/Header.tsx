@@ -125,6 +125,7 @@ export function Header({ variant = 'transparent' }: HeaderProps) {
             {[
               { href: '/sobre', label: 'Sobre' },
               { href: '/casos-de-sucesso', label: 'Casos' },
+              { href: '/insights', label: 'Insights' },
               { href: '/carreiras', label: 'Carreiras' },
             ].map(item => (
               <Link
@@ -223,6 +224,7 @@ export function Header({ variant = 'transparent' }: HeaderProps) {
           {[
             { href: '/sobre', label: 'Sobre' },
             { href: '/casos-de-sucesso', label: 'Casos' },
+            { href: '/insights', label: 'Insights' },
             { href: '/carreiras', label: 'Carreiras' },
           ].map(item => (
             <Link

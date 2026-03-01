@@ -73,6 +73,7 @@ export function Footer() {
               {[
                 { href: '/sobre', label: 'Sobre a Foursys' },
                 { href: '/sobre#fourlives', label: 'FourLives' },
+                { href: '/insights', label: 'Insights' },
                 { href: '/carreiras', label: 'Carreiras' },
                 { href: '/casos-de-sucesso', label: 'Casos de sucesso' },
                 { href: '/contato', label: 'Contato' },

@@ -21,32 +21,47 @@ interface OfferCardProps {
 export function OfferCard({ offer, variant = 'default', className }: OfferCardProps) {
   const Icon = ICON_MAP[offer.icon] || Brain;
 
+  const isFlagship = offer.category === 'flagship';
+
   return (
     <Link
       href={`/solucoes/${offer.slug}`}
       className={cn(
-        'relative overflow-hidden group flex flex-col bg-white rounded-2xl border border-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover hover:border-orange/20',
+        'relative overflow-hidden group flex flex-col rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover',
+        isFlagship
+          ? 'bg-white border-2 border-orange/30 hover:border-orange/50 shadow-card'
+          : 'bg-white border border-gray-100 hover:border-orange/20',
         variant === 'default' ? 'p-8' : 'p-6',
         className,
       )}
       aria-label={`Ver oferta: ${offer.name}`}
     >
-      {/* Top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: offer.color }} aria-hidden="true" />
+      {/* Top accent line — Flagship: sempre visível e mais grossa */}
+      <div
+        className={cn(
+          'absolute top-0 left-0 right-0 transition-opacity duration-300',
+          isFlagship ? 'h-1.5 opacity-100' : 'h-1 opacity-0 group-hover:opacity-100',
+        )}
+        style={{ background: offer.color }}
+        aria-hidden="true"
+      />
 
       <div>
-        {/* Icon + Badge */}
+        {/* Icon + Badge — Flagship com ícone maior */}
         <div className="flex items-start justify-between mb-5">
           <div
-            className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-            style={{ background: `${offer.color}18` }}
+            className={cn(
+              'rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110',
+              isFlagship ? 'w-14 h-14' : 'w-12 h-12',
+            )}
+            style={{ background: isFlagship ? `${offer.color}25` : `${offer.color}18` }}
           >
-            <Icon className="w-6 h-6" style={{ color: offer.color }} />
+            <Icon className={cn(isFlagship ? 'w-7 h-7' : 'w-6 h-6')} style={{ color: offer.color }} />
           </div>
           <Badge
             variant={offer.category === 'flagship' ? 'flagship' : 'core'}
             label={offer.category === 'flagship' ? 'Flagship' : 'Core'}
-            size="sm"
+            size={isFlagship ? 'md' : 'sm'}
           />
         </div>
 

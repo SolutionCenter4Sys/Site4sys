@@ -1,8 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, ShieldCheck, MapPin, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import { METRICS } from '@/mocks/index';
+import { METRICS, CERTIFICATIONS } from '@/mocks/index';
 
 export function HeroHome() {
   const [animated, setAnimated] = useState(false);
@@ -34,7 +35,7 @@ export function HeroHome() {
       </div>
 
       <div className="container-site relative z-10 pt-28 pb-16 flex flex-col items-start">
-        {/* Badge */}
+        {/* Badge — 25 anos */}
         <div
           className={`inline-flex items-center gap-2 px-4 py-2 rounded-pill bg-orange/15 border border-orange/30 mb-8 transition-all duration-700 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
@@ -42,47 +43,55 @@ export function HeroHome() {
           <span className="text-label-md text-orange font-semibold tracking-wide">25 anos transformando negócios com tecnologia</span>
         </div>
 
-        {/* Headline */}
+        {/* Headline — mais direto ao benefício (inspiração Conversion.com) */}
         <h1
-          className={`text-4xl sm:text-5xl lg:text-display-xl text-white max-w-4xl leading-[1.05] mb-6 transition-all duration-700 delay-100 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          className={`text-4xl sm:text-5xl lg:text-display-xl text-white max-w-4xl leading-[1.05] mb-5 transition-all duration-700 delay-100 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           Squads que entregam{' '}
           <span className="text-gradient-orange">valor em semanas,</span>
           {' '}não em meses.
         </h1>
 
-        {/* Subheadline */}
+        {/* Subheadline — curto e impactante (CRO: reduzir ansiedade) */}
         <p
-          className={`text-body-lg sm:text-body-xl text-white/70 max-w-2xl leading-relaxed mb-10 transition-all duration-700 delay-200 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          className={`text-body-lg sm:text-body-xl text-white/80 max-w-xl leading-relaxed mb-8 transition-all duration-700 delay-200 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
-          Parceiro estratégico de transformação digital com agilidade, proximidade e resultados mensuráveis. 3,6% turnover. GPTW. 25 anos de história.
+          Governança enterprise. 3,6% turnover. 25 anos de entrega.
         </p>
 
-        {/* Enterprise trust strip */}
+        {/* Trust badges — chips separados (menos densidade) */}
         <div
-          className={`glass rounded-2xl px-5 py-4 mb-10 w-full max-w-3xl transition-all duration-700 delay-[250ms] ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          className={`flex flex-wrap gap-2 mb-10 transition-all duration-700 delay-[250ms] ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <span className="inline-flex items-center gap-2 text-body-sm text-white/85 font-semibold">
-              <ShieldCheck className="w-4 h-4 text-orange" />
-              Governança enterprise desde a primeira sprint
-            </span>
-            <span className="text-body-sm text-white/60">Brasil • EUA • Portugal</span>
-            <span className="text-body-sm text-white/60">Setores regulados e missão crítica</span>
-          </div>
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass text-body-sm text-white/90 font-medium">
+            <ShieldCheck className="w-4 h-4 text-orange flex-shrink-0" />
+            Governança desde a sprint 1
+          </span>
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass text-body-sm text-white/80">
+            <MapPin className="w-4 h-4 text-orange/80 flex-shrink-0" />
+            Brasil • EUA • Portugal
+          </span>
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass text-body-sm text-white/80">
+            <Building2 className="w-4 h-4 text-orange/80 flex-shrink-0" />
+            Setores regulados e missão crítica
+          </span>
         </div>
 
-        {/* CTAs */}
+        {/* CTA primário único em destaque + link secundário (CRO) */}
         <div
-          className={`flex flex-col sm:flex-row gap-4 mb-16 transition-all duration-700 delay-300 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          className={`flex flex-col sm:flex-row sm:items-center gap-4 mb-4 transition-all duration-700 delay-300 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
           <Button href="/contato" variant="primary" size="xl" rightIcon={<ArrowRight className="w-5 h-5" />}>
-            Fale com um especialista
+            Agendar diagnóstico gratuito
           </Button>
-          <Button href="/casos-de-sucesso" variant="outline" size="xl">
+          <Link
+            href="/casos-de-sucesso"
+            className="text-body-lg text-white/70 hover:text-white underline underline-offset-4 transition-colors sm:ml-2"
+          >
             Ver casos de sucesso
-          </Button>
+          </Link>
         </div>
+        <p className="text-body-sm text-white/50 mb-12">Diagnóstico gratuito • Resposta em 24h • Sem compromisso</p>
 
         {/* Metrics bar */}
         <div
@@ -94,6 +103,21 @@ export function HeroHome() {
               <p className="text-body-md text-white/80 font-medium mt-1">{metric.label}</p>
               {metric.sublabel && <p className="text-body-sm text-white/40">{metric.sublabel}</p>}
             </div>
+          ))}
+        </div>
+
+        {/* Trust badges — certificações above the fold (CRO) */}
+        <div
+          className={`flex flex-wrap justify-start gap-2 mt-6 transition-all duration-700 delay-[600ms] ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+        >
+          {CERTIFICATIONS.slice(0, 6).map((cert) => (
+            <span
+              key={cert.id}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-body-sm text-white/80 font-medium"
+            >
+              <span className="w-4 h-4 rounded-full bg-orange/20 text-orange text-[10px] font-bold flex items-center justify-center flex-shrink-0">✓</span>
+              {cert.name}
+            </span>
           ))}
         </div>
       </div>

@@ -3,7 +3,17 @@ import { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
-import { SERVICES_LIST } from '@/mocks/index';
+
+/** Desafios comuns — CRO: reduzir fricção, formulário enxuto (4 campos) */
+const DESAFIOS_OPTIONS = [
+  { value: '', label: 'Qual seu maior desafio hoje?' },
+  { value: 'Backlog sem previsão', label: 'Backlog sem previsão' },
+  { value: 'Legado travando integração', label: 'Legado travando integração' },
+  { value: 'IA sem ROI', label: 'IA sem ROI' },
+  { value: 'Expandir equipe técnica', label: 'Expandir equipe técnica' },
+  { value: 'Modernização de sistemas', label: 'Modernização de sistemas' },
+  { value: 'Outro', label: 'Outro' },
+];
 
 interface ContactFormProps {
   context?: string;
@@ -15,15 +25,12 @@ export function ContactForm({ context, variant = 'full', className }: ContactFor
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [form, setForm] = useState({
     nome: '',
-    empresa: '',
-    cargo: '',
     email: '',
-    telefone: '',
-    servico: context || '',
+    desafio: context || '',
     mensagem: '',
   });
 
-  const inputCls = 'w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-body-lg text-gray-800 placeholder-gray-400 transition-all focus:outline-none focus:border-orange focus:ring-2 focus:ring-orange/20 hover:border-gray-300';
+  const inputCls = 'w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-body-lg text-gray-800 placeholder-gray-400 transition-all focus:outline-none focus:border-orange focus:ring-2 focus:ring-orange/20 hover:border-gray-300 min-h-[48px]';
   const labelCls = 'block text-body-sm font-semibold text-gray-700 mb-1.5';
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,7 +40,13 @@ export function ContactForm({ context, variant = 'full', className }: ContactFor
       const res = await fetch('/api/contato', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, ofertaContexto: context }),
+        body: JSON.stringify({
+          nome: form.nome,
+          email: form.email,
+          mensagem: form.mensagem,
+          empresa: '',
+          ofertaContexto: form.desafio || context,
+        }),
       });
       if (res.ok) setStatus('success');
       else setStatus('error');
@@ -47,7 +60,7 @@ export function ContactForm({ context, variant = 'full', className }: ContactFor
       <div className={cn('flex flex-col items-center justify-center py-12 text-center gap-4', className)}>
         <CheckCircle className="w-14 h-14 text-green-500" />
         <h3 className="text-heading-lg text-navy">Mensagem enviada!</h3>
-        <p className="text-body-lg text-gray-500">Nossa equipe entrará em contato em breve.</p>
+        <p className="text-body-lg text-gray-500">Nossa equipe entrará em contato em até 24h.</p>
         <Button variant="outline" size="md" onClick={() => setStatus('idle')}>Enviar nova mensagem</Button>
       </div>
     );
@@ -61,33 +74,12 @@ export function ContactForm({ context, variant = 'full', className }: ContactFor
         </div>
       )}
 
-      <div className={cn('grid gap-4', variant === 'full' ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1')}>
-        <div>
-          <label htmlFor="nome" className={labelCls}>Nome *</label>
-          <input id="nome" type="text" required placeholder="Seu nome" className={inputCls}
-            value={form.nome} onChange={e => setForm({ ...form, nome: e.target.value })} />
-        </div>
-        <div>
-          <label htmlFor="empresa" className={labelCls}>Empresa *</label>
-          <input id="empresa" type="text" required placeholder="Nome da empresa" className={inputCls}
-            value={form.empresa} onChange={e => setForm({ ...form, empresa: e.target.value })} />
-        </div>
+      {/* 4 campos apenas — CRO: cada campo adicional reduz conversão ~7% */}
+      <div>
+        <label htmlFor="nome" className={labelCls}>Nome *</label>
+        <input id="nome" type="text" required placeholder="Seu nome" className={inputCls}
+          value={form.nome} onChange={e => setForm({ ...form, nome: e.target.value })} />
       </div>
-
-      {variant === 'full' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="cargo" className={labelCls}>Cargo</label>
-            <input id="cargo" type="text" placeholder="Seu cargo" className={inputCls}
-              value={form.cargo} onChange={e => setForm({ ...form, cargo: e.target.value })} />
-          </div>
-          <div>
-            <label htmlFor="telefone" className={labelCls}>Telefone</label>
-            <input id="telefone" type="tel" placeholder="+55 11 99999-9999" className={inputCls}
-              value={form.telefone} onChange={e => setForm({ ...form, telefone: e.target.value })} />
-          </div>
-        </div>
-      )}
 
       <div>
         <label htmlFor="email" className={labelCls}>E-mail *</label>
@@ -95,16 +87,15 @@ export function ContactForm({ context, variant = 'full', className }: ContactFor
           value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
       </div>
 
-      {variant === 'full' && (
-        <div>
-          <label htmlFor="servico" className={labelCls}>Serviço de interesse</label>
-          <select id="servico" className={inputCls}
-            value={form.servico} onChange={e => setForm({ ...form, servico: e.target.value })}>
-            <option value="">Selecione uma opção</option>
-            {SERVICES_LIST.map(s => <option key={s} value={s}>{s}</option>)}
-          </select>
-        </div>
-      )}
+      <div>
+        <label htmlFor="desafio" className={labelCls}>Qual seu maior desafio hoje?</label>
+        <select id="desafio" className={inputCls}
+          value={form.desafio} onChange={e => setForm({ ...form, desafio: e.target.value })}>
+          {DESAFIOS_OPTIONS.map(opt => (
+            <option key={opt.value || 'empty'} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
 
       <div>
         <label htmlFor="mensagem" className={labelCls}>Mensagem *</label>
@@ -119,11 +110,11 @@ export function ContactForm({ context, variant = 'full', className }: ContactFor
       )}
 
       <Button type="submit" variant="primary" size="lg" fullWidth loading={status === 'loading'} rightIcon={<Send className="w-4 h-4" />}>
-        Enviar mensagem
+        Receber proposta em 24h
       </Button>
 
       <p className="text-body-sm text-gray-400 text-center">
-        Seus dados são protegidos conforme nossa política de privacidade.
+        Seus dados estão seguros. LGPD compliant.
       </p>
     </form>
   );

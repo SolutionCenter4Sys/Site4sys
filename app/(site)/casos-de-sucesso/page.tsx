@@ -5,8 +5,6 @@ import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { CasosPageClient } from '@/components/cases/CasosPageClient';
 import { InlineLeadForm } from '@/components/sections/InlineLeadForm';
 import { FAQSection } from '@/components/sections/FAQSection';
-import { StickyMobileCTA } from '@/components/ui/StickyMobileCTA';
-
 export const metadata: Metadata = {
   title: 'Casos de Sucesso',
   description:
@@ -166,9 +164,6 @@ export default function CasosPage() {
         ctaLabel="Agendar diagnóstico gratuito"
         ctaHref="/contato"
       />
-
-      {/* ── STICKY MOBILE CTA ─────────────────────────────────────── */}
-      <StickyMobileCTA />
     </>
   );
 }

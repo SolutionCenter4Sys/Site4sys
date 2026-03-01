@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
 
     const { nome, empresa, email, mensagem, servico, ofertaContexto } = body;
 
-    if (!nome || !empresa || !email || !mensagem) {
+    if (!nome || !email || !mensagem) {
       return NextResponse.json(
         { error: 'Campos obrigatórios ausentes' },
         { status: 400 }
@@ -24,9 +24,9 @@ export async function POST(request: NextRequest) {
     // Mock: em produção, integrar com SendGrid, Zapier/Make ou CRM
     console.log('[Contato] Novo lead recebido:', {
       nome,
-      empresa,
+      empresa: empresa || '(não informado)',
       email,
-      servico: ofertaContexto || servico,
+      desafio: ofertaContexto || servico,
       mensagem: mensagem.substring(0, 100),
       timestamp: new Date().toISOString(),
     });

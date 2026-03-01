@@ -6,8 +6,8 @@
    rounded-*, animate-* from the variables below.
 ───────────────────────────────────────────────────────────────── */
 @theme {
-  /* FONT */
-  --font-sans: var(--font-nunito), Helvetica, Arial, -apple-system, sans-serif;
+  /* FONT — profissional e legível (inspiração Conversion.com) */
+  --font-sans: var(--font-nunito), 'Inter', Helvetica, Arial, -apple-system, sans-serif;
 
   /* COLORS */
   --color-navy:       #222239;

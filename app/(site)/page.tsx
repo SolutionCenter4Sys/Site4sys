@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
 import { HeroHome } from '@/components/sections/HeroHome';
+import { HowWeWorkSection } from '@/components/sections/HowWeWorkSection';
+import { ProductsSection } from '@/components/sections/ProductsSection';
 import { MetricsSection } from '@/components/sections/MetricsSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { CTASection } from '@/components/sections/CTASection';
@@ -116,7 +118,7 @@ export default function HomePage() {
               <h2 className="text-display-sm text-navy">Três ofertas, impacto comprovado</h2>
             </div>
             <Button href="/solucoes" variant="outline" size="md" rightIcon={<ArrowRight className="w-4 h-4" />}>
-              Ver todas as 12 ofertas
+              Ver todas as 15 ofertas
             </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -127,7 +129,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Core Offers Grid */}
+      {/* 5. Como trabalhamos */}
+      <HowWeWorkSection />
+
+      {/* 6. Core Offers Grid */}
       <section className="section-padding bg-white" aria-label="Outras ofertas">
         <div className="container-site">
           <div className="text-center mb-10">
@@ -142,13 +147,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. Parceiros & Tecnologias */}
+      {/* 7. Produtos e Ecossistema */}
+      <ProductsSection />
+
+      {/* 8. Parceiros & Tecnologias */}
       <TechPartnersSection />
 
-      {/* 7. Metrics + Certifications */}
+      {/* 9. Metrics + Certifications + Premiações */}
       <MetricsSection />
 
-      {/* 8. Cases */}
+      {/* 10. Cases */}
       <section className="section-padding bg-gray-50" aria-label="Casos de sucesso">
         <div className="container-site">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
@@ -180,7 +188,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 9. FourLives */}
+      {/* 11. FourLives */}
       <section className="section-padding" style={{ background: 'linear-gradient(135deg, #F0FAF8 0%, #E8F8F5 100%)' }} aria-label="FourLives — Impacto social">
         <div className="container-site">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -219,10 +227,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 10. Testimonials */}
+      {/* 12. Testimonials */}
       <TestimonialsSection />
 
-      {/* 11. CTA Final */}
+      {/* 13. CTA Final */}
       <CTASection />
     </>
   );

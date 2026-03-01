@@ -7,6 +7,8 @@ export interface Offer {
   category: 'flagship' | 'core';
   icon: string;
   color: string;
+  /** Métricas do PDF institucional — proof points para CRO */
+  metrics?: string[];
   forWhom: string;
   pain: string;
   promise: string;

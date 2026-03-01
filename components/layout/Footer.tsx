@@ -19,7 +19,7 @@ export function Footer() {
               />
             </Link>
             <p className="text-body-md text-white/70 leading-relaxed mb-6">
-              Transformação que entrega valor em semanas — com agilidade, proximidade e resultados que você mede.
+              Soluções digitais que conectam estratégia, execução e evolução.
             </p>
             <div className="flex gap-3">
               {[

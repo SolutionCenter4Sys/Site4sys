@@ -30,8 +30,10 @@ export const TESTIMONIALS: Testimonial[] = [
 export const METRICS: Metric[] = [
   { id: '1', value: '25', label: 'anos de história', sublabel: 'Fundada em 2000', icon: 'Calendar' },
   { id: '2', value: '3,6%', label: 'turnover', sublabel: 'Great Place to Work', icon: 'Users' },
-  { id: '3', value: '3M+', label: 'horas entregues/ano', sublabel: 'em projetos de impacto', icon: 'Clock' },
-  { id: '4', value: '+20%', label: 'crescimento anual', sublabel: 'consistente', icon: 'TrendingUp' },
+  { id: '3', value: '500K+', label: 'projetos entregues', sublabel: 'em projetos de impacto', icon: 'FolderCheck' },
+  { id: '4', value: '2K+', label: 'colaboradores', sublabel: 'em 3 continentes', icon: 'Users' },
+  { id: '5', value: '3M+', label: 'horas entregues/ano', sublabel: 'em projetos de impacto', icon: 'Clock' },
+  { id: '6', value: '+20%', label: 'crescimento anual', sublabel: 'consistente', icon: 'TrendingUp' },
 ];
 
 export const CERTIFICATIONS: Certification[] = [
@@ -45,32 +47,23 @@ export const CERTIFICATIONS: Certification[] = [
   { id: '8', name: '100 Open Startups', description: 'Inovação Aberta', icon: 'Star' },
 ];
 
+/** Escritórios alinhados ao material institucional 2026 V9.01 */
 export const OFFICES: Office[] = [
-  {
-    id: 'sao-paulo',
-    city: 'São Paulo',
-    country: 'Brasil',
-    address: 'Rua Augusta, 1836 – 7º Andar, Consolação, São Paulo – SP',
-    phone: '+55 11 3062-1823',
-    email: 'contato@foursys.com.br',
-    flag: '🇧🇷',
-  },
-  {
-    id: 'usa',
-    city: 'Boston',
-    country: 'EUA',
-    address: 'One Financial Center, Boston – MA 02111',
-    email: 'contact@foursys.com',
-    flag: '🇺🇸',
-  },
-  {
-    id: 'portugal',
-    city: 'Lisboa',
-    country: 'Portugal',
-    address: 'Av. da Liberdade, 110, Lisboa',
-    email: 'contato@foursys.com.br',
-    flag: '🇵🇹',
-  },
+  { id: 'barueri', city: 'Barueri', country: 'Brasil', address: 'Av. Tamboré, 267 – Torre Norte, 9º andar', phone: '(11) 4134-2222', email: 'contato@foursys.com.br', flag: '🇧🇷' },
+  { id: 'paulista', city: 'São Paulo', country: 'Brasil', address: 'Av. Paulista, 1912 – Consolação, 15º andar', phone: '(11) 4861-8560', email: 'contato@foursys.com.br', flag: '🇧🇷' },
+  { id: 'curitiba', city: 'Curitiba', country: 'Brasil', address: 'R. Comendador Araújo, 499 – Batel, 10º andar', phone: '(41) 2106-6709', email: 'contato@foursys.com.br', flag: '🇧🇷' },
+  { id: 'inovabra', city: 'São Paulo', country: 'Brasil', address: 'Av. Angélica, 2529 – Bela Vista (Inovabra Habitat)', phone: '(11) 3062-1823', email: 'contato@foursys.com.br', flag: '🇧🇷' },
+  { id: 'rio', city: 'Rio de Janeiro', country: 'Brasil', address: 'Av. Pres. Vargas, 3131 – Cidade Nova, Sala 604', email: 'contato@foursys.com.br', flag: '🇧🇷' },
+  { id: 'lisboa', city: 'Lisboa', country: 'Portugal', address: 'Av. da Liberdade, 110 – 1269-046', email: 'contato@foursys.com.br', flag: '🇵🇹' },
+  { id: 'florida', city: 'Boca Raton', country: 'EUA', address: '980 N. Federal Highway #110, Florida 33432', email: 'contact@foursys.com', flag: '🇺🇸' },
+];
+
+/** Premiações (material institucional PDF) */
+export const AWARDS = [
+  { name: 'Prêmio Colaborar para Inovar', years: '2020, 2022, 2023 e 2024' },
+  { name: 'Prêmio Agilidade Brasil', years: '2024 e 2025' },
+  { name: 'Ranking 100 Open Startups', years: '2023 e 2024' },
+  { name: 'Destaque Saúde Emocional Jungle', years: '2022' },
 ];
 
 export const SERVICES_LIST = [
@@ -87,6 +80,9 @@ export const SERVICES_LIST = [
   'Produtos & Plataformas Digitais',
   'AMS — Application Management',
   'Dados & Inteligência',
+  'Integrações via API & Open Finance',
+  'Qualidade & Testes com IA',
+  'Hiperautomação & RPA',
   'Outro',
 ];
 

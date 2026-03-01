@@ -52,9 +52,14 @@ export function HeroHome() {
           {' '}não em meses.
         </h1>
 
-        {/* Subheadline — curto e impactante (CRO: reduzir ansiedade) */}
+        {/* Tagline institucional + proof points (material 2026 V9.01) */}
         <p
-          className={`text-body-lg sm:text-body-xl text-white/80 max-w-xl leading-relaxed mb-8 transition-all duration-700 delay-200 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          className={`text-body-lg sm:text-body-xl text-white/90 max-w-2xl leading-relaxed mb-3 transition-all duration-700 delay-200 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+        >
+          Soluções digitais que conectam estratégia, execução e evolução.
+        </p>
+        <p
+          className={`text-body-md text-white/60 max-w-xl mb-8 transition-all duration-700 delay-200 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
           Governança enterprise. 3,6% turnover. 25 anos de entrega.
         </p>
@@ -93,9 +98,9 @@ export function HeroHome() {
         </div>
         <p className="text-body-sm text-white/50 mb-12">Diagnóstico gratuito • Resposta em 24h • Sem compromisso</p>
 
-        {/* Metrics bar */}
+        {/* Metrics bar — 6 métricas (PDF institucional) */}
         <div
-          className={`w-full grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-white/10 transition-all duration-700 delay-500 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          className={`w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 pt-8 border-t border-white/10 transition-all duration-700 delay-500 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
           {METRICS.map((metric) => (
             <div key={metric.id} className="glass rounded-xl p-4 flex flex-col gap-1">

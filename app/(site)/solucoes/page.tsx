@@ -9,7 +9,7 @@ import { FLAGSHIP_OFFERS, CORE_OFFERS } from '@/mocks/offers';
 
 export const metadata: Metadata = {
   title: 'Ofertas e Soluções',
-  description: 'Conheça as 12 ofertas da Foursys: Squads Híbridas, Modernização de Legado, IA com ROI e muito mais. Cada oferta com ROI e KPIs definidos.',
+  description: 'Conheça as 15 ofertas da Foursys: Squads Híbridas, Modernização de Legado, IA com ROI, Integrações API, Qualidade & Testes, Hiperautomação e mais. Cada oferta com ROI e KPIs definidos.',
 };
 
 export default function SolucoesPage() {

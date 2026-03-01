@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import {
   Users, RefreshCw, Brain, Lightbulb, GitBranch, Shield,
-  Activity, DollarSign, Database, Bot, Cpu, Headphones, BarChart2, ArrowRight
+  Activity, DollarSign, Database, Bot, Cpu, Headphones, BarChart2, ArrowRight,
+  Link2, FlaskConical, Zap
 } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { cn } from '@/lib/utils';
@@ -10,6 +11,7 @@ import type { Offer } from '@/types';
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   Users, RefreshCw, Brain, Lightbulb, GitBranch, Shield,
   Activity, DollarSign, Database, Bot, Cpu, Headphones, BarChart2,
+  Link2, FlaskConical, Zap,
 };
 
 interface OfferCardProps {
@@ -77,9 +79,20 @@ export function OfferCard({ offer, variant = 'default', className }: OfferCardPr
 
         {/* Description */}
         {variant === 'default' && (
-          <p className="text-body-md text-gray-500 leading-relaxed mb-6">
+          <p className="text-body-md text-gray-500 leading-relaxed mb-4">
             {offer.description}
           </p>
+        )}
+
+        {/* Métricas do PDF (proof points CRO) */}
+        {offer.metrics && offer.metrics.length > 0 && variant === 'default' && (
+          <div className="flex flex-wrap gap-2 mb-6">
+            {offer.metrics.slice(0, 3).map((m, i) => (
+              <span key={i} className="px-2.5 py-1 rounded-lg bg-orange/10 text-body-sm font-semibold text-orange">
+                {m}
+              </span>
+            ))}
+          </div>
         )}
 
         {/* CTA */}

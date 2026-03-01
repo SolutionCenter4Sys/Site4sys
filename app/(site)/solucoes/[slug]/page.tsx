@@ -3,7 +3,8 @@ import { notFound } from 'next/navigation';
 import { ArrowRight, CheckCircle, Clock, Users, Target } from 'lucide-react';
 import {
   Brain, RefreshCw, Shield, DollarSign, Database,
-  Bot, Cpu, Headphones, BarChart2, GitBranch, Lightbulb, Activity
+  Bot, Cpu, Headphones, BarChart2, GitBranch, Lightbulb, Activity,
+  Link2, FlaskConical, Zap
 } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
@@ -17,6 +18,7 @@ import { getCasesByOffer } from '@/mocks/cases';
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   Users, Brain, RefreshCw, Shield, DollarSign, Database,
   Bot, Cpu, Headphones, BarChart2, GitBranch, Lightbulb, Activity,
+  Link2, FlaskConical, Zap,
 };
 
 interface Props {
@@ -74,7 +76,16 @@ export default async function OfferPage({ params }: Props) {
               </div>
               <h1 className="text-display-md text-white mb-4">{offer.name}</h1>
               <p className="text-heading-md font-semibold mb-4" style={{ color: offer.color }}>{offer.subtitle}</p>
-              <p className="text-body-xl text-white/70 leading-relaxed mb-8">{offer.description}</p>
+              <p className="text-body-xl text-white/70 leading-relaxed mb-6">{offer.description}</p>
+              {offer.metrics && offer.metrics.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {offer.metrics.map((m, i) => (
+                    <span key={i} className="px-3 py-1.5 rounded-lg bg-white/10 text-body-sm font-semibold text-white">
+                      {m}
+                    </span>
+                  ))}
+                </div>
+              )}
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button href={`/contato?servico=${encodeURIComponent(offer.name)}`} variant="primary" size="lg" rightIcon={<ArrowRight className="w-5 h-5" />}>
                   {offer.ctaPrimary}

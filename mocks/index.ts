@@ -28,7 +28,7 @@ export const TESTIMONIALS: Testimonial[] = [
 ];
 
 export const METRICS: Metric[] = [
-  { id: '1', value: '25', label: 'anos de história', sublabel: 'Fundada em 2000', icon: 'Calendar' },
+  { id: '1', value: '26', label: 'anos de história', sublabel: 'Fundada em 2000', icon: 'Calendar' },
   { id: '2', value: '3,6%', label: 'turnover', sublabel: 'Great Place to Work', icon: 'Users' },
   { id: '3', value: '500K+', label: 'projetos entregues', sublabel: 'em projetos de impacto', icon: 'FolderCheck' },
   { id: '4', value: '2K+', label: 'colaboradores', sublabel: 'em 3 continentes', icon: 'Users' },
@@ -90,7 +90,7 @@ export const FOURLIVES_STATS = [
   { value: '3.000+', label: 'vidas impactadas', icon: 'Heart' },
   { value: '1', label: 'árvore plantada por profissional/ano', icon: 'Leaf' },
   { value: '3', label: 'frentes de impacto social', icon: 'Globe' },
-  { value: '25', label: 'anos de responsabilidade ESG', icon: 'Award' },
+  { value: '26', label: 'anos de responsabilidade ESG', icon: 'Award' },
 ];
 
 export const FOURLIVES_PILLARS = [

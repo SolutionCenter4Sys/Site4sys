@@ -9,7 +9,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 const METRICS = [
-  { value: '25', suffix: ' anos', label: 'de história e entrega', icon: 'Calendar' },
+  { value: '26', suffix: ' anos', label: 'de história e entrega', icon: 'Calendar' },
   { value: '3,6', suffix: '%', label: 'turnover — Great Place to Work', icon: 'Users' },
   { value: '500K', suffix: '+', label: 'projetos entregues', icon: 'FolderCheck' },
   { value: '2K', suffix: '+', label: 'colaboradores', icon: 'Users' },

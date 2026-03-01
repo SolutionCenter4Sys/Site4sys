@@ -152,7 +152,7 @@ export function ContactForm({ context, variant = 'full', className }: ContactFor
       )}
 
       <Button type="submit" variant="primary" size="lg" fullWidth loading={status === 'loading'} rightIcon={<Send className="w-4 h-4" />}>
-        Receber proposta em 24h
+        Receber soluções em 24h
       </Button>
 
       <p className="text-body-sm text-gray-400 text-center">

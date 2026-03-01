@@ -77,25 +77,6 @@ export function InsightsPageClient() {
 
   return (
     <div>
-      {/* ─── FEATURED ──────────────────────────────────────────────── */}
-      {featuredInsights.length > 0 && (
-        <section className="section-padding bg-gray-50 border-b border-gray-100" aria-label="Destaques editoriais">
-          <div className="container-site">
-            <div className="flex items-end justify-between mb-8 gap-4">
-              <div>
-                <p className="text-label-lg text-orange uppercase tracking-widest font-semibold mb-1">Em destaque</p>
-                <h2 className="text-display-sm text-navy">Leituras recomendadas</h2>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-6">
-              {featuredInsights.map(insight => (
-                <InsightCard key={insight.id} insight={insight} variant="featured" />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* ─── FILTER BAR ────────────────────────────────────────────── */}
       <section className="sticky top-[72px] z-30 bg-white border-b border-gray-200 shadow-sm" aria-label="Filtros de conteúdo">
         <div className="container-site py-4">
@@ -213,6 +194,25 @@ export function InsightsPageClient() {
           )}
         </div>
       </section>
+
+      {/* ─── FEATURED ──────────────────────────────────────────────── */}
+      {featuredInsights.length > 0 && (
+        <section className="section-padding bg-gray-50 border-b border-gray-100" aria-label="Destaques editoriais">
+          <div className="container-site">
+            <div className="flex items-end justify-between mb-8 gap-4">
+              <div>
+                <p className="text-label-lg text-orange uppercase tracking-widest font-semibold mb-1">Em destaque</p>
+                <h2 className="text-display-sm text-navy">Leituras recomendadas</h2>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-6">
+              {featuredInsights.map(insight => (
+                <InsightCard key={insight.id} insight={insight} variant="featured" />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ─── GRID ──────────────────────────────────────────────────── */}
       <section className="section-padding bg-white" aria-label="Todos os insights">

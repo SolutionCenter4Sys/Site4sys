@@ -140,66 +140,62 @@ export function InsightCard({ insight, variant = 'default' }: InsightCardProps) 
     );
   }
 
-  // default
+  // default — estilo Accenture: retrato, imagem de fundo, painel deslizante no hover
   return (
     <Link
       href={href}
-      className="group flex flex-col overflow-hidden rounded-2xl bg-white border border-gray-100 hover:border-orange/20 hover:shadow-card-hover transition-all duration-300 hover:-translate-y-0.5"
+      className="group relative flex flex-col overflow-hidden rounded-xl bg-navy-dark aspect-[3/4] cursor-pointer"
       aria-label={insight.title}
     >
-      {/* Image */}
-      <div className="relative h-52 overflow-hidden flex-shrink-0">
-        <Image
-          src={insight.image}
-          alt={insight.imageAlt}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          unoptimized
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+      {/* Imagem de fundo ocupa o card inteiro */}
+      <Image
+        src={insight.image}
+        alt={insight.imageAlt}
+        fill
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        unoptimized
+        loading="lazy"
+      />
+
+      {/* Gradiente escuro permanente no topo (para o label) */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80" />
+
+      {/* Gradiente extra que aparece no hover para o painel */}
+      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      {/* Label de tipo — topo esquerdo, sempre visível */}
+      <div className="relative z-10 p-5">
+        <span className="text-label-sm font-bold text-white/80 uppercase tracking-widest">
+          {insight.contentType}
+        </span>
         {insight.tag && (
-          <span className="absolute top-3 left-3 bg-orange text-white text-label-sm font-bold px-2.5 py-1 rounded-pill">
+          <span className="ml-3 bg-orange text-white text-label-sm font-bold px-2.5 py-0.5 rounded-pill">
             {insight.tag}
-          </span>
-        )}
-        {insight.industry && (
-          <span className="absolute bottom-3 right-3 bg-white/90 text-navy text-label-sm font-semibold px-2.5 py-1 rounded-lg backdrop-blur-sm">
-            {insight.industry}
           </span>
         )}
       </div>
 
-      {/* Content */}
-      <div className="flex flex-col flex-1 p-6">
-        {/* Type + Topic */}
-        <div className="flex items-center gap-2 mb-3">
-          <span className={cn('inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-label-sm font-semibold border', typeColor)}>
-            {typeIcon}{insight.contentType}
-          </span>
-          <span className="text-label-sm text-orange font-semibold truncate">{insight.topic}</span>
+      {/* Conteúdo — bottom do card */}
+      <div className="absolute bottom-0 left-0 right-0 z-10">
+        {/* Painel base: título sempre visível */}
+        <div className="p-5 pb-4 transition-transform duration-400 ease-out group-hover:-translate-y-[88px]">
+          <p className="text-label-sm text-orange font-semibold uppercase tracking-wider mb-2">
+            {insight.topic}
+          </p>
+          <h3 className="text-heading-md font-bold text-white leading-snug line-clamp-3">
+            {insight.title}
+          </h3>
         </div>
 
-        <h3 className="text-heading-md font-bold text-navy leading-snug mb-3 group-hover:text-orange transition-colors line-clamp-3 flex-1">
-          {insight.title}
-        </h3>
-
-        <p className="text-body-md text-gray-500 leading-relaxed line-clamp-2 mb-4">
-          {insight.excerpt}
-        </p>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-          <div className="flex items-center gap-3 text-body-sm text-gray-400">
-            <span className="flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5" />
-              {insight.readTime} min
-            </span>
-            <span>·</span>
-            <span>{formatDate(insight.publishedAt)}</span>
-          </div>
-          <ArrowRight className="w-4 h-4 text-orange opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+        {/* Painel revelado no hover — desliza para cima */}
+        <div className="px-5 pb-5 translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-out">
+          <p className="text-body-sm text-white/80 leading-relaxed line-clamp-3 mb-4">
+            {insight.excerpt}
+          </p>
+          <span className="inline-flex items-center gap-2 text-body-sm font-bold text-white border-b border-white pb-0.5 group-hover:gap-3 transition-all">
+            Ler mais <ArrowRight className="w-3.5 h-3.5" />
+          </span>
         </div>
       </div>
     </Link>

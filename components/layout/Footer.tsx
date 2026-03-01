@@ -76,6 +76,7 @@ export function Footer() {
                 { href: '/insights', label: 'Insights' },
                 { href: '/carreiras', label: 'Carreiras' },
                 { href: '/casos-de-sucesso', label: 'Casos de sucesso' },
+                { href: '/comparativo-portfolio', label: 'Comparativo de Portfólio' },
                 { href: '/contato', label: 'Contato' },
               ].map(item => (
                 <li key={item.href}>

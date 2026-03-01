@@ -53,6 +53,10 @@ export function InlineLeadForm() {
     );
   }
 
+  // Igor (iOS): text-[16px] previne zoom automático do Safari ao focar nos inputs.
+  // Anderson (Android): min-h-[48px] garante área de toque ≥ 48dp (Material Design 3).
+  const inputCls = 'w-full px-4 py-3 rounded-xl border border-gray-200 text-[16px] text-gray-800 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-orange/25 focus:border-orange hover:border-gray-300 transition-colors min-h-[48px]';
+
   return (
     <div className="bg-white rounded-3xl border border-gray-100 shadow-card p-8 md:p-10">
       {/* Header */}
@@ -73,15 +77,19 @@ export function InlineLeadForm() {
             <label htmlFor="lead-nome" className="block text-label-md font-semibold text-gray-700 mb-1.5">
               Seu nome
             </label>
+            {/* Igor: autocomplete="name" ativa iCloud Keychain / gerenciador de senhas.
+                Anderson: autocomplete ativa Autofill do Google no Chrome. */}
             <input
               id="lead-nome"
               type="text"
               required
               autoComplete="name"
+              inputMode="text"
+              enterKeyHint="next"
               value={nome}
               onChange={e => setNome(e.target.value)}
               placeholder="João Silva"
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-body-md placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-orange/25 focus:border-orange transition-colors"
+              className={inputCls}
             />
           </div>
 
@@ -90,15 +98,23 @@ export function InlineLeadForm() {
             <label htmlFor="lead-email" className="block text-label-md font-semibold text-gray-700 mb-1.5">
               E-mail corporativo
             </label>
+            {/* Igor: inputMode="email" abre teclado com @ em iOS.
+                spellCheck/autoCapitalize/autoCorrect desativados evitam
+                correções indesejadas em endereços de e-mail. */}
             <input
               id="lead-email"
               type="email"
               required
               autoComplete="email"
+              inputMode="email"
+              enterKeyHint="next"
+              spellCheck={false}
+              autoCapitalize="none"
+              autoCorrect="off"
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder="joao@empresa.com.br"
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-body-md placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-orange/25 focus:border-orange transition-colors"
+              className={inputCls}
             />
           </div>
         </div>
@@ -108,12 +124,14 @@ export function InlineLeadForm() {
           <label htmlFor="lead-setor" className="block text-label-md font-semibold text-gray-700 mb-1.5">
             Setor da empresa
           </label>
+          {/* Igor: select também precisa de text-[16px] — Safari faz zoom
+              em qualquer elemento de formulário com font-size < 16px. */}
           <select
             id="lead-setor"
             required
             value={setor}
             onChange={e => setSetor(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-body-md text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-orange/25 focus:border-orange transition-colors appearance-none cursor-pointer"
+            className={`${inputCls} text-gray-700 bg-white appearance-none cursor-pointer`}
           >
             <option value="" disabled>Selecione seu setor...</option>
             {SETORES.map(s => (
@@ -128,10 +146,11 @@ export function InlineLeadForm() {
           </p>
         )}
 
+        {/* Anderson: min-h-[56px] no botão de submit (> 48dp recomendado para CTA principal). */}
         <button
           type="submit"
           disabled={formState === 'submitting' || !isValid}
-          className="w-full sm:w-auto bg-gradient-orange text-white font-bold text-body-md px-8 py-4 rounded-xl hover:shadow-brand hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+          className="w-full sm:w-auto bg-gradient-orange text-white font-bold text-[16px] px-8 min-h-[56px] rounded-xl hover:shadow-brand hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
         >
           {formState === 'submitting' ? (
             <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

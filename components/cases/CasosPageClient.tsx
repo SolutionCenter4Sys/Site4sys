@@ -185,10 +185,13 @@ export function CasosPageClient() {
                         id="modal-nome"
                         type="text"
                         required
+                        autoComplete="name"
+                        inputMode="text"
+                        enterKeyHint="next"
                         value={nome}
                         onChange={e => setNome(e.target.value)}
                         placeholder="João Silva"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-body-md focus:outline-none focus:ring-2 focus:ring-orange/30 focus:border-orange transition-colors"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[16px] min-h-[48px] focus:outline-none focus:ring-2 focus:ring-orange/30 focus:border-orange hover:border-gray-300 transition-colors"
                       />
                     </div>
                     <div>
@@ -199,10 +202,13 @@ export function CasosPageClient() {
                         id="modal-empresa"
                         type="text"
                         required
+                        autoComplete="organization"
+                        inputMode="text"
+                        enterKeyHint="next"
                         value={empresa}
                         onChange={e => setEmpresa(e.target.value)}
                         placeholder="Nome da empresa"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-body-md focus:outline-none focus:ring-2 focus:ring-orange/30 focus:border-orange transition-colors"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[16px] min-h-[48px] focus:outline-none focus:ring-2 focus:ring-orange/30 focus:border-orange hover:border-gray-300 transition-colors"
                       />
                     </div>
                     <div>
@@ -213,10 +219,16 @@ export function CasosPageClient() {
                         id="modal-email"
                         type="email"
                         required
+                        autoComplete="email"
+                        inputMode="email"
+                        enterKeyHint="send"
+                        spellCheck={false}
+                        autoCapitalize="none"
+                        autoCorrect="off"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         placeholder="joao@empresa.com.br"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-body-md focus:outline-none focus:ring-2 focus:ring-orange/30 focus:border-orange transition-colors"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[16px] min-h-[48px] focus:outline-none focus:ring-2 focus:ring-orange/30 focus:border-orange hover:border-gray-300 transition-colors"
                       />
                     </div>
 

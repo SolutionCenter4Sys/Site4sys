@@ -16,13 +16,17 @@ export function CaseCard({ caseData, variant = 'default', className }: CaseCardP
   return (
     <div
       className={cn(
-        'rounded-2xl p-8 flex flex-col gap-5 transition-all duration-300 hover:-translate-y-1',
+        'rounded-2xl p-8 flex flex-col gap-5 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden',
         isDark
           ? 'bg-navy text-white hover:shadow-navy'
           : 'bg-white border border-gray-100 hover:shadow-card-hover hover:border-orange/20',
         className,
       )}
     >
+      {!isDark && (
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-orange" aria-hidden="true" />
+      )}
+
       {/* Sector + Offer */}
       <div className="flex items-center justify-between flex-wrap gap-2">
         <Badge variant="sector" label={caseData.sector} />
@@ -71,16 +75,18 @@ export function CaseCard({ caseData, variant = 'default', className }: CaseCardP
       )}
 
       {/* Link */}
-      <Link
-        href={`/casos-de-sucesso`}
-        className={cn(
-          'inline-flex items-center gap-1 text-label-md font-semibold transition-colors group/link',
-          isDark ? 'text-orange hover:text-orange-light' : 'text-orange hover:text-orange-dark',
-        )}
-      >
-        Ver caso completo
-        <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" />
-      </Link>
+      <div className="pt-3 border-t border-gray-100/80">
+        <Link
+          href={`/casos-de-sucesso`}
+          className={cn(
+            'inline-flex items-center gap-1 text-label-md font-semibold transition-colors group/link',
+            isDark ? 'text-orange hover:text-orange-light' : 'text-orange hover:text-orange-dark',
+          )}
+        >
+          Ver caso completo
+          <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" />
+        </Link>
+      </div>
     </div>
   );
 }

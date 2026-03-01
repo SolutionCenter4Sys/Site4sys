@@ -1,6 +1,6 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Play, TrendingUp, Users, Clock, Calendar } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ArrowRight, TrendingUp, Users, Clock, Calendar, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { METRICS } from '@/mocks/index';
 
@@ -10,7 +10,6 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export function HeroHome() {
   const [animated, setAnimated] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setAnimated(true), 100);
@@ -19,7 +18,6 @@ export function HeroHome() {
 
   return (
     <section
-      ref={ref}
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-hero"
       aria-label="Hero — Foursys"
     >
@@ -64,6 +62,20 @@ export function HeroHome() {
           Parceiro estratégico de transformação digital com agilidade, proximidade e resultados mensuráveis. 3,6% turnover. GPTW. 25 anos de história.
         </p>
 
+        {/* Enterprise trust strip */}
+        <div
+          className={`glass rounded-2xl px-5 py-4 mb-10 w-full max-w-3xl transition-all duration-700 delay-[250ms] ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+        >
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <span className="inline-flex items-center gap-2 text-body-sm text-white/85 font-semibold">
+              <ShieldCheck className="w-4 h-4 text-orange" />
+              Governança enterprise desde a primeira sprint
+            </span>
+            <span className="text-body-sm text-white/60">Brasil • EUA • Portugal</span>
+            <span className="text-body-sm text-white/60">Setores regulados e missão crítica</span>
+          </div>
+        </div>
+
         {/* CTAs */}
         <div
           className={`flex flex-col sm:flex-row gap-4 mb-16 transition-all duration-700 delay-300 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
@@ -83,7 +95,7 @@ export function HeroHome() {
           {METRICS.map((metric) => {
             const Icon = ICON_MAP[metric.icon];
             return (
-              <div key={metric.id} className="flex flex-col gap-1">
+              <div key={metric.id} className="glass rounded-xl p-4 flex flex-col gap-1">
                 <div className="flex items-center gap-2">
                   {Icon && <Icon className="w-4 h-4 text-orange flex-shrink-0" />}
                   <span className="text-display-sm text-white font-extrabold">{metric.value}</span>

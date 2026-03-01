@@ -34,6 +34,14 @@ const INDUSTRIES = [
   'Energia',
 ];
 
+const CLIENT_GROUPS = [
+  'Bancos e Fintechs',
+  'Operadoras de Saúde',
+  'Seguradoras',
+  'Varejo Omnichannel',
+  'Indústria 4.0',
+];
+
 
 export default function HomePage() {
   return (
@@ -156,6 +164,17 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {CASES.slice(0, 3).map(c => (
               <CaseCard key={c.id} caseData={c} />
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5">
+            <span className="text-label-md text-gray-400 uppercase tracking-widest">Experiência em</span>
+            {CLIENT_GROUPS.map(client => (
+              <span
+                key={client}
+                className="px-3 py-1 rounded-pill text-body-sm font-semibold bg-white border border-gray-200 text-gray-600"
+              >
+                {client}
+              </span>
             ))}
           </div>
         </div>

@@ -47,7 +47,7 @@ export function Header({ variant = 'transparent' }: HeaderProps) {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0" aria-label="Foursys - Página inicial">
             <BrandLogo
-              light={!isLight}
+              light={isLight}
               className="h-10 sm:h-11 md:h-12"
             />
           </Link>

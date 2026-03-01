@@ -23,7 +23,7 @@ export function BrandLogo({
         height={48}
         className={cn(
           'h-10 sm:h-11 md:h-12 w-auto object-contain min-w-[120px]',
-          !light && 'invert', // Em fundo claro: texto escuro legível
+          !light && 'invert', // Em fundo escuro: inverte para texto claro
           iconClassName,
           textClassName
         )}

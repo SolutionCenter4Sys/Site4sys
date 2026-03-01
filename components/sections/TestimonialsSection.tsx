@@ -1,5 +1,4 @@
 'use client';
-import { Quote } from 'lucide-react';
 import { Kicker } from '@/components/ui/Kicker';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { cn } from '@/lib/utils';
@@ -32,14 +31,16 @@ export function TestimonialsSection() {
               )}
               style={{ transitionDelay: `${150 + i * 100}ms` }}
             >
-              {/* Big quote mark */}
-              <Quote
-                className="absolute top-6 right-6 w-10 h-10 text-orange/10"
+              {/* Decorative large quote — CSS typography, sem ícone */}
+              <span
+                className="absolute top-4 right-6 text-6xl font-serif text-orange/10 leading-none select-none pointer-events-none"
                 aria-hidden="true"
-              />
+              >
+                &ldquo;
+              </span>
 
               {/* Orange left border */}
-              <div className="absolute left-0 top-8 bottom-8 w-1 bg-orange rounded-r-full" aria-hidden="true" />
+              <div className="absolute left-0 top-8 bottom-8 w-1 bg-gradient-orange rounded-r-full" aria-hidden="true" />
 
               <p className="text-body-lg text-gray-700 italic leading-relaxed pl-3">
                 &ldquo;{t.quote}&rdquo;

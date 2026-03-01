@@ -1,12 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { ArrowRight, TrendingUp, Users, Clock, Calendar, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { METRICS } from '@/mocks/index';
-
-const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
-  Calendar, Users, Clock, TrendingUp,
-};
 
 export function HeroHome() {
   const [animated, setAnimated] = useState(false);
@@ -92,19 +88,13 @@ export function HeroHome() {
         <div
           className={`w-full grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-white/10 transition-all duration-700 delay-500 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
-          {METRICS.map((metric) => {
-            const Icon = ICON_MAP[metric.icon];
-            return (
-              <div key={metric.id} className="glass rounded-xl p-4 flex flex-col gap-1">
-                <div className="flex items-center gap-2">
-                  {Icon && <Icon className="w-4 h-4 text-orange flex-shrink-0" />}
-                  <span className="text-display-sm text-white font-extrabold">{metric.value}</span>
-                </div>
-                <p className="text-body-md text-white/80 font-medium">{metric.label}</p>
-                {metric.sublabel && <p className="text-body-sm text-white/40">{metric.sublabel}</p>}
-              </div>
-            );
-          })}
+          {METRICS.map((metric) => (
+            <div key={metric.id} className="glass rounded-xl p-4 flex flex-col gap-1">
+              <span className="text-display-sm text-white font-extrabold leading-none">{metric.value}</span>
+              <p className="text-body-md text-white/80 font-medium mt-1">{metric.label}</p>
+              {metric.sublabel && <p className="text-body-sm text-white/40">{metric.sublabel}</p>}
+            </div>
+          ))}
         </div>
       </div>
 

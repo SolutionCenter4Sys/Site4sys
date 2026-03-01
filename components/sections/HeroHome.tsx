@@ -123,9 +123,10 @@ export function HeroHome() {
           <span className="text-label-md text-orange font-semibold tracking-wide">26 anos transformando negócios com tecnologia</span>
         </div>
 
-        {/* Headline — mais direto ao benefício (inspiração Conversion.com) */}
+        {/* Headline — Artista: text-display-xl com clamp() fluido escala
+            suavemente de ~32px (375px) até 72px (1280px) sem breakpoints. */}
         <h1
-          className={`text-4xl sm:text-5xl lg:text-display-xl text-white max-w-4xl leading-[1.05] mb-5 transition-all duration-700 delay-100 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+          className={`text-display-xl text-white max-w-4xl leading-[1.05] mb-5 transition-all duration-700 delay-100 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
           Squads que entregam{' '}
           <span className="text-gradient-orange">valor em semanas,</span>

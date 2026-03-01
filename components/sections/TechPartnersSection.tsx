@@ -3,21 +3,22 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { cn } from '@/lib/utils';
 
 const PARTNERS = [
-  { name: 'Microsoft', logo: 'MS', color: '#00A4EF', bg: '#E6F5FD' },
-  { name: 'AWS', logo: 'AWS', color: '#FF9900', bg: '#FFF5E6' },
-  { name: 'Google Cloud', logo: 'GCP', color: '#4285F4', bg: '#EEF3FD' },
-  { name: 'SAP', logo: 'SAP', color: '#0070F2', bg: '#E6F0FD' },
-  { name: 'Oracle', logo: 'ORC', color: '#F80000', bg: '#FEE6E6' },
-  { name: 'ServiceNow', logo: 'SN', color: '#62D84E', bg: '#EDFAE9' },
-  { name: 'Salesforce', logo: 'SF', color: '#00A1E0', bg: '#E6F5FC' },
-  { name: 'Databricks', logo: 'DB', color: '#FF3621', bg: '#FEE9E7' },
+  { name: 'Microsoft', tier: 'Strategic' },
+  { name: 'Amazon Web Services', tier: 'Strategic' },
+  { name: 'Google Cloud', tier: 'Strategic' },
+  { name: 'SAP', tier: 'Enterprise' },
+  { name: 'Oracle', tier: 'Enterprise' },
+  { name: 'ServiceNow', tier: 'Enterprise' },
+  { name: 'Salesforce', tier: 'Enterprise' },
+  { name: 'Databricks', tier: 'Advanced' },
 ];
 
 const CERTS = [
-  { label: 'Microsoft Gold Partner', badge: 'GOLD' },
-  { label: 'AWS Select Partner', badge: 'SELECT' },
-  { label: 'SAP Certified', badge: 'CERT' },
-  { label: 'ISO 9001', badge: 'ISO' },
+  { label: 'Microsoft Gold Partner' },
+  { label: 'AWS Select Partner' },
+  { label: 'SAP Certified' },
+  { label: 'ISO 9001' },
+  { label: 'ISO 27001' },
 ];
 
 export function TechPartnersSection() {
@@ -44,29 +45,29 @@ export function TechPartnersSection() {
           </p>
         </div>
 
-        {/* Logo grid */}
+        {/* Logo wall */}
         <div
           className={cn(
-            'grid grid-cols-4 sm:grid-cols-8 gap-3 mb-10 transition-all duration-700 delay-150',
+            'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-10 transition-all duration-700 delay-150',
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           )}
         >
           {PARTNERS.map((partner, i) => (
             <div
               key={partner.name}
-              title={partner.name}
-              className="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-gray-50 transition-colors cursor-default group"
+              title={`${partner.name} - ${partner.tier}`}
+              className="group p-4 rounded-xl border border-gray-200 bg-white hover:border-navy/25 hover:shadow-card transition-all duration-300"
               style={{ transitionDelay: `${i * 50}ms` }}
             >
-              <div
-                className="w-10 h-10 rounded-lg flex items-center justify-center text-xs font-black tracking-tight"
-                style={{ background: partner.bg, color: partner.color }}
-              >
-                {partner.logo}
+              <div className="flex items-start justify-between gap-3">
+                <p className="text-sm sm:text-[15px] font-extrabold tracking-tight text-gray-800 group-hover:text-navy transition-colors">
+                  {partner.name}
+                </p>
+                <span className="inline-flex px-2 py-0.5 rounded-full text-[10px] uppercase tracking-widest font-bold bg-gray-100 text-gray-500">
+                  {partner.tier}
+                </span>
               </div>
-              <span className="text-[10px] text-gray-400 font-medium text-center leading-tight hidden sm:block">
-                {partner.name}
-              </span>
+              <div className="mt-3 h-0.5 w-full bg-gradient-to-r from-orange/70 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           ))}
         </div>
@@ -74,16 +75,16 @@ export function TechPartnersSection() {
         {/* Certifications strip */}
         <div
           className={cn(
-            'flex flex-wrap justify-center gap-3 transition-all duration-700 delay-300',
+            'flex flex-wrap justify-center gap-2.5 transition-all duration-700 delay-300',
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           )}
         >
           {CERTS.map(cert => (
             <span
               key={cert.label}
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-pill text-body-sm text-gray-600 font-medium"
+              className="inline-flex items-center gap-2 px-3 py-1.5 bg-navy/5 border border-navy/10 rounded-pill text-body-sm text-navy font-semibold"
             >
-              <span className="w-5 h-5 rounded-full bg-orange/10 text-orange text-[9px] font-black flex items-center justify-center flex-shrink-0">
+              <span className="w-5 h-5 rounded-full bg-orange/15 text-orange text-[9px] font-black flex items-center justify-center flex-shrink-0">
                 ✓
               </span>
               {cert.label}

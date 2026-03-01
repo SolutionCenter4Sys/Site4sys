@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { MapPin, Mail, Phone, Linkedin, Instagram, Youtube } from 'lucide-react';
+import { Linkedin, Instagram, Youtube } from 'lucide-react';
 import { FLAGSHIP_OFFERS, CORE_OFFERS } from '@/mocks/offers';
 import { OFFICES } from '@/mocks/index';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 
 export function Footer() {
   return (
@@ -11,11 +12,11 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-5" aria-label="Foursys">
-              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                <rect width="36" height="36" rx="8" fill="#FF5315" />
-                <path d="M8 10h20v3H8zM8 17h13v3H8zM8 24h17v3H8z" fill="white" />
-              </svg>
-              <span className="font-extrabold text-xl text-white tracking-tight">Foursys</span>
+              <BrandLogo
+                light
+                iconClassName="shadow-none"
+                textClassName="text-white"
+              />
             </Link>
             <p className="text-body-md text-white/70 leading-relaxed mb-6">
               Transformação que entrega valor em semanas — com agilidade, proximidade e resultados que você mede.

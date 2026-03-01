@@ -19,6 +19,21 @@ export const metadata: Metadata = {
   description: 'Squads que entregam valor em semanas, não em meses. Parceiro estratégico com 25 anos, 3,6% turnover e GPTW.',
 };
 
+const TRUST_PILLARS = [
+  'Atuação em Brasil, EUA e Portugal',
+  'Projetos em setores regulados e de missão crítica',
+  'Governança com métricas de entrega e risco',
+];
+
+const INDUSTRIES = [
+  'Financeiro',
+  'Saúde',
+  'Seguros',
+  'Varejo',
+  'Manufatura',
+  'Energia',
+];
+
 
 export default function HomePage() {
   return (
@@ -47,7 +62,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Flagship Offers */}
+      {/* 3. Trust Layer */}
+      <section className="py-10 bg-gray-50 border-y border-gray-100" aria-label="Confiança e presença global">
+        <div className="container-site">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <div>
+              <Kicker className="mb-3">Presença Global</Kicker>
+              <h2 className="text-heading-xl text-navy mb-3">
+                Entrega enterprise com proximidade de squad.
+              </h2>
+              <ul className="space-y-2">
+                {TRUST_PILLARS.map(item => (
+                  <li key={item} className="flex items-start gap-2 text-body-md text-gray-600">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-orange flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-label-lg text-gray-400 uppercase tracking-widest mb-3 font-semibold">
+                Setores com experiência comprovada
+              </p>
+              <div className="flex flex-wrap gap-2.5">
+                {INDUSTRIES.map(industry => (
+                  <span
+                    key={industry}
+                    className="px-3 py-1.5 rounded-pill bg-white border border-gray-200 text-body-sm font-semibold text-navy"
+                  >
+                    {industry}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Flagship Offers */}
       <section className="section-padding bg-gray-50" aria-label="Ofertas Flagship">
         <div className="container-site">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
@@ -67,7 +119,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Core Offers Grid */}
+      {/* 5. Core Offers Grid */}
       <section className="section-padding bg-white" aria-label="Outras ofertas">
         <div className="container-site">
           <div className="text-center mb-10">
@@ -82,13 +134,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Parceiros & Tecnologias */}
+      {/* 6. Parceiros & Tecnologias */}
       <TechPartnersSection />
 
-      {/* 6. Metrics + Certifications */}
+      {/* 7. Metrics + Certifications */}
       <MetricsSection />
 
-      {/* 6. Cases */}
+      {/* 8. Cases */}
       <section className="section-padding bg-gray-50" aria-label="Casos de sucesso">
         <div className="container-site">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
@@ -109,7 +161,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. FourLives */}
+      {/* 9. FourLives */}
       <section className="section-padding" style={{ background: 'linear-gradient(135deg, #F0FAF8 0%, #E8F8F5 100%)' }} aria-label="FourLives — Impacto social">
         <div className="container-site">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -148,10 +200,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Testimonials */}
+      {/* 10. Testimonials */}
       <TestimonialsSection />
 
-      {/* 9. CTA Final */}
+      {/* 11. CTA Final */}
       <CTASection />
     </>
   );

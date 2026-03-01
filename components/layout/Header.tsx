@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 import { cn } from '@/lib/utils';
 import { FLAGSHIP_OFFERS, CORE_OFFERS } from '@/mocks/offers';
 
@@ -45,13 +46,11 @@ export function Header({ variant = 'transparent' }: HeaderProps) {
         <div className="flex items-center justify-between h-18 py-0" style={{ height: '72px' }}>
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0" aria-label="Foursys - Página inicial">
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-              <rect width="36" height="36" rx="8" fill="#FF5315" />
-              <path d="M8 10h20v3H8zM8 17h13v3H8zM8 24h17v3H8z" fill="white" />
-            </svg>
-            <span className={cn('font-extrabold text-xl tracking-tight transition-colors', isLight ? 'text-navy' : 'text-white')}>
-              Foursys
-            </span>
+            <BrandLogo
+              light={!isLight}
+              iconClassName="w-8 h-8 rounded-lg shadow-none"
+              textClassName="text-[1.2rem]"
+            />
           </Link>
 
           {/* Desktop Nav */}

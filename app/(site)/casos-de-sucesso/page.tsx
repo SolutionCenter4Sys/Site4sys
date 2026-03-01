@@ -45,7 +45,7 @@ export default function CasosPage() {
             Não contamos histórias — mostramos números.
           </p>
         </div>
-      </section>
+      </DarkPageHero>
 
       {/* ── MÉTRICAS GLOBAIS ─────────────────────────────────────── */}
       <section className="bg-white py-12 border-b border-gray-100" aria-label="Impacto global">
@@ -59,7 +59,7 @@ export default function CasosPage() {
             ))}
           </div>
         </div>
-      </DarkPageHero>
+      </section>
 
       {/* ── CASOS ── FILTRO FUNCIONAL + GRID ─────────────────────── */}
       <section className="section-padding bg-gray-50" aria-label="Todos os casos">

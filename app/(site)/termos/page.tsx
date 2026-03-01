@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Kicker } from '@/components/ui/Kicker';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { CTASection } from '@/components/sections/CTASection';
+import { DarkPageHero } from '@/components/sections/DarkPageHero';
 
 export const metadata: Metadata = {
   title: 'Termos de Uso',
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function TermosPage() {
   return (
     <>
-      <section className="bg-gradient-dark pt-32 pb-16" aria-label="Termos de Uso">
+      <DarkPageHero className="pt-32 pb-16" aria-label="Termos de Uso">
         <div className="container-site">
           <Breadcrumb items={[{ label: 'Termos' }]} light className="mb-8" />
         </div>
@@ -26,7 +27,7 @@ export default function TermosPage() {
             práticas de segurança e conformidade da Foursys.
           </p>
         </div>
-      </section>
+      </DarkPageHero>
 
       <section className="section-padding bg-white" aria-label="Conteúdo dos termos">
         <div className="container-site max-w-4xl">

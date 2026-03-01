@@ -5,6 +5,7 @@ import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { CasosPageClient } from '@/components/cases/CasosPageClient';
 import { InlineLeadForm } from '@/components/sections/InlineLeadForm';
 import { FAQSection } from '@/components/sections/FAQSection';
+import { DarkPageHero } from '@/components/sections/DarkPageHero';
 export const metadata: Metadata = {
   title: 'Casos de Sucesso',
   description:
@@ -24,7 +25,7 @@ export default function CasosPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────── */}
-      <section className="bg-gradient-dark pt-32 pb-20" aria-label="Casos de sucesso">
+      <DarkPageHero className="pt-32 pb-20" aria-label="Casos de sucesso">
         <div className="container-site">
           <Breadcrumb items={[{ label: 'Casos de Sucesso' }]} light className="mb-8" />
         </div>
@@ -58,7 +59,7 @@ export default function CasosPage() {
             ))}
           </div>
         </div>
-      </section>
+      </DarkPageHero>
 
       {/* ── CASOS ── FILTRO FUNCIONAL + GRID ─────────────────────── */}
       <section className="section-padding bg-gray-50" aria-label="Todos os casos">

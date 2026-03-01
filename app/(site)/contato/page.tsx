@@ -3,6 +3,7 @@ import { MapPin, Mail, Phone, Clock } from 'lucide-react';
 import { Kicker } from '@/components/ui/Kicker';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { OFFICES } from '@/mocks/index';
+import { DarkPageHero } from '@/components/sections/DarkPageHero';
 
 export const metadata: Metadata = {
   title: 'Contato',
@@ -12,8 +13,7 @@ export const metadata: Metadata = {
 export default function ContatoPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-gradient-dark pt-32 pb-16" aria-label="Contato">
+      <DarkPageHero className="pt-32 pb-16" aria-label="Contato">
         <div className="container-site text-center">
           <Kicker light className="mb-4">Vamos conversar</Kicker>
           <h1 className="text-display-md text-white mb-4">Fale com a Foursys</h1>
@@ -21,7 +21,7 @@ export default function ContatoPage() {
             Agende um diagnóstico gratuito. Nosso time responde em até 24 horas.
           </p>
         </div>
-      </section>
+      </DarkPageHero>
 
       {/* Form + Info */}
       <section className="section-padding bg-gray-50" aria-label="Formulário de contato">

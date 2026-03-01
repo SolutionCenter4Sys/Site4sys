@@ -42,8 +42,8 @@ export function HeroHome() {
       {/* Vídeo de fundo — estilo Accenture/TCS
           Igor (iOS): playsInline obrigatório para autoplay em Safari iOS.
           Sem playsInline, o vídeo abre em fullscreen no iOS, quebrando o layout.
-          Anderson (Android): preload="none" em mobile economiza dados móveis.
-          O vídeo só carrega se o dispositivo tiver largura ≥ 768px. */}
+          preload="none" → browser não baixa o arquivo até começar a reproduzir.
+          autoPlay muted → browsers mobile permitem autoplay apenas quando muted. */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <video
           ref={videoRef}
@@ -53,7 +53,7 @@ export function HeroHome() {
           playsInline
           preload="none"
           disablePictureInPicture
-          className="absolute inset-0 w-full h-full object-cover hidden sm:block"
+          className="absolute inset-0 w-full h-full object-cover"
           aria-hidden="true"
         >
           {/* Sofia: mp4 H.264 tem suporte universal. mov é fallback para Safari antigo. */}

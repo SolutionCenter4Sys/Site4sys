@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Kicker } from '@/components/ui/Kicker';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { CTASection } from '@/components/sections/CTASection';
+import { DarkPageHero } from '@/components/sections/DarkPageHero';
 
 export const metadata: Metadata = {
   title: 'Política de Privacidade',
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function PrivacidadePage() {
   return (
     <>
-      <section className="bg-gradient-dark pt-32 pb-16" aria-label="Política de Privacidade">
+      <DarkPageHero className="pt-32 pb-16" aria-label="Política de Privacidade">
         <div className="container-site">
           <Breadcrumb items={[{ label: 'Privacidade' }]} light className="mb-8" />
         </div>
@@ -26,7 +27,7 @@ export default function PrivacidadePage() {
             digitais e como você pode exercer seus direitos.
           </p>
         </div>
-      </section>
+      </DarkPageHero>
 
       <section className="section-padding bg-white" aria-label="Conteúdo da política">
         <div className="container-site max-w-4xl">

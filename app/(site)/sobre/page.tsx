@@ -4,6 +4,7 @@ import { Kicker } from '@/components/ui/Kicker';
 import { Button } from '@/components/ui/Button';
 import { CTASection } from '@/components/sections/CTASection';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
+import { DarkPageHero } from '@/components/sections/DarkPageHero';
 import { CERTIFICATIONS, FOURLIVES_STATS, FOURLIVES_PILLARS } from '@/mocks/index';
 
 export const metadata: Metadata = {
@@ -31,8 +32,7 @@ const VALUES = [
 export default function SobrePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-gradient-dark pt-32 pb-20" aria-label="Sobre a Foursys">
+      <DarkPageHero className="pt-32 pb-20" aria-label="Sobre a Foursys">
         <div className="container-site">
           <Breadcrumb items={[{ label: 'Sobre' }]} light className="mb-8" />
         </div>
@@ -45,7 +45,7 @@ export default function SobrePage() {
             Fundada em 2000, a Foursys é um parceiro estratégico de tecnologia com presença no Brasil, EUA e Portugal — combinando agilidade de uma empresa próxima com capacidade global.
           </p>
         </div>
-      </section>
+      </DarkPageHero>
 
       {/* Métricas rápidas */}
       <section className="bg-white py-12 border-b border-gray-100" aria-label="Números Foursys">

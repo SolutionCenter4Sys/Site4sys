@@ -14,6 +14,7 @@ import { CaseCard } from '@/components/cases/CaseCard';
 import { CTASection } from '@/components/sections/CTASection';
 import { OFFERS, getOfferBySlug } from '@/mocks/offers';
 import { getCasesByOffer } from '@/mocks/cases';
+import { DarkPageHero } from '@/components/sections/DarkPageHero';
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   Users, Brain, RefreshCw, Shield, DollarSign, Database,
@@ -49,12 +50,14 @@ export default async function OfferPage({ params }: Props) {
 
   return (
     <>
-      {/* Hero da oferta */}
-      <section className="bg-gradient-dark pt-32 pb-20 relative overflow-hidden" aria-label={`Oferta: ${offer.name}`}>
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      {/* Hero da oferta — DarkPageHero já inclui overlay animado base;
+          adicionamos aqui o blur colorido específico de cada oferta */}
+      <DarkPageHero className="pt-32 pb-20" aria-label={`Oferta: ${offer.name}`}>
+        {/* Blur colorido específico da oferta — sobre o overlay base */}
+        <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
           <div className="absolute top-1/2 right-0 w-96 h-96 rounded-full blur-3xl" style={{ background: `${offer.color}15` }} />
         </div>
-        <div className="container-site relative z-10">
+        <div className="container-site">
           <Breadcrumb
             items={[
               { label: 'Ofertas', href: '/solucoes' },
@@ -126,7 +129,7 @@ export default async function OfferPage({ params }: Props) {
             </div>
           </div>
         </div>
-      </section>
+      </DarkPageHero>
 
       {/* Promessa */}
       <section className="section-padding bg-white" aria-label="Nossa promessa">

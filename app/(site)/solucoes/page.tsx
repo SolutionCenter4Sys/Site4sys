@@ -6,6 +6,7 @@ import { Kicker } from '@/components/ui/Kicker';
 import { Badge } from '@/components/ui/Badge';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { FLAGSHIP_OFFERS, CORE_OFFERS } from '@/mocks/offers';
+import { DarkPageHero } from '@/components/sections/DarkPageHero';
 
 export const metadata: Metadata = {
   title: 'Ofertas e Soluções',
@@ -15,8 +16,7 @@ export const metadata: Metadata = {
 export default function SolucoesPage() {
   return (
     <>
-      {/* Hero da página */}
-      <section className="bg-gradient-dark pt-32 pb-20" aria-label="Todas as ofertas Foursys">
+      <DarkPageHero className="pt-32 pb-20" aria-label="Todas as ofertas Foursys">
         <div className="container-site">
           <Breadcrumb items={[{ label: 'Ofertas' }]} light className="mb-8" />
         </div>
@@ -29,7 +29,7 @@ export default function SolucoesPage() {
             Cada oferta foi desenhada com entregáveis claros, KPIs definidos e prazo estimado — porque resultado começa na proposta.
           </p>
         </div>
-      </section>
+      </DarkPageHero>
 
       {/* Flagship */}
       <section className="section-padding bg-white" aria-label="Ofertas Flagship">

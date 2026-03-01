@@ -4,6 +4,7 @@ import { Kicker } from '@/components/ui/Kicker';
 import { Button } from '@/components/ui/Button';
 import { CTASection } from '@/components/sections/CTASection';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
+import { DarkPageHero } from '@/components/sections/DarkPageHero';
 
 export const metadata: Metadata = {
   title: 'Carreiras',
@@ -33,8 +34,7 @@ const MOCK_JOBS = [
 export default function CarreirasPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-gradient-dark pt-32 pb-20" aria-label="Carreiras Foursys">
+      <DarkPageHero className="pt-32 pb-20" aria-label="Carreiras Foursys">
         <div className="container-site">
           <Breadcrumb items={[{ label: 'Carreiras' }]} light className="mb-8" />
         </div>
@@ -50,7 +50,7 @@ export default function CarreirasPage() {
             Ver vagas abertas
           </Button>
         </div>
-      </section>
+      </DarkPageHero>
 
       {/* Por que Foursys */}
       <section className="section-padding bg-white" aria-label="Por que trabalhar na Foursys">

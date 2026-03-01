@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { cn } from '@/lib/utils';
@@ -18,22 +19,40 @@ export function CaseCard({ caseData, variant = 'default', className, onOpenModal
   return (
     <div
       className={cn(
-        'rounded-2xl flex flex-col gap-0 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden',
+        'rounded-2xl flex flex-col gap-0 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:scale-[1.01] relative overflow-hidden group',
         isDark
           ? 'bg-navy text-white hover:shadow-navy'
           : 'bg-white border border-gray-100 hover:shadow-card-hover hover:border-orange/20',
         className,
       )}
     >
-      {/* Accent bar topo */}
-      {!isDark && (
+      {/* Imagem do caso — placeholder ou real */}
+      {caseData.image && (
+        <div className="relative h-40 w-full overflow-hidden">
+          <Image
+            src={caseData.image}
+            alt={`Caso ${caseData.sector} — ${caseData.company || caseData.offer}`}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 33vw"
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" aria-hidden="true" />
+          <div className="absolute top-3 left-3">
+            <Badge variant="sector-overlay" label={caseData.sector} />
+          </div>
+        </div>
+      )}
+
+      {/* Accent bar topo — só se não tiver imagem */}
+      {!isDark && !caseData.image && (
         <div className="h-0.5 bg-gradient-orange" aria-hidden="true" />
       )}
 
-      <div className="p-7 flex flex-col gap-5 flex-1">
+      <div className={cn('flex flex-col gap-5 flex-1', caseData.image ? 'p-6' : 'p-7')}>
         {/* Sector + Offer */}
         <div className="flex items-center justify-between flex-wrap gap-2">
-          <Badge variant="sector" label={caseData.sector} />
+          {!caseData.image && <Badge variant="sector" label={caseData.sector} />}
           <span className={cn('text-label-sm font-semibold uppercase tracking-wider', isDark ? 'text-orange-light' : 'text-orange/80')}>
             {caseData.offer}
           </span>

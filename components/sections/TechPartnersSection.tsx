@@ -3,14 +3,14 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { cn } from '@/lib/utils';
 
 const PARTNERS = [
-  { name: 'Microsoft', tier: 'Strategic' },
-  { name: 'Amazon Web Services', tier: 'Strategic' },
-  { name: 'Google Cloud', tier: 'Strategic' },
-  { name: 'SAP', tier: 'Enterprise' },
-  { name: 'Oracle', tier: 'Enterprise' },
-  { name: 'ServiceNow', tier: 'Enterprise' },
-  { name: 'Salesforce', tier: 'Enterprise' },
-  { name: 'Databricks', tier: 'Advanced' },
+  { name: 'Microsoft', tier: 'Strategic', initial: 'M', color: 'from-blue-600 to-blue-800' },
+  { name: 'Amazon Web Services', tier: 'Strategic', initial: 'AWS', color: 'from-amber-500 to-orange-600' },
+  { name: 'Google Cloud', tier: 'Strategic', initial: 'G', color: 'from-blue-500 to-green-600' },
+  { name: 'SAP', tier: 'Enterprise', initial: 'SAP', color: 'from-blue-700 to-indigo-800' },
+  { name: 'Oracle', tier: 'Enterprise', initial: 'O', color: 'from-red-600 to-red-800' },
+  { name: 'ServiceNow', tier: 'Enterprise', initial: 'SN', color: 'from-emerald-600 to-teal-700' },
+  { name: 'Salesforce', tier: 'Enterprise', initial: 'SF', color: 'from-sky-400 to-blue-600' },
+  { name: 'Databricks', tier: 'Advanced', initial: 'D', color: 'from-orange-500 to-red-600' },
 ];
 
 const CERTS = [
@@ -56,18 +56,22 @@ export function TechPartnersSection() {
             <div
               key={partner.name}
               title={`${partner.name} - ${partner.tier}`}
-              className="group p-4 rounded-xl border border-gray-200 bg-white hover:border-navy/25 hover:shadow-card transition-all duration-300"
+              className="group p-5 rounded-xl border border-gray-200 bg-white hover:border-orange/30 hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-4"
               style={{ transitionDelay: `${i * 50}ms` }}
             >
-              <div className="flex items-start justify-between gap-3">
-                <p className="text-sm sm:text-[15px] font-extrabold tracking-tight text-gray-800 group-hover:text-navy transition-colors">
+              {/* Logo placeholder */}
+              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${partner.color} flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform`}>
+                <span className="text-white font-bold text-sm">{partner.initial}</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm sm:text-[15px] font-extrabold tracking-tight text-gray-800 group-hover:text-navy transition-colors truncate">
                   {partner.name}
                 </p>
-                <span className="inline-flex px-2 py-0.5 rounded-full text-[10px] uppercase tracking-widest font-bold bg-gray-100 text-gray-500">
+                <span className="inline-flex px-2 py-0.5 rounded-full text-[10px] uppercase tracking-widest font-bold bg-gray-100 text-gray-500 mt-1">
                   {partner.tier}
                 </span>
               </div>
-              <div className="mt-3 h-0.5 w-full bg-gradient-to-r from-orange/70 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="h-8 w-0.5 bg-gradient-to-b from-orange/50 to-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           ))}
         </div>

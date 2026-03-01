@@ -18,8 +18,30 @@ export function HeroHome() {
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-hero"
       aria-label="Hero — Foursys"
     >
+      {/* Vídeo de fundo — estilo Accenture/TCS */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+          <source src="/hero-video.mov" type="video/quicktime" />
+        </video>
+        {/* Overlay escuro para legibilidade */}
+        <div className="absolute inset-0 bg-gradient-to-b from-navy/85 via-navy/75 to-navy/90" />
+        {/* Gradiente animado sutil */}
+        <div className="absolute inset-0 opacity-30 animate-gradient-shift" style={{
+          background: 'linear-gradient(135deg, rgba(249,115,22,0.15) 0%, transparent 50%, rgba(15,23,42,0.3) 100%)',
+          backgroundSize: '200% 200%',
+        }} />
+      </div>
+
       {/* Geometric background decoration */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-[1]" aria-hidden="true">
         <div className="absolute top-1/4 right-0 w-[600px] h-[600px] rounded-full bg-orange/5 blur-3xl" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-navy-light/30 blur-3xl" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-white/3 rounded-full" />
@@ -35,12 +57,12 @@ export function HeroHome() {
       </div>
 
       <div className="container-site relative z-10 pt-28 pb-16 flex flex-col items-start">
-        {/* Badge — 25 anos */}
+        {/* Badge — 26 anos */}
         <div
           className={`inline-flex items-center gap-2 px-4 py-2 rounded-pill bg-orange/15 border border-orange/30 mb-8 transition-all duration-700 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
           <span className="w-2 h-2 rounded-full bg-orange animate-pulse-slow" />
-          <span className="text-label-md text-orange font-semibold tracking-wide">25 anos transformando negócios com tecnologia</span>
+          <span className="text-label-md text-orange font-semibold tracking-wide">26 anos transformando negócios com tecnologia</span>
         </div>
 
         {/* Headline — mais direto ao benefício (inspiração Conversion.com) */}
@@ -61,7 +83,7 @@ export function HeroHome() {
         <p
           className={`text-body-md text-white/60 max-w-xl mb-8 transition-all duration-700 delay-200 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
-          Governança enterprise. 3,6% turnover. 25 anos de entrega.
+          Governança enterprise. 3,6% turnover. 26 anos de entrega.
         </p>
 
         {/* Trust badges — chips separados (menos densidade) */}
@@ -98,15 +120,17 @@ export function HeroHome() {
         </div>
         <p className="text-body-sm text-white/50 mb-12">Diagnóstico gratuito • Resposta em 24h • Sem compromisso</p>
 
-        {/* Metrics bar — 6 métricas (PDF institucional) */}
+        {/* Metrics bar — destaque visual (Product Hackers / Flat 101) */}
         <div
           className={`w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 pt-8 border-t border-white/10 transition-all duration-700 delay-500 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
           {METRICS.map((metric) => (
-            <div key={metric.id} className="glass rounded-xl p-4 flex flex-col gap-1">
-              <span className="text-display-sm text-white font-extrabold leading-none">{metric.value}</span>
-              <p className="text-body-md text-white/80 font-medium mt-1">{metric.label}</p>
-              {metric.sublabel && <p className="text-body-sm text-white/40">{metric.sublabel}</p>}
+            <div key={metric.id} className="glass rounded-xl p-5 flex flex-col gap-1 hover:bg-white/12 hover:scale-[1.02] transition-all duration-300 group">
+              <span className="text-2xl sm:text-3xl lg:text-4xl text-white font-extrabold leading-none group-hover:text-orange-light transition-colors">
+                {metric.value}
+              </span>
+              <p className="text-body-md text-white/90 font-semibold mt-1">{metric.label}</p>
+              {metric.sublabel && <p className="text-body-sm text-white/50">{metric.sublabel}</p>}
             </div>
           ))}
         </div>

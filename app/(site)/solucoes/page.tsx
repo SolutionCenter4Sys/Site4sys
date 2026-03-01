@@ -9,7 +9,7 @@ import { FLAGSHIP_OFFERS, CORE_OFFERS } from '@/mocks/offers';
 
 export const metadata: Metadata = {
   title: 'Ofertas e Soluções',
-  description: 'Conheça as 15 ofertas da Foursys: Squads Híbridas, Modernização de Legado, IA com ROI, Integrações API, Qualidade & Testes, Hiperautomação e mais. Cada oferta com ROI e KPIs definidos.',
+  description: 'Conheça as 15 ofertas da Foursys: Squads Híbridas, Modernização de Legado, IA com Impacto, Integrações API, Qualidade & Testes, Hiperautomação e mais. Cada oferta com ROI e KPIs definidos.',
 };
 
 export default function SolucoesPage() {
@@ -71,7 +71,7 @@ export default function SolucoesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
               { pain: 'Acelerar entrega sem aumentar headcount', offer: 'Squads Híbridas', href: '/solucoes/squads-hibridas' },
-              { pain: 'Provar ROI de IA; sair de pilotos', offer: 'IA com ROI', href: '/solucoes/ia-com-roi' },
+              { pain: 'Provar ROI de IA; sair de pilotos', offer: 'IA com Impacto', href: '/solucoes/ia-com-roi' },
               { pain: 'Legado trava IA, integração e velocidade', offer: 'Modernização de Legado', href: '/solucoes/modernizacao-legado' },
               { pain: 'Controlar custo cloud e IA', offer: 'FinOps & Custo de IA', href: '/solucoes/finops-custo-ia' },
               { pain: 'Reduzir fraude, phishing e risco', offer: 'Cibersegurança & Zero Trust', href: '/solucoes/ciberseguranca-zero-trust' },

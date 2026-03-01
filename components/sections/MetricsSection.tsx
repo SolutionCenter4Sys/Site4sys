@@ -35,18 +35,18 @@ export function MetricsSection() {
               <div
                 key={m.label}
                 className={cn(
-                  'flex flex-col gap-2 transition-all duration-700',
+                  'flex flex-col gap-2 p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-orange/30 hover:scale-[1.02] transition-all duration-300 group',
                   metricsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 )}
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
                 <div className="flex items-center gap-2 mb-1">
-                  {Icon && <Icon className="w-5 h-5 text-orange flex-shrink-0" />}
-                  <span className="text-display-sm text-white font-extrabold">
+                  {Icon && <Icon className="w-6 h-6 text-orange flex-shrink-0 group-hover:scale-110 transition-transform" />}
+                  <span className="text-3xl sm:text-4xl lg:text-display-sm text-white font-extrabold group-hover:text-orange-light transition-colors">
                     {m.value}<span className="text-orange">{m.suffix}</span>
                   </span>
                 </div>
-                <p className="text-body-md text-white/60 leading-snug">{m.label}</p>
+                <p className="text-body-md text-white/70 font-medium leading-snug">{m.label}</p>
               </div>
             );
           })}

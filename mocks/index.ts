@@ -11,7 +11,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: '2',
-    quote: 'Saímos de 6 pilotos de IA sem resultado para um caso real com ROI calculado em 6 semanas. A metodologia IA com ROI foi um divisor de águas.',
+    quote: 'Saímos de 6 pilotos de IA sem resultado para um caso real com ROI calculado em 6 semanas. A metodologia IA com Impacto foi um divisor de águas.',
     author: 'Ana Paula Rocha',
     role: 'Head de Operações',
     company: 'Seguradora',
@@ -69,7 +69,7 @@ export const AWARDS = [
 export const SERVICES_LIST = [
   'Squads Híbridas',
   'Modernização de Legado',
-  'IA com ROI',
+  'IA com Impacto',
   'Estratégia & Inovação',
   'Agilidade & Org Design',
   'Cibersegurança & Zero Trust',

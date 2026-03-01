@@ -14,8 +14,7 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2 mb-5" aria-label="Foursys">
               <BrandLogo
                 light
-                iconClassName="shadow-none"
-                textClassName="text-white"
+                className="h-10 sm:h-11"
               />
             </Link>
             <p className="text-body-md text-white/70 leading-relaxed mb-6">

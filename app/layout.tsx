@@ -14,8 +14,8 @@ export const metadata: Metadata = {
     default: 'Foursys — Transformação Digital que Entrega Valor',
     template: '%s | Foursys',
   },
-  description: 'Parceiro estratégico de transformação digital. Squads Híbridas, Modernização de Legado, IA com ROI e muito mais. 25 anos. 3,6% turnover. GPTW.',
-  keywords: ['transformação digital', 'squads híbridas', 'modernização de legado', 'IA com ROI', 'Foursys', 'consultoria tecnologia'],
+  description: 'Parceiro estratégico de transformação digital. Squads Híbridas, Modernização de Legado, IA com Impacto e muito mais. 26 anos. 3,6% turnover. GPTW.',
+  keywords: ['transformação digital', 'squads híbridas', 'modernização de legado', 'IA com impacto', 'Foursys', 'consultoria tecnologia'],
   authors: [{ name: 'Foursys', url: 'https://foursys.com.br' }],
   openGraph: {
     type: 'website',

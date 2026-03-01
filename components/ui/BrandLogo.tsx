@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 interface BrandLogoProps {
@@ -14,30 +15,21 @@ export function BrandLogo({
   textClassName,
 }: BrandLogoProps) {
   return (
-    <span className={cn('inline-flex items-center gap-2.5', className)}>
-      <span
-        aria-hidden="true"
+    <span className={cn('inline-flex items-center', className)}>
+      <Image
+        src="/foursys-logo.png"
+        alt="Foursys"
+        width={180}
+        height={48}
         className={cn(
-          'w-9 h-9 rounded-xl bg-gradient-orange shadow-brand flex items-center justify-center',
-          iconClassName
-        )}
-      >
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path
-            d="M2 4.5h14v2H2zM2 8.5h9.5v2H2zM2 12.5h12v2H2z"
-            fill="white"
-          />
-        </svg>
-      </span>
-      <span
-        className={cn(
-          'font-extrabold text-xl tracking-tight',
-          light ? 'text-white' : 'text-navy',
+          'h-10 sm:h-11 md:h-12 w-auto object-contain min-w-[120px]',
+          !light && 'invert', // Em fundo claro: texto escuro legível
+          iconClassName,
           textClassName
         )}
-      >
-        Foursys
-      </span>
+        priority
+        unoptimized
+      />
     </span>
   );
 }

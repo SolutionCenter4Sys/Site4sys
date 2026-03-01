@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { HeroHome } from '@/components/sections/HeroHome';
 import { HowWeWorkSection } from '@/components/sections/HowWeWorkSection';
@@ -7,6 +8,7 @@ import { MetricsSection } from '@/components/sections/MetricsSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { TechPartnersSection } from '@/components/sections/TechPartnersSection';
+import { HighlightsCarousel } from '@/components/sections/HighlightsCarousel';
 import { OfferCard } from '@/components/offers/OfferCard';
 import { CaseCard } from '@/components/cases/CaseCard';
 import { Button } from '@/components/ui/Button';
@@ -18,7 +20,7 @@ import { Leaf } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Foursys — Transformação Digital que Entrega Valor',
-  description: 'Squads que entregam valor em semanas, não em meses. Parceiro estratégico com 25 anos, 3,6% turnover e GPTW.',
+  description: 'Squads que entregam valor em semanas, não em meses. Parceiro estratégico com 26 anos, 3,6% turnover e GPTW.',
 };
 
 const TRUST_PILLARS = [
@@ -153,8 +155,43 @@ export default function HomePage() {
       {/* 8. Parceiros & Tecnologias */}
       <TechPartnersSection />
 
+      {/* 8b. Encontre pela dor — Qual seu desafio? */}
+      <section className="section-padding bg-gray-50" aria-label="Encontre a solução pelo seu desafio">
+        <div className="container-site max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+            <Kicker className="mb-3">Encontre pelo problema</Kicker>
+            <h2 className="text-display-sm text-navy">Qual é a sua dor hoje?</h2>
+            <p className="text-body-lg text-gray-500 mt-2">Conecte seu desafio à solução certa.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {[
+              { pain: 'Acelerar entrega sem aumentar headcount', offer: 'Squads Híbridas', href: '/solucoes/squads-hibridas' },
+              { pain: 'Provar ROI de IA; sair de pilotos', offer: 'IA com Impacto', href: '/solucoes/ia-com-roi' },
+              { pain: 'Legado trava IA, integração e velocidade', offer: 'Modernização de Legado', href: '/solucoes/modernizacao-legado' },
+              { pain: 'Controlar custo cloud e IA', offer: 'FinOps & Custo de IA', href: '/solucoes/finops-custo-ia' },
+              { pain: 'Reduzir fraude, phishing e risco', offer: 'Cibersegurança & Zero Trust', href: '/solucoes/ciberseguranca-zero-trust' },
+              { pain: 'Escalar IA com segurança e compliance', offer: 'Governança de IA & Dados', href: '/solucoes/governanca-ia-dados' },
+            ].map(item => (
+              <Link
+                key={item.pain}
+                href={item.href}
+                className="flex items-start justify-between gap-4 p-5 rounded-xl border border-gray-200 bg-white hover:border-orange/30 hover:bg-orange/5 hover:shadow-card transition-all duration-200 group"
+              >
+                <p className="text-body-md text-gray-700 group-hover:text-navy font-medium">{item.pain}</p>
+                <div className="flex items-center gap-1 text-label-md text-orange font-semibold whitespace-nowrap flex-shrink-0">
+                  {item.offer} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 9. Metrics + Certifications + Premiações */}
       <MetricsSection />
+
+      {/* 9b. Carrossel de destaques */}
+      <HighlightsCarousel />
 
       {/* 10. Cases */}
       <section className="section-padding bg-gray-50" aria-label="Casos de sucesso">

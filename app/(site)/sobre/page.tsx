@@ -8,7 +8,7 @@ import { CERTIFICATIONS, FOURLIVES_STATS, FOURLIVES_PILLARS } from '@/mocks/inde
 
 export const metadata: Metadata = {
   title: 'Sobre a Foursys',
-  description: '25 anos de transformação digital. Parceiro estratégico com turnover de 3,6%, GPTW e certificações ISO. Conheça nossa história e propósito.',
+  description: '26 anos de transformação digital. Parceiro estratégico com turnover de 3,6%, GPTW e certificações ISO. Conheça nossa história e propósito.',
 };
 
 const TIMELINE = [
@@ -18,7 +18,7 @@ const TIMELINE = [
   { year: '2015', event: 'Lançamento do FourLives. Internacionalização com abertura de escritório nos EUA.' },
   { year: '2018', event: 'Primeiro GPTW. Expansão para Portugal. Consolidação em IA e dados.' },
   { year: '2022', event: 'Lançamento das Squads Híbridas (humanos + IA). Crescimento de +20%.' },
-  { year: '2025', event: '25 anos. +3M horas entregues/ano. 3,6% turnover. Referência em transformação digital.' },
+  { year: '2025', event: '26 anos. +3M horas entregues/ano. 3,6% turnover. Referência em transformação digital.' },
 ];
 
 const VALUES = [
@@ -39,7 +39,7 @@ export default function SobrePage() {
         <div className="container-site text-center">
           <Kicker light className="mb-4">Sobre a Foursys</Kicker>
           <h1 className="text-display-md text-white mb-6">
-            25 anos entregando transformação digital com resultado
+            26 anos entregando transformação digital com resultado
           </h1>
           <p className="text-body-xl text-white/70 max-w-2xl mx-auto">
             Fundada em 2000, a Foursys é um parceiro estratégico de tecnologia com presença no Brasil, EUA e Portugal — combinando agilidade de uma empresa próxima com capacidade global.
@@ -120,7 +120,7 @@ export default function SobrePage() {
         <div className="container-site max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <Kicker className="mb-3">Nossa história</Kicker>
-            <h2 className="text-display-sm text-navy">25 anos de evolução</h2>
+            <h2 className="text-display-sm text-navy">26 anos de evolução</h2>
           </div>
           <div className="relative">
             <div className="absolute left-16 top-0 bottom-0 w-0.5 bg-gray-200" aria-hidden="true" />

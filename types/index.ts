@@ -25,6 +25,8 @@ export interface Case {
   slug: string;
   sector: string;
   company?: string;
+  /** URL da imagem do caso (placeholder ou real) */
+  image?: string;
   challenge: string;
   solution: string;
   impact: string;

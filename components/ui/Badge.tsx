@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 
-type BadgeVariant = 'flagship' | 'core' | 'new' | 'sector' | 'orange';
+type BadgeVariant = 'flagship' | 'core' | 'new' | 'sector' | 'sector-overlay' | 'orange';
 type BadgeSize = 'sm' | 'md';
 
 interface BadgeProps {
@@ -15,6 +15,7 @@ const variantClasses: Record<BadgeVariant, string> = {
   core: 'bg-navy/10 text-navy border border-navy/20 font-semibold',
   new: 'bg-green-50 text-green-700 border border-green-200 font-semibold',
   sector: 'bg-gray-100 text-gray-700 border border-gray-200',
+  'sector-overlay': 'bg-white/95 backdrop-blur-sm text-navy border border-white/50 font-semibold',
   orange: 'bg-orange text-white font-semibold',
 };
 

@@ -29,7 +29,7 @@ export function OfferCard({ offer, variant = 'default', className }: OfferCardPr
     <Link
       href={`/solucoes/${offer.slug}`}
       className={cn(
-        'relative overflow-hidden group flex flex-col rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover',
+        'relative overflow-hidden group flex flex-col rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover hover:scale-[1.01]',
         isFlagship
           ? 'bg-white border-2 border-orange/30 hover:border-orange/50 shadow-card'
           : 'bg-white border border-gray-100 hover:border-orange/20',

@@ -75,16 +75,16 @@ export function Footer() {
             <h3 className="text-label-md uppercase tracking-wider text-white/50 mb-4 font-semibold">{t('company_title')}</h3>
             <ul className="space-y-2">
               {[
-                { href: '/sobre', key: 'about' },
-                { href: '/sobre#fourlives', key: 'fourlives' },
-                { href: '/insights', key: 'news_insights' },
-                { href: '/carreiras', key: 'careers' },
-                { href: '/casos-de-sucesso', key: 'cases' },
-                { href: '/contato', key: 'contact' },
+                { href: '/sobre', label: t('about') },
+                { href: '/sobre#fourlives', label: t('fourlives') },
+                { href: '/insights', label: t('news_insights') },
+                { href: '/carreiras', label: t('careers') },
+                { href: '/casos-de-sucesso', label: t('cases') },
+                { href: '/contato', label: t('contact') },
               ].map(item => (
-                <li key={item.key}>
+                <li key={item.href}>
                   <Link href={lhref(item.href)} className="text-body-md text-white/70 hover:text-orange transition-colors">
-                    {t(item.key as keyof ReturnType<typeof t>)}
+                    {item.label}
                   </Link>
                 </li>
               ))}

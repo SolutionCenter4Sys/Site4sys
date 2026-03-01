@@ -92,7 +92,7 @@ echo   Para encerrar: pressione Ctrl+C
 echo  ================================================
 echo.
 
-start "" cmd /c "timeout /t 5 /nobreak >nul && start http://localhost:3000"
+start "" cmd /c "timeout /t 20 /nobreak >nul && start http://localhost:3000"
 
 :: ── 6. Iniciar servidor Next.js ─────────────────────────────
 call npm run dev

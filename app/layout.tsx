@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Nunito } from 'next/font/google';
 import './globals.css';
 
@@ -8,6 +8,15 @@ const nunito = Nunito({
   weight: ['400', '500', '600', '700', '800'],
   display: 'swap',
 });
+
+// Igor (iOS): viewportFit=cover habilita env(safe-area-inset-*) para notch/home indicator
+// maximumScale=5 mantém zoom acessível sem bloquear usuários com baixa visão
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+};
 
 export const metadata: Metadata = {
   title: {

@@ -143,12 +143,19 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Igor (iOS): contém o elastic/rubber-band scroll que causava
+     gaps visuais brancos no topo e base em Safari.
+     'contain' permite scroll interno sem propagar ao document. */
+  overscroll-behavior-y: contain;
 }
 
 body {
   font-family: var(--font-nunito), Helvetica, Arial, sans-serif;
   color: var(--color-text-primary);
   background: var(--color-background);
+  /* Igor (iOS): garante que o body ocupe a área toda incluindo safe areas
+     quando viewportFit=cover está ativo. */
+  min-height: 100dvh;
 }
 
 *:focus-visible {
@@ -250,6 +257,46 @@ a.bg-gradient-orange, button.bg-gradient-orange { color: white !important; }
 a.bg-orange svg, button.bg-orange svg,
 a.bg-gradient-orange svg, button.bg-gradient-orange svg { color: white !important; }
 
+/* ─────────────────────────────────────────────────────────────────
+   MOBILE — Touch, Safe Areas, Input Fix
+   Igor (iOS) + Anderson (Android) + Sofia (ReactJS)
+───────────────────────────────────────────────────────────────── */
+
+/* Igor (iOS): previne zoom automático ao focar inputs em Safari.
+   Qualquer input com font-size < 16px dispara zoom no iOS.
+   Esta regra garante que todos os inputs usam 16px. */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  select,
+  textarea,
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="password"],
+  input[type="search"],
+  input[type="url"] {
+    font-size: 16px !important;
+  }
+}
+
+/* Anderson (Android): touch-action no carrossel horizontal.
+   pan-x → browser trata swipe horizontal como scroll do carrossel.
+   pan-y (vertical) cai para o document e rola a página normalmente.
+   Sem isso, swipes diagonais podem travar o scroll da página. */
+.touch-scroll-x {
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Sofia: padding-bottom responsivo para elementos que precisam
+   respeitar o safe area sem usar env() inline em cada componente. */
+.pb-safe {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+.mb-safe {
+  margin-bottom: max(80px, calc(80px + env(safe-area-inset-bottom)));
+}
+
 /* ─── Reduced Motion ─── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -257,5 +304,11 @@ a.bg-gradient-orange svg, button.bg-gradient-orange svg { color: white !importan
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  /* Igor/Anderson: pausa vídeo de fundo em modo reduced motion.
+     Usuários com epilepsia fotossensível ou que desativaram
+     animações no sistema não devem ver movimento contínuo. */
+  video {
+    display: none !important;
   }
 }

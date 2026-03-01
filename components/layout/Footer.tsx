@@ -12,10 +12,8 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-5" aria-label="Foursys">
-              <BrandLogo
-                light
-                className="h-10 sm:h-11"
-              />
+              {/* Footer tem fundo navy-dark → logo branca (light={false} = default) */}
+              <BrandLogo className="h-10 sm:h-11" />
             </Link>
             <p className="text-body-md text-white/70 leading-relaxed mb-6">
               Soluções digitais que conectam estratégia, execução e evolução.

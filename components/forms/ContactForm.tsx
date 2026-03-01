@@ -30,7 +30,9 @@ export function ContactForm({ context, variant = 'full', className }: ContactFor
     mensagem: '',
   });
 
-  const inputCls = 'w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-body-lg text-gray-800 placeholder-gray-400 transition-all focus:outline-none focus:border-orange focus:ring-2 focus:ring-orange/20 hover:border-gray-300 min-h-[48px]';
+  // Igor (iOS): font-size forçado a 16px via classe para prevenir zoom automático
+  // Anderson (Android): min-h-[48px] garante área de toque ≥ 48dp (Material Design 3)
+  const inputCls = 'w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-[16px] text-gray-800 placeholder-gray-400 transition-all focus:outline-none focus:border-orange focus:ring-2 focus:ring-orange/20 hover:border-gray-300 min-h-[48px]';
   const labelCls = 'block text-body-sm font-semibold text-gray-700 mb-1.5';
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -75,22 +77,54 @@ export function ContactForm({ context, variant = 'full', className }: ContactFor
       )}
 
       {/* 4 campos apenas — CRO: cada campo adicional reduz conversão ~7% */}
+      {/* Igor (iOS): autocomplete + inputMode corretos evitam teclado errado
+          e permitem autopreenchimento do gerenciador de senhas / iCloud Keychain.
+          Anderson (Android): autocomplete também ativa Autofill do Google. */}
       <div>
         <label htmlFor="nome" className={labelCls}>Nome *</label>
-        <input id="nome" type="text" required placeholder="Seu nome" className={inputCls}
-          value={form.nome} onChange={e => setForm({ ...form, nome: e.target.value })} />
+        <input
+          id="nome"
+          type="text"
+          required
+          placeholder="Seu nome"
+          className={inputCls}
+          autoComplete="name"
+          inputMode="text"
+          enterKeyHint="next"
+          value={form.nome}
+          onChange={e => setForm({ ...form, nome: e.target.value })}
+        />
       </div>
 
       <div>
         <label htmlFor="email" className={labelCls}>E-mail *</label>
-        <input id="email" type="email" required placeholder="seu@empresa.com" className={inputCls}
-          value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
+        <input
+          id="email"
+          type="email"
+          required
+          placeholder="seu@empresa.com"
+          className={inputCls}
+          autoComplete="email"
+          inputMode="email"
+          enterKeyHint="next"
+          spellCheck={false}
+          autoCapitalize="none"
+          autoCorrect="off"
+          value={form.email}
+          onChange={e => setForm({ ...form, email: e.target.value })}
+        />
       </div>
 
       <div>
         <label htmlFor="desafio" className={labelCls}>Qual seu maior desafio hoje?</label>
-        <select id="desafio" className={inputCls}
-          value={form.desafio} onChange={e => setForm({ ...form, desafio: e.target.value })}>
+        {/* Igor (iOS): select sem font-size 16px causa zoom automático no Safari.
+            A classe inputCls já tem text-[16px] para prevenir isso. */}
+        <select
+          id="desafio"
+          className={inputCls}
+          value={form.desafio}
+          onChange={e => setForm({ ...form, desafio: e.target.value })}
+        >
           {DESAFIOS_OPTIONS.map(opt => (
             <option key={opt.value || 'empty'} value={opt.value}>{opt.label}</option>
           ))}
@@ -99,8 +133,16 @@ export function ContactForm({ context, variant = 'full', className }: ContactFor
 
       <div>
         <label htmlFor="mensagem" className={labelCls}>Mensagem *</label>
-        <textarea id="mensagem" required rows={4} placeholder="Descreva brevemente sua necessidade..." className={cn(inputCls, 'resize-none')}
-          value={form.mensagem} onChange={e => setForm({ ...form, mensagem: e.target.value })} />
+        <textarea
+          id="mensagem"
+          required
+          rows={4}
+          placeholder="Descreva brevemente sua necessidade..."
+          className={cn(inputCls, 'resize-none')}
+          enterKeyHint="send"
+          value={form.mensagem}
+          onChange={e => setForm({ ...form, mensagem: e.target.value })}
+        />
       </div>
 
       {status === 'error' && (

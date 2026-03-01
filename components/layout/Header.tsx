@@ -151,20 +151,31 @@ export function Header({ variant = 'transparent' }: HeaderProps) {
             </Button>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button
+              Anderson (Android): min-h/w 48px = 48dp touch target (Material Design 3)
+              Igor (iOS): min-h/w 44pt = Apple HIG minimum touch target */}
           <button
-            className={cn('lg:hidden p-2 rounded-lg transition-colors', isLight ? 'text-navy hover:bg-gray-100' : 'text-white hover:bg-white/10')}
+            className={cn(
+              'lg:hidden flex items-center justify-center min-h-[48px] min-w-[48px] rounded-xl transition-colors',
+              isLight ? 'text-navy hover:bg-gray-100' : 'text-white hover:bg-white/10'
+            )}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-expanded={mobileOpen}
-            aria-label="Menu"
+            aria-controls="mobile-nav"
+            aria-label={mobileOpen ? 'Fechar menu' : 'Abrir menu'}
           >
-            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu
+          Anderson (Android): cada item tem min-h-[48px] para touch target de 48dp.
+          Igor (iOS): id="mobile-nav" conecta com aria-controls do botão.
+          Artista: separador visual entre Flagship e links principais para evitar
+          confusão entre sub-itens e itens principais. */}
       <nav
+        id="mobile-nav"
         aria-label="Navegação mobile"
         aria-hidden={!mobileOpen}
         className={cn(
@@ -172,24 +183,43 @@ export function Header({ variant = 'transparent' }: HeaderProps) {
           mobileOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
         )}
       >
-        <div className="container-site py-4 space-y-1">
+        <div className="container-site py-3 space-y-0.5">
+          {/* Ofertas — link para página completa */}
           <Link
             href="/solucoes"
             aria-current={isActive('/solucoes') ? 'page' : undefined}
-            className={cn('flex items-center px-3 py-2.5 text-body-lg font-semibold rounded-xl hover:bg-gray-50', isActive('/solucoes') ? 'text-orange bg-orange/5' : 'text-navy hover:text-orange')}
+            className={cn(
+              'flex items-center min-h-[48px] px-3 py-2 text-body-lg font-semibold rounded-xl hover:bg-gray-50',
+              isActive('/solucoes') ? 'text-orange bg-orange/5' : 'text-navy hover:text-orange'
+            )}
           >
             Ofertas
           </Link>
-          {FLAGSHIP_OFFERS.map(offer => (
-            <Link
-              key={offer.id}
-              href={`/solucoes/${offer.slug}`}
-              aria-current={pathname === `/solucoes/${offer.slug}` ? 'page' : undefined}
-              className={cn('flex items-center gap-2 px-6 py-2 text-body-md rounded-xl hover:bg-gray-50', pathname === `/solucoes/${offer.slug}` ? 'text-orange' : 'text-gray-600 hover:text-orange')}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-orange" />{offer.name}
-            </Link>
-          ))}
+
+          {/* Flagship — sub-nível com indentação e separador visual */}
+          <div className="ml-3 border-l-2 border-orange/20 pl-3 space-y-0.5 pb-1">
+            <p className="text-label-sm text-orange/70 uppercase tracking-widest font-bold px-2 pt-1 pb-0.5">
+              Flagship
+            </p>
+            {FLAGSHIP_OFFERS.map(offer => (
+              <Link
+                key={offer.id}
+                href={`/solucoes/${offer.slug}`}
+                aria-current={pathname === `/solucoes/${offer.slug}` ? 'page' : undefined}
+                className={cn(
+                  'flex items-center gap-2 min-h-[44px] px-2 py-1.5 text-body-md rounded-lg hover:bg-gray-50',
+                  pathname === `/solucoes/${offer.slug}` ? 'text-orange' : 'text-gray-600 hover:text-orange'
+                )}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-orange flex-shrink-0" aria-hidden="true" />
+                {offer.name}
+              </Link>
+            ))}
+          </div>
+
+          <div className="h-px bg-gray-100 my-1 mx-3" aria-hidden="true" />
+
+          {/* Navegação principal */}
           {[
             { href: '/sobre', label: 'Sobre' },
             { href: '/casos-de-sucesso', label: 'Casos' },
@@ -199,12 +229,17 @@ export function Header({ variant = 'transparent' }: HeaderProps) {
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? 'page' : undefined}
-              className={cn('flex items-center px-3 py-2.5 text-body-lg font-semibold rounded-xl hover:bg-gray-50', isActive(item.href) ? 'text-orange bg-orange/5' : 'text-navy hover:text-orange')}
+              className={cn(
+                'flex items-center min-h-[48px] px-3 py-2 text-body-lg font-semibold rounded-xl hover:bg-gray-50',
+                isActive(item.href) ? 'text-orange bg-orange/5' : 'text-navy hover:text-orange'
+              )}
             >
               {item.label}
             </Link>
           ))}
-          <div className="pt-3 pb-2">
+
+          {/* CTA final com espaço extra para o StickyMobileCTA não sobrepor */}
+          <div className="pt-3 pb-safe">
             <Button href="/contato" variant="primary" size="lg" fullWidth>
               Fale conosco
             </Button>

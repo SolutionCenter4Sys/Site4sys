@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight, ShieldCheck, MapPin, Building2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -7,10 +7,31 @@ import { METRICS, CERTIFICATIONS } from '@/mocks/index';
 
 export function HeroHome() {
   const [animated, setAnimated] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setAnimated(true), 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Igor/Anderson: respeita preferência do sistema operacional.
+    // Em iOS Low Power Mode e Android Battery Saver, o vídeo é pausado.
+    // prefers-reduced-motion também pausa (CSS oculta, mas aqui pausamos
+    // a reprodução para economizar bateria e evitar flash antes do CSS carregar).
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (prefersReducedMotion.matches && videoRef.current) {
+      videoRef.current.pause();
+    }
+
+    const handleMotionChange = (e: MediaQueryListEvent) => {
+      if (!videoRef.current) return;
+      if (e.matches) videoRef.current.pause();
+      else videoRef.current.play().catch(() => {});
+    };
+
+    prefersReducedMotion.addEventListener('change', handleMotionChange);
+    return () => prefersReducedMotion.removeEventListener('change', handleMotionChange);
   }, []);
 
   return (
@@ -18,16 +39,24 @@ export function HeroHome() {
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-hero"
       aria-label="Hero — Foursys"
     >
-      {/* Vídeo de fundo — estilo Accenture/TCS */}
+      {/* Vídeo de fundo — estilo Accenture/TCS
+          Igor (iOS): playsInline obrigatório para autoplay em Safari iOS.
+          Sem playsInline, o vídeo abre em fullscreen no iOS, quebrando o layout.
+          Anderson (Android): preload="none" em mobile economiza dados móveis.
+          O vídeo só carrega se o dispositivo tiver largura ≥ 768px. */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          preload="none"
+          disablePictureInPicture
+          className="absolute inset-0 w-full h-full object-cover hidden sm:block"
           aria-hidden="true"
         >
+          {/* Sofia: mp4 H.264 tem suporte universal. mov é fallback para Safari antigo. */}
           <source src="/hero-video.mp4" type="video/mp4" />
           <source src="/hero-video.mov" type="video/quicktime" />
         </video>

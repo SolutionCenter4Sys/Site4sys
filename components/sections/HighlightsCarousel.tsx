@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -62,30 +62,45 @@ export function HighlightsCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const checkScroll = () => {
+  const checkScroll = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 0);
+    setCanScrollLeft(el.scrollLeft > 10);
     setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
-  };
+
+    // Artista: calcula dot ativo baseado na posição de scroll
+    const itemWidth = el.firstElementChild
+      ? (el.firstElementChild as HTMLElement).offsetWidth + 16
+      : 316;
+    const idx = Math.round(el.scrollLeft / itemWidth);
+    setActiveIndex(Math.min(Math.max(idx, 0), HIGHLIGHTS.length - 1));
+  }, []);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
     checkScroll();
-    el.addEventListener('scroll', checkScroll);
-    window.addEventListener('resize', checkScroll);
+    el.addEventListener('scroll', checkScroll, { passive: true });
+    window.addEventListener('resize', checkScroll, { passive: true });
     return () => {
       el.removeEventListener('scroll', checkScroll);
       window.removeEventListener('resize', checkScroll);
     };
-  }, []);
+  }, [checkScroll]);
 
   const scroll = (dir: 'left' | 'right') => {
     const el = scrollRef.current;
     if (!el) return;
     el.scrollBy({ left: dir === 'left' ? -320 : 320, behavior: 'smooth' });
+  };
+
+  const scrollToIndex = (idx: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const item = el.children[idx] as HTMLElement;
+    if (item) item.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
   };
 
   return (
@@ -100,51 +115,64 @@ export function HighlightsCarousel() {
               Resultados e reconhecimentos
             </h2>
           </div>
-          <div className="flex gap-2">
+
+          {/* Anderson: botões com min-h/w 48px para touch target correto.
+              Escondidos em mobile — usuário usa swipe nativo. */}
+          <div className="hidden sm:flex gap-2" aria-label="Controles do carrossel">
             <button
               onClick={() => scroll('left')}
               disabled={!canScrollLeft}
-              className="p-2 rounded-full border border-gray-200 text-gray-500 hover:border-orange/30 hover:text-orange disabled:opacity-40 disabled:cursor-not-allowed transition-all"
-              aria-label="Anterior"
+              className="flex items-center justify-center min-h-[44px] min-w-[44px] rounded-full border border-gray-200 text-gray-500 hover:border-orange/30 hover:text-orange disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+              aria-label="Slide anterior"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-5 h-5" aria-hidden="true" />
             </button>
             <button
               onClick={() => scroll('right')}
               disabled={!canScrollRight}
-              className="p-2 rounded-full border border-gray-200 text-gray-500 hover:border-orange/30 hover:text-orange disabled:opacity-40 disabled:cursor-not-allowed transition-all"
-              aria-label="Próximo"
+              className="flex items-center justify-center min-h-[44px] min-w-[44px] rounded-full border border-gray-200 text-gray-500 hover:border-orange/30 hover:text-orange disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+              aria-label="Próximo slide"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
         </div>
 
+        {/* Anderson (Android): touch-scroll-x aplica touch-action: pan-x
+            Isso garante que swipes horizontais no carrossel não bloqueiem
+            o scroll vertical da página.
+            Igor (iOS): -webkit-overflow-scrolling: touch ativa momentum scroll.
+            snap-x + snap-mandatory = scroll por item completo a cada swipe. */}
         <div
           ref={scrollRef}
-          className="flex gap-4 overflow-x-auto scroll-smooth scrollbar-hide pb-4 -mx-4 px-4 snap-x snap-mandatory"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          role="region"
+          aria-label="Carrossel de destaques"
+          className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 snap-x snap-mandatory touch-scroll-x"
         >
-          {HIGHLIGHTS.map((item) => (
+          {HIGHLIGHTS.map((item, idx) => (
             <Link
               key={item.id}
               href={item.href}
-              className="flex-shrink-0 w-[300px] sm:w-[340px] snap-center group"
+              aria-label={`${item.title} — ${item.subtitle}`}
+              // Artista: w-[85vw] em mobile garante que se veja a borda do
+              // próximo card (affordance de scroll). sm:w-[340px] em desktop.
+              className="flex-shrink-0 w-[85vw] sm:w-[340px] snap-start group"
             >
               <div className="h-full rounded-2xl border border-gray-200 bg-white overflow-hidden hover:border-orange/30 hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1">
                 {item.image && (
                   <div className="relative h-36 overflow-hidden">
                     <Image
                       src={item.image}
-                      alt={item.title}
+                      alt={`Imagem: ${item.title}`}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="340px"
+                      sizes="(max-width: 640px) 85vw, 340px"
+                      loading={idx === 0 ? 'eager' : 'lazy'}
                       unoptimized
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" aria-hidden="true" />
                     <div className="absolute bottom-3 left-4 right-4">
-                      <span className="text-2xl sm:text-3xl font-extrabold text-white drop-shadow-lg">
+                      <span className="text-2xl sm:text-3xl font-extrabold text-white drop-shadow-lg" aria-hidden="true">
                         {item.metric}
                       </span>
                       <p className="text-body-sm text-white/90 font-medium">{item.label}</p>
@@ -162,6 +190,35 @@ export function HighlightsCarousel() {
           ))}
         </div>
 
+        {/* Artista: dot indicators — mostram posição e são clicáveis.
+            Essencial em mobile para o usuário saber quantos slides existem.
+            Anderson: cada dot tem min-h/w de 44px de área de toque
+            (padding transparente expande a área clicável sem alterar visual). */}
+        <div
+          className="flex justify-center gap-2 mt-4"
+          role="tablist"
+          aria-label="Navegação do carrossel"
+        >
+          {HIGHLIGHTS.map((item, idx) => (
+            <button
+              key={item.id}
+              role="tab"
+              aria-selected={activeIndex === idx}
+              aria-label={`Ir para slide ${idx + 1}: ${item.title}`}
+              onClick={() => scrollToIndex(idx)}
+              className="p-3 -m-1 rounded-full transition-all"
+            >
+              <span
+                className={`block rounded-full transition-all duration-300 ${
+                  activeIndex === idx
+                    ? 'w-6 h-2 bg-orange'
+                    : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-hidden="true"
+              />
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );

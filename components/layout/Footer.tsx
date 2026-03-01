@@ -1,22 +1,26 @@
 import Link from 'next/link';
 import { Linkedin, Instagram, Youtube } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 import { FLAGSHIP_OFFERS, CORE_OFFERS } from '@/mocks/offers';
 import { OFFICES } from '@/mocks/index';
 import { BrandLogo } from '@/components/ui/BrandLogo';
 
 export function Footer() {
+  const t = useTranslations('footer');
+  const locale = useLocale();
+  const lhref = (path: string) => locale === 'pt' ? path : `/${locale}${path}`;
+
   return (
     <footer className="bg-navy-dark text-white" aria-label="Rodapé">
       <div className="container-site pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-5" aria-label="Foursys">
-              {/* Footer tem fundo navy-dark → logo branca (light={false} = default) */}
+            <Link href={lhref('/')} className="flex items-center gap-2 mb-5" aria-label="Foursys">
               <BrandLogo className="h-10 sm:h-11" />
             </Link>
             <p className="text-body-md text-white/70 leading-relaxed mb-6">
-              Soluções digitais que conectam estratégia, execução e evolução.
+              {t('tagline')}
             </p>
             <div className="flex gap-3">
               {[
@@ -40,11 +44,11 @@ export function Footer() {
 
           {/* Ofertas */}
           <div>
-            <h3 className="text-label-md uppercase tracking-wider text-white/50 mb-4 font-semibold">Ofertas</h3>
+            <h3 className="text-label-md uppercase tracking-wider text-white/50 mb-4 font-semibold">{t('offers_title')}</h3>
             <ul className="space-y-2">
               {FLAGSHIP_OFFERS.map(offer => (
                 <li key={offer.id}>
-                  <Link href={`/solucoes/${offer.slug}`} className="text-body-md text-white/70 hover:text-orange transition-colors flex items-center gap-1.5">
+                  <Link href={lhref(`/solucoes/${offer.slug}`)} className="text-body-md text-white/70 hover:text-orange transition-colors flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-orange flex-shrink-0" />
                     {offer.name}
                   </Link>
@@ -52,15 +56,15 @@ export function Footer() {
               ))}
               {CORE_OFFERS.slice(0, 4).map(offer => (
                 <li key={offer.id}>
-                  <Link href={`/solucoes/${offer.slug}`} className="text-body-md text-white/70 hover:text-orange transition-colors flex items-center gap-1.5">
+                  <Link href={lhref(`/solucoes/${offer.slug}`)} className="text-body-md text-white/70 hover:text-orange transition-colors flex items-center gap-1.5">
                     <span className="w-1 h-1 rounded-full bg-white/30 flex-shrink-0" />
                     {offer.name}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/solucoes" className="text-label-md text-orange hover:text-orange-light transition-colors font-semibold">
-                  Ver todas →
+                <Link href={lhref('/solucoes')} className="text-label-md text-orange hover:text-orange-light transition-colors font-semibold">
+                  {t('see_all')}
                 </Link>
               </li>
             </ul>
@@ -68,20 +72,19 @@ export function Footer() {
 
           {/* Empresa */}
           <div>
-            <h3 className="text-label-md uppercase tracking-wider text-white/50 mb-4 font-semibold">Empresa</h3>
+            <h3 className="text-label-md uppercase tracking-wider text-white/50 mb-4 font-semibold">{t('company_title')}</h3>
             <ul className="space-y-2">
               {[
-                { href: '/sobre', label: 'Sobre a Foursys' },
-                { href: '/sobre#fourlives', label: 'FourLives' },
-                { href: '/insights', label: 'Insights' },
-                { href: '/carreiras', label: 'Carreiras' },
-                { href: '/casos-de-sucesso', label: 'Casos de sucesso' },
-                { href: '/comparativo-portfolio', label: 'Comparativo de Portfólio' },
-                { href: '/contato', label: 'Contato' },
+                { href: '/sobre', key: 'about' },
+                { href: '/sobre#fourlives', key: 'fourlives' },
+                { href: '/insights', key: 'news_insights' },
+                { href: '/carreiras', key: 'careers' },
+                { href: '/casos-de-sucesso', key: 'cases' },
+                { href: '/contato', key: 'contact' },
               ].map(item => (
-                <li key={item.href}>
-                  <Link href={item.href} className="text-body-md text-white/70 hover:text-orange transition-colors">
-                    {item.label}
+                <li key={item.key}>
+                  <Link href={lhref(item.href)} className="text-body-md text-white/70 hover:text-orange transition-colors">
+                    {t(item.key as keyof ReturnType<typeof t>)}
                   </Link>
                 </li>
               ))}
@@ -90,7 +93,7 @@ export function Footer() {
 
           {/* Escritórios */}
           <div>
-            <h3 className="text-label-md uppercase tracking-wider text-white/50 mb-4 font-semibold">Escritórios</h3>
+            <h3 className="text-label-md uppercase tracking-wider text-white/50 mb-4 font-semibold">{t('offices_title')}</h3>
             <div className="space-y-4">
               {OFFICES.map(office => (
                 <div key={office.id} className="flex items-start gap-2">
@@ -118,9 +121,9 @@ export function Footer() {
             ))}
           </div>
           <div className="flex items-center gap-4 text-body-sm text-white/40">
-            <span>© 2026 Foursys. Todos os direitos reservados.</span>
-            <Link href="/privacidade" className="hover:text-orange transition-colors">Privacidade</Link>
-            <Link href="/termos" className="hover:text-orange transition-colors">Termos</Link>
+            <span>{t('copyright')}</span>
+            <Link href={lhref('/privacidade')} className="hover:text-orange transition-colors">{t('privacy')}</Link>
+            <Link href={lhref('/termos')} className="hover:text-orange transition-colors">{t('terms')}</Link>
           </div>
         </div>
       </div>

@@ -1,0 +1,337 @@
+{
+  "nav": {
+    "offers": "Solutions",
+    "about": "About",
+    "cases": "Cases",
+    "insights": "News & Insights",
+    "careers": "Careers",
+    "cta": "Contact us",
+    "all_offers": "See all solutions →",
+    "flagship": "Flagship",
+    "core": "Core"
+  },
+  "footer": {
+    "tagline": "Digital solutions connecting strategy, execution and evolution.",
+    "offers_title": "Solutions",
+    "company_title": "Company",
+    "offices_title": "Offices",
+    "see_all": "See all →",
+    "about": "About Foursys",
+    "fourlives": "FourLives",
+    "careers": "Careers",
+    "cases": "Success stories",
+    "contact": "Contact",
+    "news_insights": "News & Insights",
+    "copyright": "© 2026 Foursys. All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "hero": {
+    "badge": "26 years transforming businesses with technology",
+    "headline": "Squads that deliver {highlight}, not in months.",
+    "highlight": "value in weeks,",
+    "tagline": "Digital solutions connecting strategy, execution and evolution.",
+    "subtagline": "Enterprise governance. 3.6% turnover. 26 years of delivery.",
+    "badge_governance": "Governance from sprint 1",
+    "badge_presence": "Brazil • USA • Portugal",
+    "badge_sectors": "Regulated and mission-critical sectors",
+    "cta_primary": "Schedule free diagnosis",
+    "cta_secondary": "See success stories",
+    "trust": "Free diagnosis • Response within 24h • No commitment"
+  },
+  "metrics": {
+    "years_label": "years of history",
+    "years_sub": "Founded in 2000",
+    "turnover_label": "turnover",
+    "turnover_sub": "Great Place to Work",
+    "projects_label": "projects delivered",
+    "projects_sub": "in high-impact projects",
+    "collaborators_label": "collaborators",
+    "collaborators_sub": "across 3 continents",
+    "hours_label": "hours delivered/year",
+    "hours_sub": "in high-impact projects",
+    "growth_label": "annual growth",
+    "growth_sub": "consistent",
+    "certs_title": "Certifications & Recognition",
+    "awards_title": "Awards"
+  },
+  "why": {
+    "kicker": "Why Foursys",
+    "headline": "More than IT services — {highlight}.",
+    "highlight": "results you can measure",
+    "body": "In a market of generic promises, Foursys delivers with method, metrics and governance. Every engagement starts with the right diagnosis and ends with measurable impact — whether in lead time, operational cost or AI ROI.",
+    "presence_title": "Global Presence",
+    "presence_sub": "Enterprise delivery with squad proximity.",
+    "presence_1": "Operations in Brazil, USA and Portugal",
+    "presence_2": "Projects in regulated and mission-critical sectors",
+    "presence_3": "Governance with delivery and risk metrics",
+    "sectors_title": "Sectors with proven experience",
+    "sectors": ["Financial", "Healthcare", "Insurance", "Retail", "Manufacturing", "Energy"]
+  },
+  "offers_section": {
+    "kicker": "Our main solutions",
+    "headline": "Three solutions, proven impact",
+    "see_all": "See all {count} solutions",
+    "flagship_badge": "Flagship",
+    "learn_more": "Learn more"
+  },
+  "how_we_work": {
+    "kicker": "Flexible models",
+    "headline": "How we work",
+    "sub": "Squads, Projects, Staffing and AMS — choose the model that best fits your needs.",
+    "squads_title": "Squads",
+    "squads_body": "Multidisciplinary teams integrated with your team, with governance and metrics. Continuous delivery with quality and 3.6% turnover.",
+    "projects_title": "Projects (Fixed Scope)",
+    "projects_body": "Initiatives with defined scope, timeline and clear deliverables. Ideal for modernization, migration or system implementation.",
+    "allocation_title": "Staffing",
+    "allocation_body": "Specialized professionals allocated to your team. Flexibility for specific short or medium-term demands.",
+    "ams_title": "AMS",
+    "ams_body": "Application Management Services with SLAs, NOC and continuous evolution. Operations with predictability and excellence."
+  },
+  "pain_finder": {
+    "kicker": "Find by problem",
+    "headline": "What is your pain today?",
+    "sub": "Connect your challenge to the right solution.",
+    "pains": [
+      { "label": "Accelerate delivery without increasing headcount", "offer": "Hybrid Squads", "slug": "squads-hibridas" },
+      { "label": "Prove AI ROI; move beyond pilots", "offer": "AI with Impact", "slug": "ia-com-roi" },
+      { "label": "Legacy blocks AI, integration and speed", "offer": "Legacy Modernization", "slug": "modernizacao-legado" },
+      { "label": "Control cloud and AI costs", "offer": "FinOps & AI Cost", "slug": "finops-custo-ia" },
+      { "label": "Reduce fraud, phishing and risk", "offer": "Cybersecurity & Zero Trust", "slug": "ciberseguranca-zero-trust" },
+      { "label": "Scale AI safely and with compliance", "offer": "AI & Data Governance", "slug": "governanca-ia-dados" }
+    ]
+  },
+  "highlights": {
+    "kicker": "Featured",
+    "headline": "Results and recognition"
+  },
+  "cases_section": {
+    "kicker": "Real results",
+    "headline": "Success stories",
+    "sub": "Problem → Solution → Measurable impact.",
+    "see_all": "See all cases",
+    "see_case": "View full case",
+    "sectors": ["Banks & Fintechs", "Health Operators", "Insurers", "Omnichannel Retail", "Industry 4.0"],
+    "experience_prefix": "Experience in"
+  },
+  "fourlives": {
+    "kicker": "Purpose & ESG",
+    "headline": "FourLives — Technology that transforms lives",
+    "body": "For Foursys, technology is a means, not an end. FourLives is our social impact program connecting training, inclusion and sustainability — because choosing a technology partner also means choosing a purpose partner.",
+    "cta": "Learn about FourLives",
+    "capacity_title": "Training",
+    "capacity_body": "Technology education programs for low-income communities, training professionals for the IT market.",
+    "inclusion_title": "Inclusion",
+    "inclusion_body": "Diversity and inclusion initiatives to expand opportunities for underrepresented groups in technology.",
+    "sustainability_title": "Sustainability",
+    "sustainability_body": "One tree planted per professional per year and carbon footprint reduction goals in operations."
+  },
+  "testimonials": {
+    "kicker": "What our clients say",
+    "headline": "Partners who recommend us",
+    "social_proof": "+100 companies transformed"
+  },
+  "cta_section": {
+    "headline": "Ready to transform with results?",
+    "sub": "Talk to our team and schedule a free diagnosis.",
+    "primary": "Talk to a specialist",
+    "secondary": "See our cases",
+    "highlight1": "Free diagnosis",
+    "highlight2": "Response within 24h",
+    "highlight3": "No commitment",
+    "social_proof": "+100 companies transformed"
+  },
+  "sticky_cta": "Schedule free diagnosis",
+  "about_page": {
+    "meta_title": "About",
+    "meta_desc": "26 years of digital transformation. Strategic partner with 3.6% turnover, GPTW and ISO certifications.",
+    "hero_kicker": "About Foursys",
+    "hero_headline": "26 years delivering digital transformation with results",
+    "hero_sub": "We are a strategic technology partner with global presence, technical depth and obsession with measurable results.",
+    "mission_kicker": "Mission & Purpose",
+    "mission_headline": "Why we exist",
+    "mission_body": "We believe technology is a means, not an end. Our mission is to transform businesses with digital solutions that deliver real value — not just well-intentioned projects.",
+    "mission_card1_title": "Our Mission",
+    "mission_card1_body": "To be the strategic digital transformation partner that delivers measurable results with agility, proximity and integrity.",
+    "mission_card2_title": "Our Vision",
+    "mission_card2_body": "To be the reference in enterprise digital transformation in Brazil, USA and Portugal, recognized for results, people and purpose.",
+    "mission_card3_title": "Our Values",
+    "mission_card3_body": "Results with governance. People before processes. Proximity with scale. Innovation with responsibility.",
+    "timeline_kicker": "Our history",
+    "timeline_headline": "26 years of evolution",
+    "cta_headline": "Want to know more about Foursys?",
+    "cta_sub": "Schedule a conversation with our team.",
+    "cta_primary": "Contact us",
+    "cta_secondary": "See open positions"
+  },
+  "solutions_page": {
+    "meta_title": "Solutions",
+    "meta_desc": "Explore all Foursys solutions: Hybrid Squads, Legacy Modernization, AI with Impact and more.",
+    "hero_kicker": "Solutions",
+    "hero_headline": "Digital transformation with measurable results",
+    "hero_sub": "Each solution was designed for a real problem, with method, metrics and clear deliverables.",
+    "flagship_title": "Flagship Solutions",
+    "core_title": "Core Solutions",
+    "no_match_headline": "Didn't find what you were looking for?",
+    "no_match_sub": "Talk to our team and find the right solution for your moment."
+  },
+  "solution_detail": {
+    "for_whom": "For whom",
+    "pain": "Pain it solves",
+    "promise": "What we deliver",
+    "deliverables": "Deliverables",
+    "kpis": "KPIs and metrics",
+    "timeline": "Estimated timeline",
+    "cta_back": "← Back to solutions",
+    "related_cases": "Related cases"
+  },
+  "cases_page": {
+    "meta_title": "Success Stories",
+    "meta_desc": "See how Foursys transformed companies in financial, healthcare, insurance and retail sectors.",
+    "hero_kicker": "Success Stories",
+    "hero_headline": "Results you can measure",
+    "hero_sub": "Problem → Solution → Measurable impact. Real cases with CTOs, CIOs and operations leaders.",
+    "filter_all": "All",
+    "challenge_label": "Challenge",
+    "solution_label": "Solution",
+    "impact_label": "Impact",
+    "see_case": "View full case",
+    "cta_headline": "Have a similar challenge?",
+    "cta_sub": "45 minutes with a specialist. No commitment.",
+    "form_title": "Have a similar challenge?",
+    "faq_title": "Frequently asked questions"
+  },
+  "insights_page": {
+    "meta_title": "News & Insights",
+    "meta_desc": "Research, articles, podcasts and real cases on AI, digital transformation, squads, security and cloud.",
+    "hero_kicker": "Foursys Insights",
+    "hero_headline1": "What we think.",
+    "hero_headline2": "What we see happening.",
+    "hero_sub": "Research, articles, podcasts and real cases on AI, digital transformation, squads, cybersecurity and cloud — written by those who implement, not just theorize.",
+    "featured_kicker": "Featured",
+    "featured_headline": "Recommended reads",
+    "filter_search": "Search insights...",
+    "filter_btn": "Filters",
+    "filter_clear": "Clear",
+    "filter_topic": "Topic",
+    "filter_industry": "Industry",
+    "filter_type": "Content type",
+    "results_count": "{count} result found",
+    "results_count_plural": "{count} results found",
+    "total_count": "{count} publications",
+    "no_results_headline": "No results found",
+    "no_results_sub": "Try adjusting the filters or search to find what you're looking for.",
+    "clear_filters": "Clear filters",
+    "newsletter_kicker": "Foursys Newsletter",
+    "newsletter_headline": "Get the best insights straight to your inbox",
+    "newsletter_sub": "Biweekly publications on AI, digital transformation, tech leadership and real cases — no spam.",
+    "newsletter_placeholder": "you@company.com",
+    "newsletter_btn": "Subscribe",
+    "newsletter_trust": "No spam. Cancel anytime. GDPR compliant.",
+    "read_more": "Read more",
+    "read_time_min": "{min} min read",
+    "listen_time": "{min} min"
+  },
+  "careers_page": {
+    "meta_title": "Careers",
+    "meta_desc": "Join the Foursys team. GPTW environment, 3.6% turnover and real impact projects.",
+    "hero_kicker": "Careers",
+    "hero_headline": "Build your career where delivery matters",
+    "hero_sub": "GPTW environment, real impact projects and 3.6% turnover — the lowest in the industry. Here your career grows alongside the client."
+  },
+  "contact_page": {
+    "meta_title": "Contact",
+    "meta_desc": "Talk to Foursys. Offices in São Paulo, Boston and Lisbon.",
+    "hero_kicker": "Let's talk",
+    "hero_headline": "Talk to Foursys",
+    "hero_sub": "Schedule a free diagnosis. Our team responds within 24 hours.",
+    "form_title": "Send a message",
+    "form_sub": "Fill in the form and we'll get back to you within 24h.",
+    "quick_contact": "Quick contact",
+    "offices_title": "Our offices",
+    "offer_cta_title": "Want to talk about a specific solution?",
+    "hours": "Mon–Fri, 9am–6pm (BRT)"
+  },
+  "form": {
+    "name_label": "Name *",
+    "name_placeholder": "Your name",
+    "email_label": "E-mail *",
+    "email_placeholder": "you@company.com",
+    "challenge_label": "What is your biggest challenge today?",
+    "message_label": "Message *",
+    "message_placeholder": "Briefly describe your need...",
+    "submit": "Get solutions within 24h",
+    "success_title": "Message sent!",
+    "success_body": "Our team will get in touch within 24h.",
+    "error": "An error occurred. Please try again or contact us by email.",
+    "lgpd": "Your data is safe. GDPR compliant.",
+    "new_message": "Send another message",
+    "lead_name": "Your name",
+    "lead_name_placeholder": "John Smith",
+    "lead_email": "Corporate e-mail",
+    "lead_email_placeholder": "john@company.com",
+    "lead_sector": "Company sector",
+    "lead_sector_placeholder": "Select your sector...",
+    "lead_submit": "I want my free diagnosis",
+    "lead_submitting": "Sending...",
+    "lead_success_title": "We received your request, {name}!",
+    "lead_success_body": "Our team will get in touch within {hours} hours to schedule your free diagnosis.",
+    "lead_error": "Something went wrong. Please try again.",
+    "trust_lgpd": "Data protected — GDPR",
+    "trust_response": "Response within 24h",
+    "trust_no_commitment": "No commitment",
+    "lead_title": "Have a similar challenge?",
+    "lead_sub": "45 minutes with a specialist. No commitment.",
+    "lead_kicker": "Free diagnosis",
+    "desafios": [
+      "Backlog without forecast",
+      "Legacy blocking integration",
+      "AI without ROI",
+      "Expand tech team",
+      "System modernization",
+      "Other"
+    ],
+    "setores": ["Healthcare", "Financial", "Insurance", "Retail", "Industry", "Technology", "Other"]
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "q": "How does the free diagnosis work?",
+        "a": "The diagnosis is a 45-minute conversation with a Foursys specialist. We map your main challenges, understand the context and present an initial view of how we can help — with no commitment to hire."
+      },
+      {
+        "q": "What is the minimum project size to work with Foursys?",
+        "a": "We serve projects starting from one squad (3–5 people) for at least 8 weeks. For critical system modernization, the recommended minimum is 12 weeks for the first wave."
+      },
+      {
+        "q": "How do you guarantee delivery quality?",
+        "a": "Each engagement includes a quality playbook: code review, test coverage, security and delivery metrics. We use DORA metrics as a baseline and deliver monitoring dashboards."
+      },
+      {
+        "q": "Do you work remotely or on-site?",
+        "a": "We operate in a hybrid model. Squads work primarily remotely but maintain physical presence at key clients for planning and review meetings. We have offices in São Paulo, Curitiba, Rio, Lisbon and Boca Raton."
+      },
+      {
+        "q": "What is the difference between Hybrid Squads and Staffing?",
+        "a": "Hybrid Squads come with built-in governance: quality playbook, security, metrics and delivery rituals. Staffing is a specialized professional integrated into your team without the governance overhead — more flexible for specific demands."
+      }
+    ]
+  },
+  "tech_partners": {
+    "kicker": "Technologies & Partnerships",
+    "headline": "We work with global technology leaders to deliver the best solutions to our clients.",
+    "certifications": ["Microsoft Gold Partner", "AWS Select Partner", "SAP Certified", "ISO 9001", "ISO 27001"]
+  },
+  "products_section": {
+    "kicker": "Foursys Ecosystem",
+    "headline": "Products & Solutions",
+    "sub": "Proprietary solutions that accelerate results with intelligence and flexibility."
+  },
+  "not_found": {
+    "title": "Page not found",
+    "headline": "404",
+    "sub": "The page you are looking for does not exist or has been moved.",
+    "cta": "Back to home"
+  }
+}

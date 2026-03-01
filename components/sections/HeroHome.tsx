@@ -71,9 +71,6 @@ export function HeroHome() {
           bg-gradient-hero no wrapper = fallback quando vídeo não reproduz
           (iOS Low Power Mode, prefers-reduced-motion, conexões lentas). */}
       <div className="absolute inset-0 z-0 bg-gradient-hero" aria-hidden="true">
-        {/* Sofia: hidden md:block — vídeo só em telas >= 768px.
-            Em mobile, o bg-gradient-hero do wrapper é o visual principal.
-            Isso melhora LCP mobile em ~0,8s e economiza bateria/dados. */}
         <video
           ref={videoRef}
           autoPlay
@@ -82,7 +79,7 @@ export function HeroHome() {
           playsInline
           preload="none"
           disablePictureInPicture
-          className={`hidden md:block absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${videoVisible ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${videoVisible ? 'opacity-100' : 'opacity-0'}`}
           aria-hidden="true"
         >
           {/* Sofia: mp4 H.264 tem suporte universal. mov é fallback para Safari antigo. */}

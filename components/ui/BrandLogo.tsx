@@ -24,16 +24,14 @@ export function BrandLogo({ light = false, className }: BrandLogoProps) {
         priority
         unoptimized
       />
-      {/* Fundo claro: logo navy — altura corrigida para igualar largura visual.
-          logo-light-bg.png (325×133) tem aspect ratio 2,44 vs 2,93 do dark.
-          Fator 1,20× compensa: h-12/53px/58px ≡ mesma largura que h-10/h-11/h-12 escuro. */}
+      {/* Fundo claro: logo navy — mesma altura que a escura para consistência visual */}
       <Image
         src="/logo-light-bg.png"
         alt="Foursys"
         width={325}
         height={133}
         className={cn(
-          'h-12 sm:h-[53px] md:h-[58px] w-auto object-contain',
+          'h-10 sm:h-11 md:h-12 w-auto object-contain',
           light ? 'block' : 'hidden'
         )}
         priority

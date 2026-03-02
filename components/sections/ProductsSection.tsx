@@ -58,14 +58,10 @@ export function ProductsSection() {
               </span>
             </div>
 
-            {/* Kicker */}
-            <p className="text-label-md text-orange font-bold uppercase tracking-[0.2em] mb-6">
-              FOURBLOX
-            </p>
-
             {/* Headline */}
-            <h2 className="text-display-sm lg:text-display-md text-white font-black leading-[1.08] mb-12">
-              Chega de projetos intermináveis. Sua solução digital pronta em{' '}
+            <h2 className="text-display-md lg:text-display-lg text-white font-black leading-[1.08] mb-12">
+              Chega de projetos intermináveis.{' '}
+              Sua solução digital pronta em{' '}
               <span className="text-orange">30 dias.</span>
             </h2>
 

@@ -18,6 +18,8 @@ export interface Offer {
   ctaPrimary: string;
   ctaSecondary: string;
   caseRef?: string;
+  /** Link personalizado — sobrescreve /solucoes/{slug} */
+  href?: string;
 }
 
 export interface Case {

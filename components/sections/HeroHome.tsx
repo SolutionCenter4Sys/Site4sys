@@ -103,13 +103,20 @@ export function HeroHome() {
           <span className="text-label-md text-orange font-semibold tracking-wide">{t('badge')}</span>
         </div>
 
-        {/* Headline */}
+        {/* Headline — split on literal '{highlight}' placeholder */}
         <h1
           className={`text-display-xl text-white max-w-4xl leading-[1.05] mb-5 transition-all duration-700 delay-100 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
-          {t('headline').split(t('highlight'))[0]}
-          <span className="text-gradient-orange">{t('highlight')}</span>
-          {t('headline').split(t('highlight'))[1]}
+          {(() => {
+            const parts = t('headline').split('{highlight}');
+            return (
+              <>
+                {parts[0]}
+                <span className="text-gradient-orange">{t('highlight')}</span>
+                {parts[1]}
+              </>
+            );
+          })()}
         </h1>
 
         {/* Tagline */}

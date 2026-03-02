@@ -44,12 +44,12 @@ export function ProductsSection() {
       <div className="container-site relative z-10">
         <div
           className={cn(
-            'grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center transition-all duration-700',
+            'grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-12 items-center transition-all duration-700',
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           )}
         >
           {/* Lado esquerdo — conteúdo */}
-          <div className="lg:pl-12 xl:pl-20">
+          <div className="lg:col-span-3">
             {/* Logo FourBlox */}
             <div className="mb-12">
               <span className="text-2xl font-black tracking-tight italic">
@@ -101,7 +101,7 @@ export function ProductsSection() {
           {/* Lado direito — processo vertical */}
           <div
             className={cn(
-              'flex justify-center lg:justify-end transition-all duration-700 delay-300',
+              'lg:col-span-2 flex justify-center lg:justify-end transition-all duration-700 delay-300',
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
             )}
           >

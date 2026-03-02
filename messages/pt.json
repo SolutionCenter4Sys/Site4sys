@@ -28,9 +28,9 @@
   },
   "hero": {
     "badge": "26 anos transformando negócios com tecnologia",
-    "headline": "Squads que entregam {highlight}, não em meses.",
-    "highlight": "valor em semanas,",
-    "tagline": "Soluções digitais que conectam estratégia, execução e evolução.",
+    "headline": "Soluções digitais que conectam {highlight} e evolução.",
+    "highlight": "estratégia, execução",
+    "tagline": "Squads que entregam valor em semanas, não em meses.",
     "subtagline": "Governança enterprise. 3,6% turnover. 26 anos de entrega.",
     "badge_governance": "Governança desde a sprint 1",
     "badge_presence": "Brasil • EUA • Portugal",

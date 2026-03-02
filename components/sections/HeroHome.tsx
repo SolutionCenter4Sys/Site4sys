@@ -125,16 +125,16 @@ export function HeroHome() {
         <h1
           className={`text-display-xl text-white max-w-4xl leading-[1.05] mb-5 transition-all duration-700 delay-100 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
-          Squads que entregam{' '}
-          <span className="text-gradient-orange">valor em semanas,</span>
-          {' '}não em meses.
+          Soluções digitais que conectam{' '}
+          <span className="text-gradient-orange">estratégia, execução</span>
+          {' '}e evolução.
         </h1>
 
         {/* Tagline institucional + proof points (material 2026 V9.01) */}
         <p
           className={`text-body-lg sm:text-body-xl text-white/90 max-w-2xl leading-relaxed mb-3 transition-all duration-700 delay-200 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
-          Soluções digitais que conectam estratégia, execução e evolução.
+          Squads que entregam valor em semanas, não em meses.
         </p>
         <p
           className={`text-body-md text-white/60 max-w-xl mb-8 transition-all duration-700 delay-200 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}

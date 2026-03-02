@@ -24,19 +24,21 @@ export function ProductsSection() {
       style={{ background: 'linear-gradient(160deg, #050510 0%, #0A0A1F 40%, #0D0820 100%)' }}
       aria-label="FourBlox — Produtos por Assinatura"
     >
-      {/* Background image — ofuscada */}
+      {/* Background image — cubos laranjas */}
       <div className="absolute inset-0" aria-hidden="true">
         <Image
           src="/fourblox-bg.png"
           alt=""
           fill
-          className="object-cover opacity-30"
+          className="object-cover object-center opacity-60"
           sizes="100vw"
           unoptimized
           priority={false}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#050510] via-[#050510]/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-[#050510]/60" />
+        {/* Gradiente esquerdo — protege o texto */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050510] via-[#050510]/70 to-transparent" />
+        {/* Gradiente inferior — transição suave com próxima seção */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-[#050510]/40" />
       </div>
 
       <div className="container-site relative z-10">

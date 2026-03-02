@@ -85,28 +85,38 @@ export function ProductsSection() {
             )}
           >
             <div
-              className="rounded-2xl p-8 lg:p-10 border border-orange/20"
-              style={{ background: 'linear-gradient(135deg, rgba(255,83,21,0.08) 0%, rgba(15,10,30,0.6) 100%)', backdropFilter: 'blur(12px)' }}
+              className="relative rounded-2xl p-10 lg:p-12 border border-cyan-500/20"
+              style={{
+                background: 'linear-gradient(160deg, rgba(6,30,50,0.95) 0%, rgba(10,15,35,0.98) 100%)',
+                boxShadow: '0 0 60px rgba(6,182,212,0.06), inset 0 1px 0 rgba(255,255,255,0.05)',
+              }}
             >
-              <div className="space-y-0">
+              {/* Linha vertical contínua */}
+              <div
+                className="absolute left-[3.25rem] lg:left-[3.75rem] top-[4.5rem] bottom-[4.5rem] w-[3px] rounded-full"
+                style={{ background: 'linear-gradient(to bottom, #FF5315 0%, #FF7A45 50%, #FF5315 100%)' }}
+              />
+
+              <div className="relative z-10 flex flex-col gap-10">
                 {STEPS.map((step, i) => {
                   const Icon = step.icon;
-                  const isLast = i === STEPS.length - 1;
                   return (
-                    <div key={step.label} className="flex items-start gap-5">
-                      {/* Ícone + linha conectora */}
-                      <div className="flex flex-col items-center flex-shrink-0">
-                        <div className="w-12 h-12 rounded-full border-2 border-orange flex items-center justify-center bg-orange/10">
-                          <Icon className="w-5 h-5 text-orange" />
-                        </div>
-                        {!isLast && (
-                          <div className="w-px h-10 bg-orange/30 my-1" />
-                        )}
+                    <div key={step.label} className="flex items-center gap-6 group">
+                      {/* Ícone com glow */}
+                      <div
+                        className="relative w-14 h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(255,83,21,0.15) 0%, rgba(255,83,21,0.05) 100%)',
+                          border: '2.5px solid #FF5315',
+                          boxShadow: '0 0 20px rgba(255,83,21,0.25), 0 0 40px rgba(255,83,21,0.1)',
+                        }}
+                      >
+                        <Icon className="w-6 h-6 lg:w-7 lg:h-7 text-orange" strokeWidth={1.5} />
                       </div>
                       {/* Label */}
-                      <div className={cn('pt-3', !isLast && 'pb-10')}>
-                        <p className="text-heading-md text-white font-semibold">{step.label}</p>
-                      </div>
+                      <p className="text-xl lg:text-2xl text-white font-semibold tracking-tight group-hover:text-orange transition-colors">
+                        {step.label}
+                      </p>
                     </div>
                   );
                 })}

@@ -49,7 +49,7 @@ export function ProductsSection() {
           )}
         >
           {/* Lado esquerdo — conteúdo */}
-          <div>
+          <div className="lg:pl-12 xl:pl-20">
             {/* Logo FourBlox */}
             <div className="mb-12">
               <span className="text-2xl font-black tracking-tight italic">

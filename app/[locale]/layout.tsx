@@ -1,24 +1,8 @@
-import type { Metadata, Viewport } from 'next';
-import { Nunito } from 'next/font/google';
+import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import '../globals.css';
-
-const nunito = Nunito({
-  subsets: ['latin'],
-  variable: '--font-nunito',
-  weight: ['400', '500', '600', '700', '800'],
-  display: 'swap',
-});
-
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 5,
-  viewportFit: 'cover',
-};
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -28,7 +12,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogLocale = locale === 'pt' ? 'pt_BR' : locale === 'en' ? 'en_US' : 'es_ES';
   return {
     title: {
-      default: 'Foursys — Transformação Digital que Entrega Valor',
+      default: 'Foursys — Soluções digitais que conectam estratégia, execução e evolução',
       template: '%s | Foursys',
     },
     description: t('tagline'),
@@ -64,15 +48,9 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
-  const htmlLang = locale === 'pt' ? 'pt-BR' : locale === 'es' ? 'es' : 'en';
-
   return (
-    <html lang={htmlLang} className={nunito.variable}>
-      <body className="font-sans antialiased">
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages}>
+      {children}
+    </NextIntlClientProvider>
   );
 }

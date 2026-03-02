@@ -18,14 +18,20 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Foursys — Transformação Digital que Entrega Valor',
+    default: 'Foursys — Soluções digitais que conectam estratégia, execução e evolução',
     template: '%s | Foursys',
   },
-  description: 'Parceiro estratégico de transformação digital. Squads Híbridas, Modernização de Legado, IA com Impacto e muito mais. 26 anos. 3,6% turnover. GPTW.',
+  description: 'Soluções digitais que conectam estratégia, execução e evolução. Parceiro estratégico com 26 anos, 3,6% turnover e GPTW.',
   robots: { index: true, follow: true },
   metadataBase: new URL('https://foursys.com.br'),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <html lang="pt-BR" className={nunito.variable}>
+      <body className="font-sans antialiased">
+        {children}
+      </body>
+    </html>
+  );
 }

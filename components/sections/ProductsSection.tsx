@@ -19,48 +19,62 @@ export function ProductsSection() {
   return (
     <section
       ref={ref}
-      className="section-padding"
-      style={{ background: 'linear-gradient(135deg, #0A0A1A 0%, #111128 60%, #1A0D2E 100%)' }}
+      className="relative py-24 lg:py-32 overflow-hidden"
+      style={{ background: 'linear-gradient(160deg, #050510 0%, #0A0A1F 40%, #0D0820 100%)' }}
       aria-label="FourBlox — Produtos por Assinatura"
     >
-      <div className="container-site">
+      {/* Grid pattern background */}
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        aria-hidden="true"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
+      {/* Geometric glow decoration */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-10" aria-hidden="true">
+        <div className="absolute inset-0 bg-orange/30 blur-[100px] rounded-full" />
+      </div>
+
+      <div className="container-site relative z-10">
         <div
           className={cn(
-            'grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center transition-all duration-700',
+            'grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center transition-all duration-700',
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           )}
         >
           {/* Lado esquerdo — conteúdo */}
           <div>
             {/* Logo FourBlox */}
-            <div className="flex items-center gap-2 mb-8">
-              <span className="text-white font-black text-2xl tracking-tight">
-                Four<span className="text-orange">Blox</span>
+            <div className="mb-10">
+              <span className="text-3xl font-black tracking-tight italic">
+                <span className="text-white">Four</span>
+                <span className="text-orange">Blox</span>
               </span>
             </div>
 
             {/* Kicker */}
-            <p className="text-label-md text-orange font-bold uppercase tracking-widest mb-4">
+            <p className="text-label-md text-orange font-bold uppercase tracking-[0.2em] mb-5">
               FOURBLOX
             </p>
 
             {/* Headline */}
-            <h2 className="text-display-sm lg:text-display-md text-white font-black leading-tight mb-6">
-              Chega de projetos<br />
-              intermináveis. Sua solução<br />
+            <h2 className="text-display-sm lg:text-display-md text-white font-black leading-[1.1] mb-8">
+              Chega de projetos{' '}
+              <br className="hidden sm:block" />
+              intermináveis. Sua solução{' '}
+              <br className="hidden sm:block" />
               digital pronta em{' '}
               <span className="text-orange">30 dias.</span>
             </h2>
-
-            {/* Divisor */}
-            <div className="w-16 h-px bg-white/20 mb-8" />
 
             {/* Tags */}
             <div className="flex flex-wrap gap-3 mb-10">
               {TAGS.map(tag => (
                 <span
                   key={tag}
-                  className="px-4 py-2 rounded-full border border-orange/60 text-white text-body-sm font-semibold"
+                  className="px-5 py-2.5 rounded-full border border-white/30 text-white text-body-sm font-semibold hover:border-orange/60 transition-colors"
                 >
                   {tag}
                 </span>
@@ -70,53 +84,73 @@ export function ProductsSection() {
             {/* CTA */}
             <Link
               href="/solucoes/fourblox"
-              className="inline-flex items-center gap-2 bg-orange text-white font-bold text-body-md px-6 py-3.5 rounded-xl hover:bg-orange-dark active:scale-95 transition-all"
+              className="inline-flex items-center gap-2 bg-orange text-white font-bold text-body-md px-7 py-4 rounded-xl hover:bg-orange-dark active:scale-95 transition-all shadow-brand"
             >
               Agendar Diagnóstico
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          {/* Lado direito — processo em 4 etapas */}
+          {/* Lado direito — processo vertical */}
           <div
             className={cn(
-              'transition-all duration-700 delay-200',
+              'flex justify-center lg:justify-end transition-all duration-700 delay-300',
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
             )}
           >
             <div
-              className="relative rounded-2xl p-10 lg:p-12 border border-cyan-500/20"
+              className="relative rounded-2xl px-12 py-14 w-full max-w-sm"
               style={{
-                background: 'linear-gradient(160deg, rgba(6,30,50,0.95) 0%, rgba(10,15,35,0.98) 100%)',
-                boxShadow: '0 0 60px rgba(6,182,212,0.06), inset 0 1px 0 rgba(255,255,255,0.05)',
+                background: 'linear-gradient(170deg, rgba(8,25,50,0.9) 0%, rgba(5,10,30,0.95) 100%)',
+                border: '1px solid rgba(56,189,248,0.15)',
+                boxShadow: '0 0 80px rgba(56,189,248,0.04), inset 0 1px 0 rgba(255,255,255,0.03)',
               }}
             >
-              {/* Linha vertical contínua */}
+              {/* Linha laranja vertical contínua com glow */}
               <div
-                className="absolute left-[3.25rem] lg:left-[3.75rem] top-[4.5rem] bottom-[4.5rem] w-[3px] rounded-full"
-                style={{ background: 'linear-gradient(to bottom, #FF5315 0%, #FF7A45 50%, #FF5315 100%)' }}
+                className="absolute left-1/2 -translate-x-1/2 top-[5.5rem] bottom-[5.5rem] w-[4px] rounded-full"
+                style={{
+                  background: 'linear-gradient(to bottom, #FF5315, #FF7A45, #FF5315)',
+                  boxShadow: '0 0 12px rgba(255,83,21,0.6), 0 0 24px rgba(255,83,21,0.3)',
+                }}
               />
 
-              <div className="relative z-10 flex flex-col gap-10">
+              {/* Steps */}
+              <div className="relative z-10 flex flex-col items-center gap-0">
                 {STEPS.map((step, i) => {
                   const Icon = step.icon;
+                  const isLast = i === STEPS.length - 1;
                   return (
-                    <div key={step.label} className="flex items-center gap-6 group">
-                      {/* Ícone com glow */}
-                      <div
-                        className="relative w-14 h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
-                        style={{
-                          background: 'linear-gradient(135deg, rgba(255,83,21,0.15) 0%, rgba(255,83,21,0.05) 100%)',
-                          border: '2.5px solid #FF5315',
-                          boxShadow: '0 0 20px rgba(255,83,21,0.25), 0 0 40px rgba(255,83,21,0.1)',
-                        }}
-                      >
-                        <Icon className="w-6 h-6 lg:w-7 lg:h-7 text-orange" strokeWidth={1.5} />
+                    <div key={step.label} className="flex flex-col items-center">
+                      {/* Ícone com duplo anel e glow */}
+                      <div className="relative">
+                        {/* Outer glow ring */}
+                        <div
+                          className="absolute -inset-2 rounded-full"
+                          style={{
+                            background: 'radial-gradient(circle, rgba(255,83,21,0.3) 0%, transparent 70%)',
+                          }}
+                        />
+                        {/* Main circle */}
+                        <div
+                          className="relative w-[72px] h-[72px] rounded-full flex items-center justify-center"
+                          style={{
+                            background: 'radial-gradient(circle at 30% 30%, rgba(255,122,69,0.15) 0%, rgba(255,83,21,0.05) 100%)',
+                            border: '3px solid #FF5315',
+                            boxShadow: '0 0 15px rgba(255,83,21,0.4), 0 0 30px rgba(255,83,21,0.15), inset 0 0 15px rgba(255,83,21,0.1)',
+                          }}
+                        >
+                          <Icon className="w-7 h-7 text-orange" strokeWidth={1.5} />
+                        </div>
                       </div>
-                      {/* Label */}
-                      <p className="text-xl lg:text-2xl text-white font-semibold tracking-tight group-hover:text-orange transition-colors">
+
+                      {/* Label ao lado */}
+                      <p className="text-xl text-white font-semibold mt-3 tracking-tight text-center">
                         {step.label}
                       </p>
+
+                      {/* Spacer entre items (não no último) */}
+                      {!isLast && <div className="h-10" />}
                     </div>
                   );
                 })}

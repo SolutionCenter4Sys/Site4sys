@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -13,7 +13,6 @@ interface LanguageSwitcherProps {
 
 export function LanguageSwitcher({ light = false }: LanguageSwitcherProps) {
   const locale = useLocale() as Locale;
-  const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -32,7 +31,7 @@ export function LanguageSwitcher({ light = false }: LanguageSwitcherProps) {
     setOpen(false);
     if (next === locale) return;
 
-    // Remove current locale prefix from pathname to get the base path
+    // Remove current locale prefix to get the base path
     let basePath = pathname;
     for (const loc of locales) {
       if (loc !== 'pt' && basePath.startsWith(`/${loc}`)) {
@@ -41,9 +40,15 @@ export function LanguageSwitcher({ light = false }: LanguageSwitcherProps) {
       }
     }
 
-    // Build new path
+    // Ensure basePath starts with /
+    if (!basePath.startsWith('/')) basePath = `/${basePath}`;
+
+    // Build new URL — PT has no prefix (default locale)
     const newPath = next === 'pt' ? basePath : `/${next}${basePath}`;
-    router.push(newPath);
+
+    // Use window.location for a full navigation so the middleware
+    // correctly applies the new locale and its cookies/headers
+    window.location.href = newPath;
   };
 
   return (
@@ -69,7 +74,7 @@ export function LanguageSwitcher({ light = false }: LanguageSwitcherProps) {
         <div
           role="listbox"
           aria-label="Idiomas disponíveis"
-          className="absolute right-0 top-full mt-2 w-40 bg-white rounded-xl shadow-card-hover border border-gray-100 overflow-hidden z-50"
+          className="absolute right-0 top-full mt-2 w-44 bg-white rounded-xl shadow-card-hover border border-gray-100 overflow-hidden z-50"
         >
           {locales.map(loc => (
             <button

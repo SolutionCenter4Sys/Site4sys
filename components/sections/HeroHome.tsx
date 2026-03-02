@@ -2,16 +2,17 @@
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight, ShieldCheck, MapPin, Building2 } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { METRICS, CERTIFICATIONS } from '@/mocks/index';
 
 export function HeroHome() {
+  const t = useTranslations('hero');
+  const locale = useLocale();
+  const lhref = (path: string) => locale === 'pt' ? path : `/${locale}${path}`;
+
   const [animated, setAnimated] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  // Igor (iOS): videoVisible controla visibilidade do vídeo.
-  // Em Low Power Mode, autoPlay é bloqueado silenciosamente → vídeo fica preto.
-  // Detectamos a falha via play().catch() e ocultamos o elemento para
-  // o bg-gradient-hero do wrapper aparecer como fallback elegante.
   const [videoVisible, setVideoVisible] = useState(true);
 
   useEffect(() => {
@@ -23,8 +24,6 @@ export function HeroHome() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Igor/Anderson: respeita preferência do sistema operacional.
-    // prefers-reduced-motion pausa o vídeo e o CSS @media também o oculta.
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (prefersReducedMotion.matches) {
       video.pause();
@@ -44,13 +43,9 @@ export function HeroHome() {
 
     prefersReducedMotion.addEventListener('change', handleMotionChange);
 
-    // Igor (iOS Low Power Mode): autoPlay pode falhar silenciosamente.
-    // play() retorna uma Promise — se for rejeitada, ocultamos o vídeo.
     const playPromise = video.play();
     if (playPromise !== undefined) {
       playPromise.catch(() => {
-        // Low Power Mode, data saver ou política do browser bloqueou autoplay.
-        // bg-gradient-hero do wrapper é o fallback visual.
         setVideoVisible(false);
       });
     }
@@ -63,13 +58,6 @@ export function HeroHome() {
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-hero"
       aria-label="Hero — Foursys"
     >
-      {/* Vídeo de fundo — estilo Accenture/TCS
-          Igor (iOS): playsInline obrigatório para autoplay em Safari iOS.
-          Sem playsInline, o vídeo abre em fullscreen no iOS, quebrando o layout.
-          preload="none" → browser não baixa o arquivo até começar a reproduzir.
-          autoPlay muted → browsers mobile permitem autoplay apenas quando muted.
-          bg-gradient-hero no wrapper = fallback quando vídeo não reproduz
-          (iOS Low Power Mode, prefers-reduced-motion, conexões lentas). */}
       <div className="absolute inset-0 z-0 bg-gradient-hero" aria-hidden="true">
         <video
           ref={videoRef}
@@ -82,26 +70,21 @@ export function HeroHome() {
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${videoVisible ? 'opacity-100' : 'opacity-0'}`}
           aria-hidden="true"
         >
-          {/* Sofia: mp4 H.264 tem suporte universal. mov é fallback para Safari antigo. */}
           <source src="/hero-video.mp4" type="video/mp4" />
           <source src="/hero-video.mov" type="video/quicktime" />
         </video>
-        {/* Overlay escuro para legibilidade */}
         <div className="absolute inset-0 bg-gradient-to-b from-navy/85 via-navy/75 to-navy/90" />
-        {/* Gradiente animado sutil */}
         <div className="absolute inset-0 opacity-30 animate-gradient-shift" style={{
           background: 'linear-gradient(135deg, rgba(249,115,22,0.15) 0%, transparent 50%, rgba(15,23,42,0.3) 100%)',
           backgroundSize: '200% 200%',
         }} />
       </div>
 
-      {/* Geometric background decoration */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-[1]" aria-hidden="true">
         <div className="absolute top-1/4 right-0 w-[600px] h-[600px] rounded-full bg-orange/5 blur-3xl" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-navy-light/30 blur-3xl" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-white/3 rounded-full" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/3 rounded-full" />
-        {/* Grid pattern */}
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -112,71 +95,70 @@ export function HeroHome() {
       </div>
 
       <div className="container-site relative z-10 pt-28 pb-16 flex flex-col items-start">
-        {/* Badge — 26 anos */}
+        {/* Badge */}
         <div
           className={`inline-flex items-center gap-2 px-4 py-2 rounded-pill bg-orange/15 border border-orange/30 mb-8 transition-all duration-700 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
           <span className="w-2 h-2 rounded-full bg-orange animate-pulse-slow" />
-          <span className="text-label-md text-orange font-semibold tracking-wide">26 anos transformando negócios com tecnologia</span>
+          <span className="text-label-md text-orange font-semibold tracking-wide">{t('badge')}</span>
         </div>
 
-        {/* Headline — Artista: text-display-xl com clamp() fluido escala
-            suavemente de ~32px (375px) até 72px (1280px) sem breakpoints. */}
+        {/* Headline */}
         <h1
           className={`text-display-xl text-white max-w-4xl leading-[1.05] mb-5 transition-all duration-700 delay-100 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
         >
-          Soluções digitais que conectam{' '}
-          <span className="text-gradient-orange">estratégia, execução</span>
-          {' '}e evolução.
+          {t('headline').split(t('highlight'))[0]}
+          <span className="text-gradient-orange">{t('highlight')}</span>
+          {t('headline').split(t('highlight'))[1]}
         </h1>
 
-        {/* Tagline institucional + proof points (material 2026 V9.01) */}
+        {/* Tagline */}
         <p
           className={`text-body-lg sm:text-body-xl text-white/90 max-w-2xl leading-relaxed mb-3 transition-all duration-700 delay-200 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
-          Squads que entregam valor em semanas, não em meses.
+          {t('tagline')}
         </p>
         <p
           className={`text-body-md text-white/60 max-w-xl mb-8 transition-all duration-700 delay-200 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
-          Governança enterprise. 3,6% turnover. 26 anos de entrega.
+          {t('subtagline')}
         </p>
 
-        {/* Trust badges — chips separados (menos densidade) */}
+        {/* Trust badges */}
         <div
           className={`flex flex-wrap gap-2 mb-10 transition-all duration-700 delay-[250ms] ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass text-body-sm text-white/90 font-medium">
             <ShieldCheck className="w-4 h-4 text-orange flex-shrink-0" />
-            Governança desde a sprint 1
+            {t('badge_governance')}
           </span>
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass text-body-sm text-white/80">
             <MapPin className="w-4 h-4 text-orange/80 flex-shrink-0" />
-            Brasil • EUA • Portugal
+            {t('badge_presence')}
           </span>
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass text-body-sm text-white/80">
             <Building2 className="w-4 h-4 text-orange/80 flex-shrink-0" />
-            Setores regulados e missão crítica
+            {t('badge_sectors')}
           </span>
         </div>
 
-        {/* CTA primário único em destaque + link secundário (CRO) */}
+        {/* CTAs */}
         <div
           className={`flex flex-col sm:flex-row sm:items-center gap-4 mb-4 transition-all duration-700 delay-300 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
-          <Button href="/contato" variant="primary" size="xl" rightIcon={<ArrowRight className="w-5 h-5" />}>
-            Agendar diagnóstico gratuito
+          <Button href={lhref('/contato')} variant="primary" size="xl" rightIcon={<ArrowRight className="w-5 h-5" />}>
+            {t('cta_primary')}
           </Button>
           <Link
-            href="/casos-de-sucesso"
+            href={lhref('/casos-de-sucesso')}
             className="text-body-lg text-white/70 hover:text-white underline underline-offset-4 transition-colors sm:ml-2"
           >
-            Ver casos de sucesso
+            {t('cta_secondary')}
           </Link>
         </div>
-        <p className="text-body-sm text-white/50 mb-12">Diagnóstico gratuito • Resposta em 24h • Sem compromisso</p>
+        <p className="text-body-sm text-white/50 mb-12">{t('trust')}</p>
 
-        {/* Metrics bar — destaque visual (Product Hackers / Flat 101) */}
+        {/* Metrics bar */}
         <div
           className={`w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 pt-8 border-t border-white/10 transition-all duration-700 delay-500 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
@@ -191,23 +173,18 @@ export function HeroHome() {
           ))}
         </div>
 
-        {/* Trust badges — certificações above the fold (CRO) */}
+        {/* Certifications */}
         <div
-          className={`flex flex-wrap justify-start gap-2 mt-6 transition-all duration-700 delay-[600ms] ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          className={`flex flex-wrap gap-2 mt-8 transition-all duration-700 delay-700 ${animated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
-          {CERTIFICATIONS.slice(0, 6).map((cert) => (
-            <span
-              key={cert.id}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-body-sm text-white/80 font-medium"
-            >
-              <span className="w-4 h-4 rounded-full bg-orange/20 text-orange text-[10px] font-bold flex items-center justify-center flex-shrink-0">✓</span>
-              {cert.name}
+          {CERTIFICATIONS.map(cert => (
+            <span key={cert.id} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill bg-white/8 border border-white/15 text-label-sm text-white/70 font-semibold">
+              ✓{cert.name}
             </span>
           ))}
         </div>
       </div>
 
-      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white/5 to-transparent pointer-events-none" aria-hidden="true" />
     </section>
   );

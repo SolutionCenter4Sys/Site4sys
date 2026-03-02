@@ -1,56 +1,32 @@
 'use client';
 import { Users, FolderKanban, UserPlus, Headphones } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Kicker } from '@/components/ui/Kicker';
 import { cn } from '@/lib/utils';
 
-const MODELS = [
-  {
-    id: 'squads',
-    icon: Users,
-    title: 'Squads',
-    description: 'Times multidisciplinares integrados ao seu time, com governança e métricas. Entrega contínua com qualidade e turnover de 3,6%.',
-    color: '#FF5315',
-  },
-  {
-    id: 'projetos',
-    icon: FolderKanban,
-    title: 'Projetos (Escopo Fechado)',
-    description: 'Iniciativas com escopo definido, prazo e entregas claras. Ideal para modernização, migração ou implementação de sistemas.',
-    color: '#222239',
-  },
-  {
-    id: 'alocacao',
-    icon: UserPlus,
-    title: 'Alocação',
-    description: 'Profissionais especializados alocados ao seu time. Flexibilidade para demandas específicas de curto ou médio prazo.',
-    color: '#059669',
-  },
-  {
-    id: 'ams',
-    icon: Headphones,
-    title: 'AMS',
-    description: 'Application Management Services com SLAs, NOC e evolução contínua. Operação com previsibilidade e excelência.',
-    color: '#1D4ED8',
-  },
-];
-
 export function HowWeWorkSection() {
+  const t = useTranslations('how_we_work');
   const { ref, isVisible } = useScrollAnimation<HTMLElement>();
+
+  const MODELS = [
+    { id: 'squads', icon: Users, title: t('squads_title'), description: t('squads_body'), color: '#FF5315' },
+    { id: 'projetos', icon: FolderKanban, title: t('projects_title'), description: t('projects_body'), color: '#222239' },
+    { id: 'alocacao', icon: UserPlus, title: t('allocation_title'), description: t('allocation_body'), color: '#059669' },
+    { id: 'ams', icon: Headphones, title: t('ams_title'), description: t('ams_body'), color: '#1D4ED8' },
+  ];
 
   return (
     <section
       ref={ref}
       className="section-padding bg-white border-t border-gray-100"
-      aria-label="Como trabalhamos"
+      aria-label={t('headline')}
     >
       <div className="container-site">
         <div className="text-center mb-12">
-          <Kicker className="mb-3">Modelos flexíveis</Kicker>
-          <h2 className="text-display-sm text-navy mb-3">Como trabalhamos</h2>
-          <p className="text-body-lg text-gray-500 max-w-2xl mx-auto">
-            Squads, Projetos, Alocação e AMS — escolha o modelo que melhor se encaixa na sua necessidade.
-          </p>
+          <Kicker className="mb-3">{t('kicker')}</Kicker>
+          <h2 className="text-display-sm text-navy mb-3">{t('headline')}</h2>
+          <p className="text-body-lg text-gray-500 max-w-2xl mx-auto">{t('sub')}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

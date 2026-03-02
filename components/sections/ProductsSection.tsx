@@ -47,34 +47,30 @@ export function ProductsSection() {
           {/* Lado esquerdo — conteúdo */}
           <div>
             {/* Logo FourBlox */}
-            <div className="mb-10">
-              <span className="text-3xl font-black tracking-tight italic">
+            <div className="mb-12">
+              <span className="text-2xl font-black tracking-tight italic">
                 <span className="text-white">Four</span>
                 <span className="text-orange">Blox</span>
               </span>
             </div>
 
             {/* Kicker */}
-            <p className="text-label-md text-orange font-bold uppercase tracking-[0.2em] mb-5">
+            <p className="text-label-md text-orange font-bold uppercase tracking-[0.2em] mb-6">
               FOURBLOX
             </p>
 
             {/* Headline */}
-            <h2 className="text-display-sm lg:text-display-md text-white font-black leading-[1.1] mb-8">
-              Chega de projetos{' '}
-              <br className="hidden sm:block" />
-              intermináveis. Sua solução{' '}
-              <br className="hidden sm:block" />
-              digital pronta em{' '}
+            <h2 className="text-display-sm lg:text-display-md text-white font-black leading-[1.08] mb-12">
+              Chega de projetos intermináveis. Sua solução digital pronta em{' '}
               <span className="text-orange">30 dias.</span>
             </h2>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-3 mb-10">
+            <div className="flex flex-wrap gap-3 mb-8">
               {TAGS.map(tag => (
                 <span
                   key={tag}
-                  className="px-5 py-2.5 rounded-full border border-white/30 text-white text-body-sm font-semibold hover:border-orange/60 transition-colors"
+                  className="px-5 py-2.5 rounded-full border border-white/25 text-white text-body-md font-semibold hover:border-orange/60 transition-colors"
                 >
                   {tag}
                 </span>

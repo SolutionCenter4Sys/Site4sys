@@ -30,7 +30,7 @@ export function ProductsSection() {
           src="/fourblox-bg.png"
           alt=""
           fill
-          className="object-cover object-center opacity-60"
+          className="object-cover object-center opacity-80"
           sizes="100vw"
           unoptimized
           priority={false}

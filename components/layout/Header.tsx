@@ -97,7 +97,7 @@ export function Header({ variant = 'transparent' }: HeaderProps) {
                       {FLAGSHIP_OFFERS.map(offer => (
                         <Link
                           key={offer.id}
-                          href={lhref(`/solucoes/${offer.slug}`)}
+                          href={offer.href ? lhref(offer.href) : lhref(`/solucoes/${offer.slug}`)}
                           className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-gray-50 transition-colors group/item"
                         >
                           <span className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: `${offer.color}18` }}>

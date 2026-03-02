@@ -1,4 +1,6 @@
+'use client';
 import Link from 'next/link';
+import { useLocale } from 'next-intl';
 import {
   Users, RefreshCw, Brain, Lightbulb, GitBranch, Shield,
   Activity, DollarSign, Database, Bot, Cpu, Headphones, BarChart2, ArrowRight,
@@ -21,13 +23,16 @@ interface OfferCardProps {
 }
 
 export function OfferCard({ offer, variant = 'default', className }: OfferCardProps) {
+  const locale = useLocale();
+  const lhref = (path: string) => `/${locale}${path}`;
   const Icon = ICON_MAP[offer.icon] || Brain;
 
   const isFlagship = offer.category === 'flagship';
+  const href = offer.href ? lhref(offer.href) : lhref(`/solucoes/${offer.slug}`);
 
   return (
     <Link
-      href={offer.href ?? `/solucoes/${offer.slug}`}
+      href={href}
       className={cn(
         'relative overflow-hidden group flex flex-col rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover hover:scale-[1.01]',
         isFlagship

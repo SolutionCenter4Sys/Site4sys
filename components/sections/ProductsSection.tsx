@@ -88,7 +88,7 @@ export function ProductsSection() {
                 <ArrowRight className="w-5 h-5 flex-shrink-0" />
               </Link>
               <Link
-                href="/solucoes/fourblox"
+                href="/plataforma"
                 className="inline-flex items-center gap-2 whitespace-nowrap text-white font-bold text-body-lg px-8 py-3.5 rounded-pill active:scale-95 transition-all shadow-brand"
                 style={{ background: 'linear-gradient(135deg, #FF5315 0%, #FF7A45 100%)' }}
               >

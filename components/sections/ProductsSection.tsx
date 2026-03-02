@@ -51,8 +51,8 @@ export function ProductsSection() {
           {/* Lado esquerdo — conteúdo */}
           <div className="lg:col-span-3">
             {/* Logo FourBlox */}
-            <div className="mb-12">
-              <span className="text-2xl font-black tracking-tight italic">
+            <div className="mb-14">
+              <span className="text-5xl lg:text-6xl font-black tracking-tight italic">
                 <span className="text-white">Four</span>
                 <span className="text-orange">Blox</span>
               </span>

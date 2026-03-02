@@ -99,58 +99,52 @@ export function ProductsSection() {
             )}
           >
             <div
-              className="relative rounded-2xl px-12 py-14 w-full max-w-sm"
+              className="relative rounded-2xl px-10 py-10 w-full max-w-xs"
               style={{
                 background: 'linear-gradient(170deg, rgba(8,25,50,0.9) 0%, rgba(5,10,30,0.95) 100%)',
                 border: '1px solid rgba(56,189,248,0.15)',
                 boxShadow: '0 0 80px rgba(56,189,248,0.04), inset 0 1px 0 rgba(255,255,255,0.03)',
               }}
             >
-              {/* Linha laranja vertical contínua com glow */}
-              <div
-                className="absolute left-1/2 -translate-x-1/2 top-[5.5rem] bottom-[5.5rem] w-[4px] rounded-full"
-                style={{
-                  background: 'linear-gradient(to bottom, #FF5315, #FF7A45, #FF5315)',
-                  boxShadow: '0 0 12px rgba(255,83,21,0.6), 0 0 24px rgba(255,83,21,0.3)',
-                }}
-              />
-
-              {/* Steps */}
-              <div className="relative z-10 flex flex-col items-center gap-0">
+              <div className="relative z-10 flex flex-col items-center">
                 {STEPS.map((step, i) => {
                   const Icon = step.icon;
                   const isLast = i === STEPS.length - 1;
                   return (
                     <div key={step.label} className="flex flex-col items-center">
-                      {/* Ícone com duplo anel e glow */}
+                      {/* Ícone com glow */}
                       <div className="relative">
-                        {/* Outer glow ring */}
                         <div
                           className="absolute -inset-2 rounded-full"
-                          style={{
-                            background: 'radial-gradient(circle, rgba(255,83,21,0.3) 0%, transparent 70%)',
-                          }}
+                          style={{ background: 'radial-gradient(circle, rgba(255,83,21,0.25) 0%, transparent 70%)' }}
                         />
-                        {/* Main circle */}
                         <div
-                          className="relative w-[72px] h-[72px] rounded-full flex items-center justify-center"
+                          className="relative w-14 h-14 rounded-full flex items-center justify-center"
                           style={{
-                            background: 'radial-gradient(circle at 30% 30%, rgba(255,122,69,0.15) 0%, rgba(255,83,21,0.05) 100%)',
-                            border: '3px solid #FF5315',
-                            boxShadow: '0 0 15px rgba(255,83,21,0.4), 0 0 30px rgba(255,83,21,0.15), inset 0 0 15px rgba(255,83,21,0.1)',
+                            background: 'radial-gradient(circle at 30% 30%, rgba(255,122,69,0.12) 0%, rgba(255,83,21,0.04) 100%)',
+                            border: '2.5px solid #FF5315',
+                            boxShadow: '0 0 12px rgba(255,83,21,0.35), 0 0 24px rgba(255,83,21,0.12), inset 0 0 10px rgba(255,83,21,0.08)',
                           }}
                         >
-                          <Icon className="w-7 h-7 text-orange" strokeWidth={1.5} />
+                          <Icon className="w-6 h-6 text-orange" strokeWidth={1.5} />
                         </div>
                       </div>
 
-                      {/* Label ao lado */}
-                      <p className="text-xl text-white font-semibold mt-3 tracking-tight text-center">
+                      {/* Label */}
+                      <p className="text-lg text-white font-semibold mt-2 tracking-tight text-center">
                         {step.label}
                       </p>
 
-                      {/* Spacer entre items (não no último) */}
-                      {!isLast && <div className="h-10" />}
+                      {/* Linha conectora ENTRE os ícones (não atravessa) */}
+                      {!isLast && (
+                        <div
+                          className="w-[3px] h-8 my-2 rounded-full"
+                          style={{
+                            background: 'linear-gradient(to bottom, #FF5315, #FF7A45)',
+                            boxShadow: '0 0 8px rgba(255,83,21,0.5), 0 0 16px rgba(255,83,21,0.2)',
+                          }}
+                        />
+                      )}
                     </div>
                   );
                 })}

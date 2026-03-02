@@ -1,364 +1,333 @@
+'use client';
+
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Package, CheckCircle, Zap, Shield, BarChart2, Cpu, RefreshCw, Clock, Users } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { useState } from 'react';
+import {
+  ArrowRight, Search, Users, LayoutList, DollarSign, BarChart2,
+  FolderKanban, Leaf, Database, Shield, Calendar, CheckSquare,
+  TrendingUp, CreditCard, Target, UserCheck, GitBranch,
+  Activity, Package, Clock, Layers,
+} from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Plataforma FourBlox',
-  description: 'Produtos digitais prontos por assinatura. Módulos configuráveis, entrega em 30 dias, sem projetos intermináveis.',
-};
+// ── tipos ──────────────────────────────────────────────────────
+type Badge = 'Mais ativado' | 'Alta performance' | 'Novo' | null;
+type Level = 'Simples' | 'Intermediário' | 'Estratégico';
+type Category =
+  | 'Gestão de Pessoas'
+  | 'Operações'
+  | 'Financeiro'
+  | 'Comercial'
+  | 'Projetos'
+  | 'ESG'
+  | 'Dados & Analytics'
+  | 'Governança';
 
-const MODULES = [
+interface Module {
+  id: string;
+  category: Category;
+  title: string;
+  desc: string;
+  level: Level;
+  badge: Badge;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+interface Kit {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  desc: string;
+  modules: string[];
+}
+
+// ── dados ──────────────────────────────────────────────────────
+const MODULES: Module[] = [
+  // Gestão de Pessoas
+  { id: 'mapa-alocacao', category: 'Gestão de Pessoas', title: 'Mapa de Alocação Inteligente', desc: 'Visualize distribuição de times, capacidade e ociosidade.', level: 'Intermediário', badge: 'Mais ativado', icon: Users },
+  { id: 'okr-tracker', category: 'Gestão de Pessoas', title: 'Performance & OKR Tracker', desc: 'Gestão de metas com visão executiva.', level: 'Estratégico', badge: 'Alta performance', icon: Target },
+  { id: 'banco-talentos', category: 'Gestão de Pessoas', title: 'Banco de Talentos Estratégico', desc: 'Gestão estruturada de talentos internos e externos.', level: 'Intermediário', badge: 'Novo', icon: UserCheck },
+  // Operações
+  { id: 'demandas-sla', category: 'Operações', title: 'Controle de Demandas & SLA', desc: 'Gestão visual de demandas internas com SLA.', level: 'Simples', badge: 'Mais ativado', icon: CheckSquare },
+  { id: 'workflow-processos', category: 'Operações', title: 'Workflow Personalizado de Processos', desc: 'Automação de fluxos internos personalizados.', level: 'Intermediário', badge: 'Alta performance', icon: GitBranch },
+  { id: 'checkin-audiencias', category: 'Operações', title: 'Checkin de Audiências', desc: 'Controle digital de presença e gestão de audiências.', level: 'Simples', badge: 'Alta performance', icon: Calendar },
+  { id: 'gestao-eventos', category: 'Operações', title: 'Gestão de Eventos', desc: 'Plataforma completa para planejamento e execução de eventos.', level: 'Intermediário', badge: null, icon: LayoutList },
+  // Financeiro
+  { id: 'orcamento-area', category: 'Financeiro', title: 'Gestão de Orçamento por Área', desc: 'Monitoramento de CAPEX e OPEX por área.', level: 'Intermediário', badge: 'Novo', icon: DollarSign },
+  { id: 'forecast', category: 'Financeiro', title: 'Forecast Inteligente', desc: 'Projeções baseadas em dados históricos.', level: 'Estratégico', badge: null, icon: TrendingUp },
+  { id: 'cartao-consignado', category: 'Financeiro', title: 'Cartão de Crédito Consignado', desc: 'Plataforma completa para gestão de cartão de crédito consignado.', level: 'Intermediário', badge: 'Mais ativado', icon: CreditCard },
+  { id: 'gestao-orcamentaria', category: 'Financeiro', title: 'Gestão Orçamentária', desc: 'Controle orçamentário integrado com visão estratégica.', level: 'Intermediário', badge: null, icon: Activity },
+  // Comercial
+  { id: 'pipeline-comercial', category: 'Comercial', title: 'Pipeline & Performance Comercial', desc: 'Acompanhamento estratégico de vendas.', level: 'Intermediário', badge: 'Mais ativado', icon: BarChart2 },
+  { id: 'comissoes', category: 'Comercial', title: 'Gestão de Comissões Automatizada', desc: 'Cálculo inteligente de remuneração variável.', level: 'Simples', badge: null, icon: Package },
+  { id: 'prospeccao-pmes', category: 'Comercial', title: 'Prospecção e Retenção PMEs', desc: 'Estratégias automatizadas para captar e reter pequenas e médias empresas.', level: 'Estratégico', badge: 'Novo', icon: Target },
+  { id: 'crm', category: 'Comercial', title: 'CRM', desc: 'Gestão completa do relacionamento com clientes.', level: 'Intermediário', badge: 'Mais ativado', icon: Users },
+  { id: 'sdr', category: 'Comercial', title: 'SDR', desc: 'Plataforma de pré-vendas para qualificação e agendamento.', level: 'Simples', badge: null, icon: UserCheck },
+  // Projetos
+  { id: 'portfolio-projetos', category: 'Projetos', title: 'Gestão de Portfólio de Projetos', desc: 'Visão executiva de iniciativas estratégicas.', level: 'Estratégico', badge: 'Alta performance', icon: FolderKanban },
+  // ESG
+  { id: 'esg', category: 'ESG', title: 'Monitor de Indicadores ESG', desc: 'Acompanhamento de metas ambientais e sociais.', level: 'Intermediário', badge: 'Novo', icon: Leaf },
+  // Dados & Analytics
+  { id: 'data-hub', category: 'Dados & Analytics', title: 'Data Hub Executivo', desc: 'Consolidação de indicadores estratégicos.', level: 'Estratégico', badge: 'Alta performance', icon: Database },
+  // Governança
+  { id: 'guarda-compartilhada', category: 'Governança', title: 'Gestão de Guarda Compartilhada', desc: 'Plataforma para organização e acompanhamento de guarda compartilhada.', level: 'Intermediário', badge: 'Novo', icon: Shield },
+];
+
+const KITS: Kit[] = [
   {
-    icon: Zap,
-    title: 'Deploy Rápido',
-    desc: 'Sua solução em produção em até 30 dias. Do diagnóstico ao Go Live com método e governança.',
-    color: '#FF5315',
-  },
-  {
-    icon: Package,
-    title: 'Módulos por Assinatura',
-    desc: 'Ative apenas o que precisa. Escale conforme o negócio cresce, sem custo de retrabalho.',
-    color: '#0891B2',
-  },
-  {
-    icon: RefreshCw,
-    title: 'Evolução Contínua',
-    desc: 'Novos módulos e funcionalidades entregues continuamente no modelo SaaS.',
-    color: '#7C3AED',
-  },
-  {
-    icon: Shield,
-    title: 'Segurança e Compliance',
-    desc: 'Arquitetura segura por design. Conformidade com LGPD, ISO 27001 e padrões regulatórios.',
-    color: '#DC2626',
-  },
-  {
-    icon: BarChart2,
-    title: 'Analytics e Observabilidade',
-    desc: 'Dashboards em tempo real, métricas de negócio e alertas configuráveis.',
-    color: '#059669',
+    icon: Layers,
+    title: 'Kit Eficiência Operacional',
+    desc: 'Demandas, workflows e dados integrados para máxima eficiência.',
+    modules: ['Controle de Demandas & SLA', 'Workflow Personalizado de Processos', 'Data Hub Executivo'],
   },
   {
     icon: Users,
-    title: 'Integração com Seu Time',
-    desc: 'API-first. Integra com seus sistemas existentes via conectores e webhooks.',
-    color: '#D97706',
+    title: 'Kit Gestão de Pessoas 360°',
+    desc: 'Alocação, performance e talentos em uma visão completa.',
+    modules: ['Mapa de Alocação Inteligente', 'Performance & OKR Tracker', 'Banco de Talentos Estratégico'],
+  },
+  {
+    icon: BarChart2,
+    title: 'Kit Performance Comercial',
+    desc: 'Pipeline, comissões e forecast para receita previsível.',
+    modules: ['Forecast Inteligente', 'Pipeline & Performance Comercial', 'Gestão de Comissões Automatizada'],
+  },
+  {
+    icon: Shield,
+    title: 'Kit Governança Executiva',
+    desc: 'Portfólio, ESG e dados para governança de alto nível.',
+    modules: ['Gestão de Portfólio de Projetos', 'Monitor de Indicadores ESG', 'Data Hub Executivo'],
   },
 ];
 
-const PLANS = [
-  {
-    name: 'Starter',
-    price: 'Sob consulta',
-    description: 'Para empresas que querem lançar rápido com o essencial.',
-    features: [
-      'Até 3 módulos ativos',
-      'Deploy em 30 dias',
-      'Suporte via e-mail',
-      'SLA 99% uptime',
-      '1 ambiente de produção',
-    ],
-    cta: 'Começar agora',
-    highlighted: false,
-  },
-  {
-    name: 'Business',
-    price: 'Sob consulta',
-    description: 'Para operações em crescimento que precisam de escala e integrações.',
-    features: [
-      'Módulos ilimitados',
-      'Deploy em 30 dias',
-      'Suporte dedicado',
-      'SLA 99,9% uptime',
-      'Ambientes dev + prod',
-      'Integrações via API',
-      'Analytics avançado',
-    ],
-    cta: 'Falar com especialista',
-    highlighted: true,
-  },
-  {
-    name: 'Enterprise',
-    price: 'Personalizado',
-    description: 'Para grandes organizações com requisitos de compliance e escala global.',
-    features: [
-      'Tudo do Business',
-      'Infraestrutura dedicada',
-      'SLA customizado',
-      'Compliance e auditoria',
-      'Treinamento de times',
-      'Gerente de conta exclusivo',
-    ],
-    cta: 'Falar com o time',
-    highlighted: false,
-  },
+const CATEGORIES: Category[] = [
+  'Gestão de Pessoas', 'Operações', 'Financeiro', 'Comercial',
+  'Projetos', 'ESG', 'Dados & Analytics', 'Governança',
 ];
 
-const PROCESS = [
-  { step: '01', title: 'Diagnóstico', desc: 'Mapeamos suas necessidades, integrações e objetivos em uma sessão estruturada.' },
-  { step: '02', title: 'Arquitetura', desc: 'Definimos os módulos, integrações e a arquitetura da solução personalizada.' },
-  { step: '03', title: 'Configuração', desc: 'Configuramos e personalizamos a plataforma conforme seu contexto de negócio.' },
-  { step: '04', title: 'Go Live', desc: 'Lançamos em produção com acompanhamento, treinamento e suporte dedicado.' },
-];
+const BADGE_STYLES: Record<NonNullable<Badge>, string> = {
+  'Mais ativado': 'bg-orange text-white',
+  'Alta performance': 'bg-green-500 text-white',
+  'Novo': 'bg-cyan-500 text-white',
+};
 
+const LEVEL_STYLES: Record<Level, string> = {
+  'Simples': 'bg-white/10 text-white/70',
+  'Intermediário': 'bg-orange/20 text-orange',
+  'Estratégico': 'bg-purple-500/20 text-purple-300',
+};
+
+// ── componente ─────────────────────────────────────────────────
 export default function PlataformaPage() {
+  const [search, setSearch] = useState('');
+  const [activeCategory, setActiveCategory] = useState<Category | 'Todos'>('Todos');
+
+  const filtered = MODULES.filter(m => {
+    const matchCat = activeCategory === 'Todos' || m.category === activeCategory;
+    const matchSearch = !search || m.title.toLowerCase().includes(search.toLowerCase()) || m.desc.toLowerCase().includes(search.toLowerCase());
+    return matchCat && matchSearch;
+  });
+
   return (
-    <>
-      {/* Hero */}
-      <section
-        className="relative min-h-[70vh] flex items-center overflow-hidden pt-28 pb-20"
-        style={{ background: 'linear-gradient(160deg, #050510 0%, #0A0A1F 50%, #0D0820 100%)' }}
-        aria-label="FourBlox Plataforma"
+    <div
+      className="min-h-screen"
+      style={{ background: 'linear-gradient(160deg, #050510 0%, #0A0A1F 50%, #0D0820 100%)' }}
+    >
+      {/* ── Top bar ── */}
+      <div
+        className="sticky top-[72px] z-30 border-b border-white/10"
+        style={{ background: 'rgba(5,5,16,0.95)', backdropFilter: 'blur(12px)' }}
       >
-        {/* Background image */}
-        <div className="absolute inset-0" aria-hidden="true">
-          <Image src="/fourblox-bg.png" alt="" fill className="object-cover opacity-25" unoptimized />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050510] via-[#050510]/60 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-[#050510]/50" />
+        <div className="container-site py-4 flex items-center gap-4">
+          {/* Search */}
+          <div className="relative flex-1 max-w-lg">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+            <input
+              type="search"
+              placeholder="Buscar soluções..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/8 border border-white/15 text-white placeholder:text-white/30 text-[16px] focus:outline-none focus:border-orange/50 transition-colors"
+            />
+          </div>
+          {/* Button */}
+          <Link
+            href="/contato"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-orange/50 text-orange font-semibold text-body-sm hover:bg-orange/10 transition-colors whitespace-nowrap"
+          >
+            Minhas Soluções
+          </Link>
+        </div>
+      </div>
+
+      <div className="container-site py-14">
+        {/* ── Hero text ── */}
+        <div className="mb-12">
+          <h1 className="text-display-sm lg:text-display-md text-white font-black leading-tight mb-3">
+            Explore soluções prontas para ativar{' '}
+            <span className="text-orange">em até 30 dias</span>
+          </h1>
+          <p className="text-body-xl text-white/50">
+            Biblioteca de soluções modulares. Escolha, personalize e coloque em produção.
+          </p>
         </div>
 
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          aria-hidden="true"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px)',
-            backgroundSize: '48px 48px',
-          }}
-        />
+        {/* ── Category filters ── */}
+        <div className="flex flex-wrap gap-2 mb-10">
+          <button
+            onClick={() => setActiveCategory('Todos')}
+            className={`px-4 py-2 rounded-lg text-body-sm font-semibold transition-colors ${
+              activeCategory === 'Todos'
+                ? 'bg-orange text-white'
+                : 'bg-white/8 text-white/60 hover:text-white border border-white/10'
+            }`}
+          >
+            Todos
+          </button>
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-2 rounded-lg text-body-sm font-semibold transition-colors ${
+                activeCategory === cat
+                  ? 'bg-orange text-white'
+                  : 'bg-white/8 text-white/60 hover:text-white border border-white/10'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
 
-        <div className="container-site relative z-10">
-          <div className="max-w-3xl">
-            {/* Logo */}
-            <div className="mb-8">
-              <span className="text-5xl lg:text-6xl font-black tracking-tight italic">
-                <span className="text-white">Four</span>
-                <span className="text-orange">Blox</span>
-              </span>
-            </div>
-
-            <p className="text-label-lg text-orange font-bold uppercase tracking-widest mb-6">
-              Plataforma de Soluções
-            </p>
-
-            <h1 className="text-display-md lg:text-display-lg text-white font-black leading-[1.05] mb-8">
-              Produtos digitais prontos.{' '}
-              <span className="text-orange">Sem projetos intermináveis.</span>
-            </h1>
-
-            <p className="text-body-xl text-white/70 max-w-2xl mb-10 leading-relaxed">
-              Módulos configuráveis e prontos para produção em até 30 dias. Personalizados para o seu negócio, entregues com método e evoluindo continuamente por assinatura.
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/contato"
-                className="inline-flex items-center gap-2 whitespace-nowrap text-white font-bold text-body-lg px-8 py-4 rounded-pill active:scale-95 transition-all shadow-brand"
-                style={{ background: 'linear-gradient(135deg, #FF5315 0%, #FF7A45 100%)' }}
+        {/* ── Módulos grid ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
+          {filtered.map(mod => {
+            const Icon = mod.icon;
+            return (
+              <div
+                key={mod.id}
+                className="relative flex flex-col rounded-2xl p-6 border border-white/10 hover:border-orange/30 transition-all duration-300 group"
+                style={{ background: 'rgba(255,255,255,0.04)' }}
               >
-                Marcar uma demonstração
-                <ArrowRight className="w-5 h-5 flex-shrink-0" />
-              </Link>
-              <Link
-                href="#modulos"
-                className="inline-flex items-center gap-2 whitespace-nowrap text-white/80 font-semibold text-body-lg px-8 py-4 rounded-pill border border-white/20 hover:border-orange/50 hover:text-white transition-all"
-              >
-                Ver módulos
-                <ArrowRight className="w-5 h-5 flex-shrink-0" />
-              </Link>
-            </div>
+                {/* Badge */}
+                {mod.badge && (
+                  <span className={`absolute top-4 right-4 text-label-sm font-bold px-2.5 py-1 rounded-pill ${BADGE_STYLES[mod.badge]}`}>
+                    {mod.badge}
+                  </span>
+                )}
 
-            {/* Trust */}
-            <div className="flex flex-wrap gap-6 mt-12 pt-8 border-t border-white/10">
-              {[
-                { icon: Clock, text: 'Go Live em 30 dias' },
-                { icon: CheckCircle, text: 'SLA garantido' },
-                { icon: Cpu, text: 'API-first' },
-              ].map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-center gap-2 text-white/50 text-body-sm">
-                  <Icon className="w-4 h-4 text-orange flex-shrink-0" />
-                  {text}
+                {/* Category */}
+                <p className="text-label-sm text-white/40 uppercase tracking-widest font-bold mb-4">
+                  {mod.category}
+                </p>
+
+                {/* Icon */}
+                <div
+                  className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
+                  style={{ background: 'rgba(255,83,21,0.12)', border: '1px solid rgba(255,83,21,0.2)' }}
+                >
+                  <Icon className="w-5 h-5 text-orange" />
                 </div>
-              ))}
+
+                {/* Title & desc */}
+                <h3 className="text-heading-md text-white font-bold mb-2 group-hover:text-orange transition-colors">
+                  {mod.title}
+                </h3>
+                <p className="text-body-md text-white/50 leading-relaxed flex-1 mb-6">
+                  {mod.desc}
+                </p>
+
+                {/* Footer */}
+                <div className="flex items-center justify-between pt-4 border-t border-white/8">
+                  <span className={`text-label-sm font-semibold px-3 py-1 rounded-lg ${LEVEL_STYLES[mod.level]}`}>
+                    {mod.level}
+                  </span>
+                  <Link
+                    href="/contato"
+                    className="text-label-md text-orange font-semibold hover:text-orange-light transition-colors flex items-center gap-1"
+                  >
+                    Ver detalhes <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+          {filtered.length === 0 && (
+            <div className="col-span-3 text-center py-16 text-white/30">
+              <Search className="w-10 h-10 mx-auto mb-3" />
+              <p className="text-body-lg">Nenhum módulo encontrado para "{search}"</p>
             </div>
-          </div>
+          )}
         </div>
-      </section>
 
-      {/* Módulos */}
-      <section id="modulos" className="section-padding bg-gray-50" aria-label="Módulos da plataforma">
-        <div className="container-site">
-          <div className="text-center mb-14">
-            <p className="text-label-lg text-orange font-bold uppercase tracking-widest mb-3">Capacidades</p>
-            <h2 className="text-display-sm text-navy mb-4">O que a plataforma entrega</h2>
-            <p className="text-body-xl text-gray-500 max-w-2xl mx-auto">
-              Módulos pré-construídos e configuráveis. Ative o que precisa, integre com seus sistemas e evolua continuamente.
-            </p>
+        {/* ── Combinações Estratégicas ── */}
+        <div className="mb-20">
+          <div className="mb-8">
+            <h2 className="text-display-sm text-white font-black mb-2">Combinações Estratégicas</h2>
+            <p className="text-body-lg text-white/40">Kits pré-configurados para resultados acelerados.</p>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {MODULES.map((mod) => {
-              const Icon = mod.icon;
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {KITS.map(kit => {
+              const Icon = kit.icon;
               return (
                 <div
-                  key={mod.title}
-                  className="bg-white rounded-2xl p-7 border border-gray-100 hover:border-orange/20 hover:shadow-card-hover transition-all duration-300 group"
+                  key={kit.title}
+                  className="rounded-2xl p-7 border border-white/10 hover:border-orange/30 transition-all duration-300"
+                  style={{ background: 'rgba(255,255,255,0.04)' }}
                 >
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform"
-                    style={{ background: `${mod.color}18` }}
-                  >
-                    <Icon className="w-6 h-6" style={{ color: mod.color }} />
+                  <div className="flex items-center gap-3 mb-4">
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ background: 'rgba(255,83,21,0.12)', border: '1px solid rgba(255,83,21,0.2)' }}
+                    >
+                      <Icon className="w-5 h-5 text-orange" />
+                    </div>
+                    <h3 className="text-heading-md text-white font-bold">{kit.title}</h3>
                   </div>
-                  <h3 className="text-heading-md text-navy font-bold mb-2">{mod.title}</h3>
-                  <p className="text-body-md text-gray-500 leading-relaxed">{mod.desc}</p>
+                  <p className="text-body-md text-white/50 mb-5">{kit.desc}</p>
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {kit.modules.map(m => (
+                      <span
+                        key={m}
+                        className="text-label-sm text-white/60 bg-white/8 px-3 py-1.5 rounded-lg border border-white/10"
+                      >
+                        {m}
+                      </span>
+                    ))}
+                  </div>
+                  <Link
+                    href="/contato"
+                    className="inline-flex items-center gap-1.5 text-orange font-semibold text-body-md hover:text-orange-light transition-colors"
+                  >
+                    Explorar kit <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
               );
             })}
           </div>
         </div>
-      </section>
 
-      {/* Processo */}
-      <section
-        className="section-padding"
-        style={{ background: 'linear-gradient(160deg, #0A0A1F 0%, #050510 100%)' }}
-        aria-label="Processo de implementação"
-      >
-        <div className="container-site">
-          <div className="text-center mb-14">
-            <p className="text-label-lg text-orange font-bold uppercase tracking-widest mb-3">Processo</p>
-            <h2 className="text-display-sm text-white mb-4">Do diagnóstico ao Go Live</h2>
-            <p className="text-body-xl text-white/60 max-w-xl mx-auto">
-              Método estruturado em 4 etapas que garante entrega em 30 dias com risco controlado.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {PROCESS.map((step, i) => (
-              <div key={step.step} className="relative">
-                {/* Linha conectora */}
-                {i < PROCESS.length - 1 && (
-                  <div
-                    className="hidden lg:block absolute top-8 left-full w-full h-[2px] z-0"
-                    style={{
-                      background: 'linear-gradient(to right, #FF5315, transparent)',
-                      width: 'calc(100% - 2rem)',
-                      left: 'calc(100% - 1rem)',
-                    }}
-                  />
-                )}
-                <div
-                  className="relative z-10 rounded-2xl p-7 border border-white/10 hover:border-orange/30 transition-all"
-                  style={{ background: 'rgba(255,255,255,0.03)' }}
-                >
-                  <div
-                    className="text-4xl font-black mb-4 leading-none"
-                    style={{ color: '#FF5315', textShadow: '0 0 20px rgba(255,83,21,0.3)' }}
-                  >
-                    {step.step}
-                  </div>
-                  <h3 className="text-heading-md text-white font-bold mb-3">{step.title}</h3>
-                  <p className="text-body-md text-white/50 leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Planos */}
-      <section className="section-padding bg-white" aria-label="Planos e preços">
-        <div className="container-site">
-          <div className="text-center mb-14">
-            <p className="text-label-lg text-orange font-bold uppercase tracking-widest mb-3">Planos</p>
-            <h2 className="text-display-sm text-navy mb-4">Escolha o modelo certo</h2>
-            <p className="text-body-xl text-gray-500 max-w-xl mx-auto">
-              Assinatura mensal previsível. Escale conforme a demanda sem surpresas de orçamento.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-            {PLANS.map((plan) => (
-              <div
-                key={plan.name}
-                className={`rounded-2xl p-8 border transition-all duration-300 ${
-                  plan.highlighted
-                    ? 'border-orange shadow-brand scale-105'
-                    : 'border-gray-100 hover:border-orange/30 hover:shadow-card'
-                }`}
-                style={plan.highlighted ? { background: 'linear-gradient(135deg, #1A1A2E 0%, #222239 100%)' } : {}}
-              >
-                {plan.highlighted && (
-                  <span className="inline-block text-label-sm text-white font-bold bg-orange px-3 py-1 rounded-pill mb-4">
-                    Mais popular
-                  </span>
-                )}
-                <h3 className={`text-heading-xl font-black mb-1 ${plan.highlighted ? 'text-white' : 'text-navy'}`}>
-                  {plan.name}
-                </h3>
-                <p className={`text-display-sm font-black mb-2 ${plan.highlighted ? 'text-orange' : 'text-navy'}`}>
-                  {plan.price}
-                </p>
-                <p className={`text-body-md mb-7 ${plan.highlighted ? 'text-white/60' : 'text-gray-500'}`}>
-                  {plan.description}
-                </p>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map(f => (
-                    <li key={f} className={`flex items-start gap-2.5 text-body-md ${plan.highlighted ? 'text-white/80' : 'text-gray-600'}`}>
-                      <CheckCircle className="w-4 h-4 text-orange flex-shrink-0 mt-0.5" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  href="/contato"
-                  variant={plan.highlighted ? 'primary' : 'outline'}
-                  size="lg"
-                  fullWidth
-                  rightIcon={<ArrowRight className="w-4 h-4" />}
-                >
-                  {plan.cta}
-                </Button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Final */}
-      <section
-        className="py-20"
-        style={{ background: 'linear-gradient(135deg, #222239 0%, #2D2D54 50%, #FF5315 100%)' }}
-        aria-label="Chamada para ação"
-      >
-        <div className="container-site text-center">
-          <h2 className="text-display-sm text-white font-black mb-4">
-            Pronto para lançar em 30 dias?
+        {/* ── CTA ── */}
+        <div
+          className="rounded-2xl p-10 text-center"
+          style={{ background: 'linear-gradient(135deg, rgba(255,83,21,0.15) 0%, rgba(124,58,237,0.1) 100%)', border: '1px solid rgba(255,83,21,0.2)' }}
+        >
+          <h2 className="text-display-sm text-white font-black mb-3">
+            Pronto para ativar sua solução?
           </h2>
-          <p className="text-body-xl text-white/70 mb-10 max-w-xl mx-auto">
-            Fale com nosso time e receba um diagnóstico gratuito de como o FourBlox pode acelerar sua operação digital.
+          <p className="text-body-xl text-white/60 mb-8 max-w-xl mx-auto">
+            Fale com nosso time e coloque em produção em até 30 dias.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link
-              href="/contato"
-              className="inline-flex items-center gap-2 bg-white text-navy font-bold text-body-lg px-8 py-4 rounded-pill hover:bg-gray-50 active:scale-95 transition-all"
-            >
-              Marcar uma demonstração
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link
-              href="/solucoes/fourblox"
-              className="inline-flex items-center gap-2 text-white font-semibold text-body-lg px-8 py-4 rounded-pill border border-white/30 hover:border-white/60 transition-all"
-            >
-              Ver oferta FourBlox
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
+          <Link
+            href="/contato"
+            className="inline-flex items-center gap-2 text-white font-bold text-body-lg px-10 py-4 rounded-pill active:scale-95 transition-all shadow-brand"
+            style={{ background: 'linear-gradient(135deg, #FF5315 0%, #FF7A45 100%)' }}
+          >
+            Marcar uma demonstração
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
-      </section>
-    </>
+      </div>
+    </div>
   );
 }

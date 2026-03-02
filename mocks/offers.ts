@@ -99,6 +99,7 @@ export const OFFERS: Offer[] = [
   {
     id: 'fourblox',
     slug: 'fourblox',
+    href: '/plataforma',
     name: 'FourBlox',
     subtitle: 'Produtos digitais por assinatura, prontos para escalar.',
     description: 'Plataforma de produtos digitais como serviço (SaaS). Módulos prontos que aceleram o time-to-market: do conceito ao produto em produção com modelo de assinatura previsível e governança embutida.',

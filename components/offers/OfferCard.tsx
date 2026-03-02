@@ -27,7 +27,7 @@ export function OfferCard({ offer, variant = 'default', className }: OfferCardPr
 
   return (
     <Link
-      href={`/solucoes/${offer.slug}`}
+      href={(offer as { href?: string }).href ?? `/solucoes/${offer.slug}`}
       className={cn(
         'relative overflow-hidden group flex flex-col rounded-2xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover hover:scale-[1.01]',
         isFlagship

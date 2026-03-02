@@ -31,23 +31,18 @@ export function LanguageSwitcher({ light = false }: LanguageSwitcherProps) {
     setOpen(false);
     if (next === locale) return;
 
-    // Remove current locale prefix to get the base path
+    // Remove current locale prefix (e.g. /pt, /en, /es) to get base path
     let basePath = pathname;
     for (const loc of locales) {
-      if (loc !== 'pt' && basePath.startsWith(`/${loc}`)) {
+      if (basePath.startsWith(`/${loc}`)) {
         basePath = basePath.slice(`/${loc}`.length) || '/';
         break;
       }
     }
-
-    // Ensure basePath starts with /
     if (!basePath.startsWith('/')) basePath = `/${basePath}`;
 
-    // Build new URL — PT has no prefix (default locale)
-    const newPath = next === 'pt' ? basePath : `/${next}${basePath}`;
-
-    // Use window.location for a full navigation so the middleware
-    // correctly applies the new locale and its cookies/headers
+    // All locales always have prefix: /pt/... /en/... /es/...
+    const newPath = `/${next}${basePath === '/' ? '' : basePath}`;
     window.location.href = newPath;
   };
 

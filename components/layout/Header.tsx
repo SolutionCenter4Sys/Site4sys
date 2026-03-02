@@ -22,8 +22,8 @@ export function Header({ variant = 'transparent' }: HeaderProps) {
   const [ofertasOpen, setOfertasOpen] = useState(false);
   const pathname = usePathname();
 
-  // Build locale-aware href
-  const lhref = (path: string) => locale === 'pt' ? path : `/${locale}${path}`;
+  // All locales always have prefix: /pt/... /en/... /es/...
+  const lhref = (path: string) => `/${locale}${path}`;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);

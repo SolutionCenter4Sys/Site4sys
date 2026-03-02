@@ -9,7 +9,7 @@ export function StickyMobileCTA() {
   const [visible, setVisible] = useState(false);
   const t = useTranslations();
   const locale = useLocale();
-  const href = locale === 'pt' ? '/contato' : `/${locale}/contato`;
+  const href = `/${locale}/contato`;
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 400);

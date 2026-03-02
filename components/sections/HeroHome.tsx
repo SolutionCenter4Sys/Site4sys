@@ -9,7 +9,7 @@ import { METRICS, CERTIFICATIONS } from '@/mocks/index';
 export function HeroHome() {
   const t = useTranslations('hero');
   const locale = useLocale();
-  const lhref = (path: string) => locale === 'pt' ? path : `/${locale}${path}`;
+  const lhref = (path: string) => `/${locale}${path}`;
 
   const [animated, setAnimated] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);

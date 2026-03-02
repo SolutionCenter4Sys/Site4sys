@@ -8,7 +8,7 @@ import { BrandLogo } from '@/components/ui/BrandLogo';
 export function Footer() {
   const t = useTranslations('footer');
   const locale = useLocale();
-  const lhref = (path: string) => locale === 'pt' ? path : `/${locale}${path}`;
+  const lhref = (path: string) => `/${locale}${path}`;
 
   return (
     <footer className="bg-navy-dark text-white" aria-label="Rodapé">

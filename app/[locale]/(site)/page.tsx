@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale });
-  const lhref = (path: string) => locale === 'pt' ? path : `/${locale}${path}`;
+  const lhref = (path: string) => `/${locale}${path}`;
 
   const why = t.raw('why') as { kicker: string; headline: string; highlight: string; body: string; presence_title: string; presence_sub: string; presence_1: string; presence_2: string; presence_3: string; sectors_title: string; sectors: string[] };
   const offersT = t.raw('offers_section') as { kicker: string; headline: string; see_all: string; flagship_badge: string; learn_more: string };

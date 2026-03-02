@@ -98,12 +98,18 @@ export default async function HomePage({ params }: Props) {
               <h2 className="text-display-sm text-navy">{offersT.headline}</h2>
             </div>
             <Button href={lhref('/solucoes')} variant="outline" size="md" rightIcon={<ArrowRight className="w-4 h-4" />}>
-              {offersT.see_all.replace('{count}', '15')}
+              {offersT.see_all.replace('{count}', '17')}
             </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {FLAGSHIP_OFFERS.map(offer => (
+            {FLAGSHIP_OFFERS.slice(0, 3).map(offer => (
               <OfferCard key={offer.id} offer={offer} />
+            ))}
+          </div>
+          {/* Preview compacto das 2 novas ofertas flagship */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+            {FLAGSHIP_OFFERS.slice(3).map(offer => (
+              <OfferCard key={offer.id} offer={offer} variant="compact" />
             ))}
           </div>
         </div>

@@ -7,6 +7,16 @@ type OfferTranslation = { name: string; subtitle: string; description: string };
 type OfferTranslations = Record<string, OfferTranslation>;
 
 export const OFFER_TRANSLATIONS_EN: OfferTranslations = {
+  'fourblox': {
+    name: 'FourBlox',
+    subtitle: 'Digital products by subscription, ready to scale.',
+    description: 'Digital products as a service (SaaS). Ready-made modules that accelerate time-to-market: from concept to product in production with a predictable subscription model and built-in governance.',
+  },
+  'quality-ia': {
+    name: 'Quality AI',
+    subtitle: 'QA, certification and automation with AI — fewer failures, more predictability.',
+    description: 'Software quality treated as an engineering discipline with AI. AI test generator agent, shift-left, intelligent automation and certification for regulated environments.',
+  },
   'squads-hibridas': {
     name: 'Hybrid Squads',
     subtitle: 'Value in weeks, not months. Delivery with built-in governance.',
@@ -90,6 +100,16 @@ export const OFFER_TRANSLATIONS_EN: OfferTranslations = {
 };
 
 export const OFFER_TRANSLATIONS_ES: OfferTranslations = {
+  'fourblox': {
+    name: 'FourBlox',
+    subtitle: 'Productos digitales por suscripción, listos para escalar.',
+    description: 'Plataforma de productos digitales como servicio (SaaS). Módulos listos que aceleran el time-to-market con modelo de suscripción predecible y gobernanza integrada.',
+  },
+  'quality-ia': {
+    name: 'Quality IA',
+    subtitle: 'QA, certificación y automatización con IA — menos fallos, más previsibilidad.',
+    description: 'Calidad de software tratada como disciplina de ingeniería con IA. Agente generador de pruebas, shift-left, automatización inteligente y certificación para entornos regulados.',
+  },
   'squads-hibridas': {
     name: 'Squads Híbridos',
     subtitle: 'Valor en semanas, no en meses. Entrega con gobernanza integrada.',

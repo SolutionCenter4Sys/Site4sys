@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Search, Brain, Settings, Rocket } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { cn } from '@/lib/utils';
@@ -23,18 +24,19 @@ export function ProductsSection() {
       style={{ background: 'linear-gradient(160deg, #050510 0%, #0A0A1F 40%, #0D0820 100%)' }}
       aria-label="FourBlox — Produtos por Assinatura"
     >
-      {/* Grid pattern background */}
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        aria-hidden="true"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px)',
-          backgroundSize: '48px 48px',
-        }}
-      />
-      {/* Geometric glow decoration */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-10" aria-hidden="true">
-        <div className="absolute inset-0 bg-orange/30 blur-[100px] rounded-full" />
+      {/* Background image — ofuscada */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <Image
+          src="/fourblox-bg.png"
+          alt=""
+          fill
+          className="object-cover opacity-30"
+          sizes="100vw"
+          unoptimized
+          priority={false}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050510] via-[#050510]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-[#050510]/60" />
       </div>
 
       <div className="container-site relative z-10">

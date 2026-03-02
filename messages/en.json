@@ -94,7 +94,7 @@
     "sub": "Connect your challenge to the right solution.",
     "pains": [
       { "label": "Accelerate delivery without increasing headcount", "offer": "Hybrid Squads", "slug": "squads-hibridas" },
-      { "label": "Prove AI ROI; move beyond pilots", "offer": "AI with Impact", "slug": "ia-com-roi" },
+      { "label": "Prove AI ROI; move beyond pilots", "offer": "IA First", "slug": "ia-com-roi" },
       { "label": "Legacy blocks AI, integration and speed", "offer": "Legacy Modernization", "slug": "modernizacao-legado" },
       { "label": "Control cloud and AI costs", "offer": "FinOps & AI Cost", "slug": "finops-custo-ia" },
       { "label": "Reduce fraud, phishing and risk", "offer": "Cybersecurity & Zero Trust", "slug": "ciberseguranca-zero-trust" },

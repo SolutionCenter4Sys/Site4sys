@@ -49,7 +49,7 @@ export const INSIGHTS: Insight[] = [
   {
     id: '1',
     slug: 'ia-com-impacto-do-piloto-ao-roi-em-6-semanas',
-    title: 'IA com Impacto: como sair do piloto para ROI mensurável em 6 semanas',
+    title: 'IA First: como sair do piloto para ROI mensurável em 6 semanas',
     excerpt:
       'A maioria das empresas brasileiras tem 3 a 6 projetos de IA parados em piloto eterno. Descubra o método que a Foursys usa para transformar experimentos em resultados reais com business case validado.',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=900&q=80',

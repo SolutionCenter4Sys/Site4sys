@@ -67,7 +67,7 @@ export const OFFERS: Offer[] = [
   {
     id: 'ia-com-roi',
     slug: 'ia-com-roi',
-    name: 'IA com Impacto',
+    name: 'IA First',
     subtitle: 'Do piloto ao resultado mensurável em 4–6 semanas.',
     description: 'Em 4–6 semanas: 2–3 casos priorizados, 1 protótipo e business case com ROI estimado. Para quem quer sair de experimentos de IA e provar valor real.',
     category: 'flagship',
@@ -91,7 +91,7 @@ export const OFFERS: Offer[] = [
       'Adoção do fluxo IA',
     ],
     timeline: '4–6 semanas.',
-    ctaPrimary: 'Agendar Diagnóstico IA com Impacto',
+    ctaPrimary: 'Agendar Diagnóstico IA First',
     ctaSecondary: 'Ver casos de IA',
     caseRef: 'ia-financeiro',
     metrics: ['+50% produtividade dos times', '+35% aceleração do desenvolvimento', '-20% custo por funcionalidade'],

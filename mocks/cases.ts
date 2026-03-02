@@ -46,7 +46,7 @@ export const CASES: Case[] = [
     impact: 'Redução do tempo de análise de 5 dias para 4 horas após escala.',
     impactMetric: '85%',
     impactLabel: 'redução no tempo de análise',
-    offer: 'IA com Impacto',
+    offer: 'IA First',
     offerSlug: 'ia-com-roi',
     quote: 'Saímos de 6 pilotos de IA sem resultado para um caso real com ROI calculado em 6 semanas.',
     author: 'Head de Operações',

@@ -69,7 +69,7 @@ export const AWARDS = [
 export const SERVICES_LIST = [
   'Squads Híbridas',
   'Modernização de Legado',
-  'IA com Impacto',
+  'IA First',
   'Estratégia & Inovação',
   'Agilidade & Org Design',
   'Cibersegurança & Zero Trust',

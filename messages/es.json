@@ -94,7 +94,7 @@
     "sub": "Conecta tu desafío con la solución correcta.",
     "pains": [
       { "label": "Acelerar entrega sin aumentar headcount", "offer": "Squads Híbridos", "slug": "squads-hibridas" },
-      { "label": "Probar ROI de IA; salir de pilotos", "offer": "IA con Impacto", "slug": "ia-com-roi" },
+      { "label": "Probar ROI de IA; salir de pilotos", "offer": "IA First", "slug": "ia-com-roi" },
       { "label": "El legado bloquea IA, integración y velocidad", "offer": "Modernización de Legado", "slug": "modernizacao-legado" },
       { "label": "Controlar costo de cloud e IA", "offer": "FinOps & Costo de IA", "slug": "finops-custo-ia" },
       { "label": "Reducir fraude, phishing y riesgo", "offer": "Ciberseguridad & Zero Trust", "slug": "ciberseguranca-zero-trust" },

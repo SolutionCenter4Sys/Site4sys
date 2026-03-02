@@ -82,28 +82,28 @@ export function ProductsSection() {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-row gap-4">
+            <div className="flex flex-row gap-5">
               <Link
                 href="/solucoes/fourblox"
-                className="inline-flex items-center gap-2 text-white font-bold text-body-md px-8 py-4 rounded-xl active:scale-95 transition-all"
+                className="inline-flex items-center justify-center gap-3 text-white font-bold text-body-xl px-10 py-5 rounded-xl active:scale-95 transition-all min-w-[240px]"
                 style={{
                   background: 'linear-gradient(135deg, #FF5315 0%, #FF7A45 100%)',
                   boxShadow: '0 4px 20px rgba(255,83,21,0.4)',
                 }}
               >
                 Marcar uma demonstração
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 href="/solucoes/fourblox"
-                className="inline-flex items-center gap-2 text-white font-bold text-body-md px-8 py-4 rounded-xl active:scale-95 transition-all"
+                className="inline-flex items-center justify-center gap-3 text-white font-bold text-body-xl px-10 py-5 rounded-xl active:scale-95 transition-all min-w-[240px]"
                 style={{
                   background: 'linear-gradient(135deg, #FF5315 0%, #FF7A45 100%)',
                   boxShadow: '0 4px 20px rgba(255,83,21,0.4)',
                 }}
               >
                 Plataforma de Soluções
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
           </div>

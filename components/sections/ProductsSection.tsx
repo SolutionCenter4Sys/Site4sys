@@ -74,7 +74,7 @@ export function ProductsSection() {
               {TAGS.map(tag => (
                 <span
                   key={tag}
-                  className="px-5 py-2.5 rounded-full border border-white/25 text-white text-body-md font-semibold hover:border-orange/60 transition-colors"
+                  className="px-6 py-3 rounded-xl border border-orange/50 text-white text-body-md font-semibold hover:border-orange transition-colors"
                 >
                   {tag}
                 </span>
@@ -84,7 +84,11 @@ export function ProductsSection() {
             {/* CTA */}
             <Link
               href="/solucoes/fourblox"
-              className="inline-flex items-center gap-2 bg-orange text-white font-bold text-body-md px-7 py-4 rounded-xl hover:bg-orange-dark active:scale-95 transition-all shadow-brand"
+              className="inline-flex items-center gap-2 text-white font-bold text-body-md px-8 py-4 rounded-xl active:scale-95 transition-all"
+              style={{
+                background: 'linear-gradient(135deg, #FF5315 0%, #FF7A45 100%)',
+                boxShadow: '0 4px 20px rgba(255,83,21,0.4)',
+              }}
             >
               Agendar Diagnóstico
               <ArrowRight className="w-4 h-4" />

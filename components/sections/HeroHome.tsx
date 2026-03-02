@@ -11,6 +11,7 @@ export function HeroHome() {
   const locale = useLocale();
   const lhref = (path: string) => `/${locale}${path}`;
 
+
   const [animated, setAnimated] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoVisible, setVideoVisible] = useState(true);

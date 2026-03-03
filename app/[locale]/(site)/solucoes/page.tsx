@@ -10,7 +10,7 @@ import { DarkPageHero } from '@/components/sections/DarkPageHero';
 
 export const metadata: Metadata = {
   title: 'Ofertas e Soluções',
-  description: 'Conheça as 15 ofertas da Foursys: Squads Híbridas, Modernização de Legado, IA com Impacto, Integrações API, Qualidade & Testes, Hiperautomação e mais. Cada oferta com ROI e KPIs definidos.',
+          description: 'Conheça as 15 ofertas da Foursys: AI-Augmented Squad, Modernização de Legado, IA com Impacto, Integrações API, Qualidade & Testes, Hiperautomação e mais. Cada oferta com ROI e KPIs definidos.',
 };
 
 export default function SolucoesPage() {
@@ -70,7 +70,7 @@ export default function SolucoesPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
-              { pain: 'Acelerar entrega sem aumentar headcount', offer: 'Squads Híbridas', href: '/solucoes/squads-hibridas' },
+              { pain: 'Acelerar entrega sem aumentar headcount', offer: 'AI-Augmented Squad', href: '/solucoes/squads-hibridas' },
               { pain: 'Provar ROI de IA; sair de pilotos', offer: 'IA com Impacto', href: '/solucoes/ia-com-roi' },
               { pain: 'Legado trava IA, integração e velocidade', offer: 'Modernização de Legado', href: '/solucoes/modernizacao-legado' },
               { pain: 'Controlar custo cloud e IA', offer: 'FinOps & Custo de IA', href: '/solucoes/finops-custo-ia' },

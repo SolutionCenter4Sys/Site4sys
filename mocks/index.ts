@@ -67,7 +67,7 @@ export const AWARDS = [
 ];
 
 export const SERVICES_LIST = [
-  'Squads Híbridas',
+  'AI-Augmented Squad',
   'Modernização de Legado',
   'IA First',
   'Estratégia & Inovação',

@@ -93,7 +93,7 @@
     "headline": "¿Cuál es tu dolor hoy?",
     "sub": "Conecta tu desafío con la solución correcta.",
     "pains": [
-      { "label": "Acelerar entrega sin aumentar headcount", "offer": "Squads Híbridos", "slug": "squads-hibridas" },
+      { "label": "Acelerar entrega sin aumentar headcount", "offer": "AI-Augmented Squad", "slug": "squads-hibridas" },
       { "label": "Probar ROI de IA; salir de pilotos", "offer": "IA First", "slug": "ia-com-roi" },
       { "label": "El legado bloquea IA, integración y velocidad", "offer": "Modernización de Legado", "slug": "modernizacao-legado" },
       { "label": "Controlar costo de cloud e IA", "offer": "FinOps & Costo de IA", "slug": "finops-custo-ia" },
@@ -166,7 +166,7 @@
   },
   "solutions_page": {
     "meta_title": "Soluciones",
-    "meta_desc": "Conozca todas las soluciones Foursys: Squads Híbridos, Modernización de Legado, IA con Impacto y más.",
+    "meta_desc": "Conozca todas las soluciones Foursys: AI-Augmented Squad, Modernización de Legado, IA con Impacto y más.",
     "hero_kicker": "Soluciones",
     "hero_headline": "Transformación digital con resultados medibles",
     "hero_sub": "Cada solución fue diseñada para un problema real, con método, métricas y entregables claros.",
@@ -313,8 +313,8 @@
         "a": "Operamos de forma híbrida. Los squads trabajan principalmente en remoto pero mantienen presencia física en los principales clientes para reuniones de planificación y revisión."
       },
       {
-        "q": "¿Cuál es la diferencia entre Squads Híbridos y Asignación?",
-        "a": "Los Squads Híbridos vienen con gobernanza integrada: playbook de calidad, seguridad, métricas y rituales de entrega. La Asignación es un profesional especializado integrado a su equipo sin la sobrecarga de gobernanza."
+        "q": "¿Cuál es la diferencia entre AI-Augmented Squad y Asignación?",
+        "a": "El AI-Augmented Squad viene con gobernanza integrada: playbook de calidad, seguridad, métricas y rituales de entrega. La Asignación es un profesional especializado integrado a su equipo sin la sobrecarga de gobernanza."
       }
     ]
   },

@@ -5,7 +5,8 @@ export const OFFERS: Offer[] = [
   {
     id: 'squads-hibridas',
     slug: 'squads-hibridas',
-    name: 'Squads Híbridas',
+    name: 'AI-Augmented Squad',
+    heroImage: '/ai-augmented-squad.png',
     subtitle: 'Valor em semanas, não em meses. Entrega com governança embutida.',
     description: 'Times multidisciplinares (humanos + IA) que entregam em ciclos curtos, com métricas e governança. Diferente de nearshore genérico: playbook de qualidade, segurança e turnover de 3,6%.',
     category: 'flagship',

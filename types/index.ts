@@ -20,6 +20,8 @@ export interface Offer {
   caseRef?: string;
   /** Link personalizado — sobrescreve /solucoes/{slug} */
   href?: string;
+  /** Imagem de destaque exibida na página de detalhe da oferta */
+  heroImage?: string;
 }
 
 export interface Case {

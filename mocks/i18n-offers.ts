@@ -18,7 +18,7 @@ export const OFFER_TRANSLATIONS_EN: OfferTranslations = {
     description: 'Software quality treated as an engineering discipline with AI. AI test generator agent, shift-left, intelligent automation and certification for regulated environments.',
   },
   'squads-hibridas': {
-    name: 'Hybrid Squads',
+    name: 'AI-Augmented Squad',
     subtitle: 'Value in weeks, not months. Delivery with built-in governance.',
     description: 'Multidisciplinary teams (humans + AI) delivering in short cycles, with metrics and governance. Unlike generic nearshore: quality, security and 3.6% turnover playbook.',
   },
@@ -111,7 +111,7 @@ export const OFFER_TRANSLATIONS_ES: OfferTranslations = {
     description: 'Calidad de software tratada como disciplina de ingeniería con IA. Agente generador de pruebas, shift-left, automatización inteligente y certificación para entornos regulados.',
   },
   'squads-hibridas': {
-    name: 'Squads Híbridos',
+    name: 'AI-Augmented Squad',
     subtitle: 'Valor en semanas, no en meses. Entrega con gobernanza integrada.',
     description: 'Equipos multidisciplinarios (humanos + IA) que entregan en ciclos cortos, con métricas y gobernanza.',
   },

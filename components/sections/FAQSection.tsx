@@ -7,7 +7,7 @@ const FAQS = [
   },
   {
     q: 'Quanto tempo leva para ver os primeiros resultados?',
-    a: 'Nosso modelo é focado em valor em semanas, não em meses. Para Squads Híbridas, os primeiros entregáveis acontecem na segunda semana. Para IA com Impacto, o business case com impacto projetado sai em 4 a 6 semanas. Para Modernização de Legado, o primeiro módulo piloto opera em 8 a 12 semanas.',
+    a: 'Nosso modelo é focado em valor em semanas, não em meses. Para AI-Augmented Squad, os primeiros entregáveis acontecem na segunda semana. Para IA com Impacto, o business case com impacto projetado sai em 4 a 6 semanas. Para Modernização de Legado, o primeiro módulo piloto opera em 8 a 12 semanas.',
   },
   {
     q: 'Qual é o investimento mínimo para começar?',

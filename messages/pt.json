@@ -93,7 +93,7 @@
     "headline": "Qual é a sua dor hoje?",
     "sub": "Conecte seu desafio à solução certa.",
     "pains": [
-      { "label": "Acelerar entrega sem aumentar headcount", "offer": "Squads Híbridas", "slug": "squads-hibridas" },
+      { "label": "Acelerar entrega sem aumentar headcount", "offer": "AI-Augmented Squad", "slug": "squads-hibridas" },
       { "label": "Provar ROI de IA; sair de pilotos", "offer": "IA First", "slug": "ia-com-roi" },
       { "label": "Legado trava IA, integração e velocidade", "offer": "Modernização de Legado", "slug": "modernizacao-legado" },
       { "label": "Controlar custo cloud e IA", "offer": "FinOps & Custo de IA", "slug": "finops-custo-ia" },
@@ -166,7 +166,7 @@
   },
   "solutions_page": {
     "meta_title": "Soluções",
-    "meta_desc": "Conheça todas as ofertas Foursys: Squads Híbridas, Modernização de Legado, IA First e muito mais.",
+    "meta_desc": "Conheça todas as ofertas Foursys: AI-Augmented Squad, Modernização de Legado, IA First e muito mais.",
     "hero_kicker": "Soluções",
     "hero_headline": "Transformação digital com resultado mensurável",
     "hero_sub": "Cada oferta foi desenhada para um problema real, com método, métricas e entregáveis claros.",

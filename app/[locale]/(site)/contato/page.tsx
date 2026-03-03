@@ -83,7 +83,7 @@ export default function ContatoPage() {
               <div className="bg-navy rounded-2xl p-6">
                 <p className="text-heading-sm text-white mb-3">Quer falar sobre uma oferta específica?</p>
                 <div className="grid grid-cols-1 gap-2">
-                  {['Squads Híbridas', 'Modernização de Legado', 'IA com ROI'].map(offer => (
+                  {['AI-Augmented Squad', 'Modernização de Legado', 'IA com ROI'].map(offer => (
                     <a
                       key={offer}
                       href={`/contato?servico=${encodeURIComponent(offer)}`}

@@ -21,8 +21,8 @@ const BENEFITS = [
 ];
 
 const MOCK_JOBS = [
-  { id: '1', title: 'Engenheiro(a) de Software Sênior', area: 'Engenharia', location: 'São Paulo / Remoto', type: 'CLT', offer: 'Squads Híbridas' },
-  { id: '2', title: 'Tech Lead Full Stack', area: 'Engenharia', location: 'São Paulo / Remoto', type: 'CLT', offer: 'Squads Híbridas' },
+  { id: '1', title: 'Engenheiro(a) de Software Sênior', area: 'Engenharia', location: 'São Paulo / Remoto', type: 'CLT', offer: 'AI-Augmented Squad' },
+  { id: '2', title: 'Tech Lead Full Stack', area: 'Engenharia', location: 'São Paulo / Remoto', type: 'CLT', offer: 'AI-Augmented Squad' },
   { id: '3', title: 'Especialista em IA Generativa', area: 'IA & Dados', location: 'São Paulo / Remoto', type: 'CLT', offer: 'IA com ROI' },
   { id: '4', title: 'Arquiteto(a) de Solução Cloud', area: 'Arquitetura', location: 'Híbrido', type: 'CLT', offer: 'Modernização de Legado' },
   { id: '5', title: 'Analista de Cibersegurança', area: 'Segurança', location: 'São Paulo', type: 'CLT', offer: 'Cibersegurança & Zero Trust' },

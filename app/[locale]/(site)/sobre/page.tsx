@@ -18,7 +18,7 @@ const TIMELINE = [
   { year: '2010', event: 'Adoção de metodologias ágeis. Certificação SAFe e programa de qualidade.' },
   { year: '2015', event: 'Lançamento do FourLives. Internacionalização com abertura de escritório nos EUA.' },
   { year: '2018', event: 'Primeiro GPTW. Expansão para Portugal. Consolidação em IA e dados.' },
-  { year: '2022', event: 'Lançamento das Squads Híbridas (humanos + IA). Crescimento de +20%.' },
+  { year: '2022', event: 'Lançamento do AI-Augmented Squad (humanos + IA). Crescimento de +20%.' },
   { year: '2025', event: '26 anos. +3M horas entregues/ano. 3,6% turnover. Referência em transformação digital.' },
 ];
 

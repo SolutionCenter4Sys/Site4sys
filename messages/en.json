@@ -93,7 +93,7 @@
     "headline": "What is your pain today?",
     "sub": "Connect your challenge to the right solution.",
     "pains": [
-      { "label": "Accelerate delivery without increasing headcount", "offer": "Hybrid Squads", "slug": "squads-hibridas" },
+      { "label": "Accelerate delivery without increasing headcount", "offer": "AI-Augmented Squad", "slug": "squads-hibridas" },
       { "label": "Prove AI ROI; move beyond pilots", "offer": "IA First", "slug": "ia-com-roi" },
       { "label": "Legacy blocks AI, integration and speed", "offer": "Legacy Modernization", "slug": "modernizacao-legado" },
       { "label": "Control cloud and AI costs", "offer": "FinOps & AI Cost", "slug": "finops-custo-ia" },
@@ -166,7 +166,7 @@
   },
   "solutions_page": {
     "meta_title": "Solutions",
-    "meta_desc": "Explore all Foursys solutions: Hybrid Squads, Legacy Modernization, AI with Impact and more.",
+    "meta_desc": "Explore all Foursys solutions: AI-Augmented Squad, Legacy Modernization, AI with Impact and more.",
     "hero_kicker": "Solutions",
     "hero_headline": "Digital transformation with measurable results",
     "hero_sub": "Each solution was designed for a real problem, with method, metrics and clear deliverables.",
@@ -313,8 +313,8 @@
         "a": "We operate in a hybrid model. Squads work primarily remotely but maintain physical presence at key clients for planning and review meetings. We have offices in São Paulo, Curitiba, Rio, Lisbon and Boca Raton."
       },
       {
-        "q": "What is the difference between Hybrid Squads and Staffing?",
-        "a": "Hybrid Squads come with built-in governance: quality playbook, security, metrics and delivery rituals. Staffing is a specialized professional integrated into your team without the governance overhead — more flexible for specific demands."
+        "q": "What is the difference between AI-Augmented Squad and Staffing?",
+        "a": "AI-Augmented Squad comes with built-in governance: quality playbook, security, metrics and delivery rituals. Staffing is a specialized professional integrated into your team without the governance overhead — more flexible for specific demands."
       }
     ]
   },
